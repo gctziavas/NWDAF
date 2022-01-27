@@ -3,8 +3,8 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.nwdaf.analytics.model.TS29572NlmfLocationYamlcomponentsschemasOrientation;
-import io.nwdaf.analytics.model.TS29572NlmfLocationYamlcomponentsschemasUncertainty;
+import io.nwdaf.analytics.model.Orientation;
+import io.nwdaf.analytics.model.Uncertainty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
@@ -19,15 +19,15 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class UncertaintyEllipse   {
   @JsonProperty("semiMajor")
-  private TS29572NlmfLocationYamlcomponentsschemasUncertainty semiMajor = null;
+  private Uncertainty semiMajor = null;
 
   @JsonProperty("semiMinor")
-  private TS29572NlmfLocationYamlcomponentsschemasUncertainty semiMinor = null;
+  private Uncertainty semiMinor = null;
 
   @JsonProperty("orientationMajor")
-  private TS29572NlmfLocationYamlcomponentsschemasOrientation orientationMajor = null;
+  private Orientation orientationMajor = null;
 
-  public UncertaintyEllipse semiMajor(TS29572NlmfLocationYamlcomponentsschemasUncertainty semiMajor) {
+  public UncertaintyEllipse semiMajor(Uncertainty semiMajor) {
     this.semiMajor = semiMajor;
     return this;
   }
@@ -40,15 +40,15 @@ public class UncertaintyEllipse   {
       @NotNull
 
     @Valid
-    public TS29572NlmfLocationYamlcomponentsschemasUncertainty getSemiMajor() {
+    public Uncertainty getSemiMajor() {
     return semiMajor;
   }
 
-  public void setSemiMajor(TS29572NlmfLocationYamlcomponentsschemasUncertainty semiMajor) {
+  public void setSemiMajor(Uncertainty semiMajor) {
     this.semiMajor = semiMajor;
   }
 
-  public UncertaintyEllipse semiMinor(TS29572NlmfLocationYamlcomponentsschemasUncertainty semiMinor) {
+  public UncertaintyEllipse semiMinor(Uncertainty semiMinor) {
     this.semiMinor = semiMinor;
     return this;
   }
@@ -61,15 +61,15 @@ public class UncertaintyEllipse   {
       @NotNull
 
     @Valid
-    public TS29572NlmfLocationYamlcomponentsschemasUncertainty getSemiMinor() {
+    public Uncertainty getSemiMinor() {
     return semiMinor;
   }
 
-  public void setSemiMinor(TS29572NlmfLocationYamlcomponentsschemasUncertainty semiMinor) {
+  public void setSemiMinor(Uncertainty semiMinor) {
     this.semiMinor = semiMinor;
   }
 
-  public UncertaintyEllipse orientationMajor(TS29572NlmfLocationYamlcomponentsschemasOrientation orientationMajor) {
+  public UncertaintyEllipse orientationMajor(Orientation orientationMajor) {
     this.orientationMajor = orientationMajor;
     return this;
   }
@@ -82,11 +82,11 @@ public class UncertaintyEllipse   {
       @NotNull
 
     @Valid
-    public TS29572NlmfLocationYamlcomponentsschemasOrientation getOrientationMajor() {
+    public Orientation getOrientationMajor() {
     return orientationMajor;
   }
 
-  public void setOrientationMajor(TS29572NlmfLocationYamlcomponentsschemasOrientation orientationMajor) {
+  public void setOrientationMajor(Orientation orientationMajor) {
     this.orientationMajor = orientationMajor;
   }
 

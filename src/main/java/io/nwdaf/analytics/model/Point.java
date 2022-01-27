@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.nwdaf.analytics.model.GADShape;
 import io.nwdaf.analytics.model.GeographicalCoordinates;
-import io.nwdaf.analytics.model.TS29572NlmfLocationYamlcomponentsschemasSupportedGADShapes;
+import io.nwdaf.analytics.model.SupportedGADShapes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;

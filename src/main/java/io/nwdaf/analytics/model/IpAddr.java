@@ -3,9 +3,9 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasIpv4Addr;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasIpv6Addr;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasIpv6Prefix;
+import io.nwdaf.analytics.model.Ipv4Addr;
+import io.nwdaf.analytics.model.Ipv6Addr;
+import io.nwdaf.analytics.model.Ipv6Prefix;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
@@ -20,15 +20,15 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class IpAddr  implements OneOfIpAddr {
   @JsonProperty("ipv4Addr")
-  private TS29571CommonDataYamlcomponentsschemasIpv4Addr ipv4Addr = null;
+  private Ipv4Addr ipv4Addr = null;
 
   @JsonProperty("ipv6Addr")
-  private TS29571CommonDataYamlcomponentsschemasIpv6Addr ipv6Addr = null;
+  private Ipv6Addr ipv6Addr = null;
 
   @JsonProperty("ipv6Prefix")
-  private TS29571CommonDataYamlcomponentsschemasIpv6Prefix ipv6Prefix = null;
+  private Ipv6Prefix ipv6Prefix = null;
 
-  public IpAddr ipv4Addr(TS29571CommonDataYamlcomponentsschemasIpv4Addr ipv4Addr) {
+  public IpAddr ipv4Addr(Ipv4Addr ipv4Addr) {
     this.ipv4Addr = ipv4Addr;
     return this;
   }
@@ -40,15 +40,15 @@ public class IpAddr  implements OneOfIpAddr {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasIpv4Addr getIpv4Addr() {
+    public Ipv4Addr getIpv4Addr() {
     return ipv4Addr;
   }
 
-  public void setIpv4Addr(TS29571CommonDataYamlcomponentsschemasIpv4Addr ipv4Addr) {
+  public void setIpv4Addr(Ipv4Addr ipv4Addr) {
     this.ipv4Addr = ipv4Addr;
   }
 
-  public IpAddr ipv6Addr(TS29571CommonDataYamlcomponentsschemasIpv6Addr ipv6Addr) {
+  public IpAddr ipv6Addr(Ipv6Addr ipv6Addr) {
     this.ipv6Addr = ipv6Addr;
     return this;
   }
@@ -60,15 +60,15 @@ public class IpAddr  implements OneOfIpAddr {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasIpv6Addr getIpv6Addr() {
+    public Ipv6Addr getIpv6Addr() {
     return ipv6Addr;
   }
 
-  public void setIpv6Addr(TS29571CommonDataYamlcomponentsschemasIpv6Addr ipv6Addr) {
+  public void setIpv6Addr(Ipv6Addr ipv6Addr) {
     this.ipv6Addr = ipv6Addr;
   }
 
-  public IpAddr ipv6Prefix(TS29571CommonDataYamlcomponentsschemasIpv6Prefix ipv6Prefix) {
+  public IpAddr ipv6Prefix(Ipv6Prefix ipv6Prefix) {
     this.ipv6Prefix = ipv6Prefix;
     return this;
   }
@@ -80,11 +80,11 @@ public class IpAddr  implements OneOfIpAddr {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasIpv6Prefix getIpv6Prefix() {
+    public Ipv6Prefix getIpv6Prefix() {
     return ipv6Prefix;
   }
 
-  public void setIpv6Prefix(TS29571CommonDataYamlcomponentsschemasIpv6Prefix ipv6Prefix) {
+  public void setIpv6Prefix(Ipv6Prefix ipv6Prefix) {
     this.ipv6Prefix = ipv6Prefix;
   }
 

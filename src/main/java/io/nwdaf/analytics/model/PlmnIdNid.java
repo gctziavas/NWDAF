@@ -3,9 +3,9 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasMcc;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasMnc;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasNid;
+import io.nwdaf.analytics.model.Mcc;
+import io.nwdaf.analytics.model.Mnc;
+import io.nwdaf.analytics.model.Nid;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
@@ -20,15 +20,15 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class PlmnIdNid   {
   @JsonProperty("mcc")
-  private TS29571CommonDataYamlcomponentsschemasMcc mcc = null;
+  private Mcc mcc = null;
 
   @JsonProperty("mnc")
-  private TS29571CommonDataYamlcomponentsschemasMnc mnc = null;
+  private Mnc mnc = null;
 
   @JsonProperty("nid")
-  private TS29571CommonDataYamlcomponentsschemasNid nid = null;
+  private Nid nid = null;
 
-  public PlmnIdNid mcc(TS29571CommonDataYamlcomponentsschemasMcc mcc) {
+  public PlmnIdNid mcc(Mcc mcc) {
     this.mcc = mcc;
     return this;
   }
@@ -41,15 +41,15 @@ public class PlmnIdNid   {
       @NotNull
 
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasMcc getMcc() {
+    public Mcc getMcc() {
     return mcc;
   }
 
-  public void setMcc(TS29571CommonDataYamlcomponentsschemasMcc mcc) {
+  public void setMcc(Mcc mcc) {
     this.mcc = mcc;
   }
 
-  public PlmnIdNid mnc(TS29571CommonDataYamlcomponentsschemasMnc mnc) {
+  public PlmnIdNid mnc(Mnc mnc) {
     this.mnc = mnc;
     return this;
   }
@@ -62,15 +62,15 @@ public class PlmnIdNid   {
       @NotNull
 
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasMnc getMnc() {
+    public Mnc getMnc() {
     return mnc;
   }
 
-  public void setMnc(TS29571CommonDataYamlcomponentsschemasMnc mnc) {
+  public void setMnc(Mnc mnc) {
     this.mnc = mnc;
   }
 
-  public PlmnIdNid nid(TS29571CommonDataYamlcomponentsschemasNid nid) {
+  public PlmnIdNid nid(Nid nid) {
     this.nid = nid;
     return this;
   }
@@ -82,11 +82,11 @@ public class PlmnIdNid   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasNid getNid() {
+    public Nid getNid() {
     return nid;
   }
 
-  public void setNid(TS29571CommonDataYamlcomponentsschemasNid nid) {
+  public void setNid(Nid nid) {
     this.nid = nid;
   }
 

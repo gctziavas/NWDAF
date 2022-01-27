@@ -34,7 +34,7 @@ public class PlmnId   {
   @ApiModelProperty(required = true, value = "")
       @NotNull
 
-  @Pattern(regexp="^\d{3}$")   public String getMcc() {
+  @Pattern(regexp="^\\d{3}$")   public String getMcc() {
     return mcc;
   }
 
@@ -54,7 +54,7 @@ public class PlmnId   {
   @ApiModelProperty(required = true, value = "")
       @NotNull
 
-  @Pattern(regexp="^\d{2,3}$")   public String getMnc() {
+  @Pattern(regexp="^\\d{2,3}$")   public String getMnc() {
     return mnc;
   }
 

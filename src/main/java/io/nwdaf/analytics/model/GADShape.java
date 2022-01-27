@@ -3,7 +3,7 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.nwdaf.analytics.model.TS29572NlmfLocationYamlcomponentsschemasSupportedGADShapes;
+import io.nwdaf.analytics.model.SupportedGADShapes;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
@@ -18,9 +18,9 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class GADShape   {
   @JsonProperty("shape")
-  private TS29572NlmfLocationYamlcomponentsschemasSupportedGADShapes shape = null;
+  private SupportedGADShapes shape = null;
 
-  public GADShape shape(TS29572NlmfLocationYamlcomponentsschemasSupportedGADShapes shape) {
+  public GADShape shape(SupportedGADShapes shape) {
     this.shape = shape;
     return this;
   }
@@ -33,11 +33,11 @@ public class GADShape   {
       @NotNull
 
     @Valid
-    public TS29572NlmfLocationYamlcomponentsschemasSupportedGADShapes getShape() {
+    public SupportedGADShapes getShape() {
     return shape;
   }
 
-  public void setShape(TS29572NlmfLocationYamlcomponentsschemasSupportedGADShapes shape) {
+  public void setShape(SupportedGADShapes shape) {
     this.shape = shape;
   }
 

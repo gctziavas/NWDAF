@@ -62,7 +62,7 @@ public class BwRequirement   {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMarBwDl() {
+  @Pattern(regexp="^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMarBwDl() {
     return marBwDl;
   }
 
@@ -81,7 +81,7 @@ public class BwRequirement   {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMarBwUl() {
+  @Pattern(regexp="^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMarBwUl() {
     return marBwUl;
   }
 
@@ -100,7 +100,7 @@ public class BwRequirement   {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMirBwDl() {
+  @Pattern(regexp="^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMirBwDl() {
     return mirBwDl;
   }
 
@@ -119,7 +119,7 @@ public class BwRequirement   {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMirBwUl() {
+  @Pattern(regexp="^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMirBwUl() {
     return mirBwUl;
   }
 

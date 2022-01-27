@@ -42,7 +42,7 @@ public class PerfData   {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getAvgTrafficRate() {
+  @Pattern(regexp="^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getAvgTrafficRate() {
     return avgTrafficRate;
   }
 
@@ -61,7 +61,7 @@ public class PerfData   {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMaxTrafficRate() {
+  @Pattern(regexp="^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getMaxTrafficRate() {
     return maxTrafficRate;
   }
 

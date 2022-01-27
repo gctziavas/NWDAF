@@ -132,7 +132,7 @@ public class QosSustainabilityInfo   {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getRanUeThrouThd() {
+  @Pattern(regexp="^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getRanUeThrouThd() {
     return ranUeThrouThd;
   }
 

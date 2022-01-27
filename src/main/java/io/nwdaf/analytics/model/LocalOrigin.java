@@ -3,7 +3,7 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.nwdaf.analytics.model.TS29572NlmfLocationYamlcomponentsschemasGeographicalCoordinates;
+import io.nwdaf.analytics.model.GeographicalCoordinates;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +21,7 @@ public class LocalOrigin   {
   private String coordinateId = null;
 
   @JsonProperty("point")
-  private TS29572NlmfLocationYamlcomponentsschemasGeographicalCoordinates point = null;
+  private GeographicalCoordinates point = null;
 
   public LocalOrigin coordinateId(String coordinateId) {
     this.coordinateId = coordinateId;
@@ -42,7 +42,7 @@ public class LocalOrigin   {
     this.coordinateId = coordinateId;
   }
 
-  public LocalOrigin point(TS29572NlmfLocationYamlcomponentsschemasGeographicalCoordinates point) {
+  public LocalOrigin point(GeographicalCoordinates point) {
     this.point = point;
     return this;
   }
@@ -54,11 +54,11 @@ public class LocalOrigin   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29572NlmfLocationYamlcomponentsschemasGeographicalCoordinates getPoint() {
+    public GeographicalCoordinates getPoint() {
     return point;
   }
 
-  public void setPoint(TS29572NlmfLocationYamlcomponentsschemasGeographicalCoordinates point) {
+  public void setPoint(GeographicalCoordinates point) {
     this.point = point;
   }
 

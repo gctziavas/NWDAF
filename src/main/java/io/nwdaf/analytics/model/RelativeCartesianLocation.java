@@ -3,7 +3,6 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasFloat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
@@ -18,15 +17,15 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class RelativeCartesianLocation   {
   @JsonProperty("x")
-  private TS29571CommonDataYamlcomponentsschemasFloat x = null;
+  private Float x = null;
 
   @JsonProperty("y")
-  private TS29571CommonDataYamlcomponentsschemasFloat y = null;
+  private Float y = null;
 
   @JsonProperty("z")
-  private TS29571CommonDataYamlcomponentsschemasFloat z = null;
+  private Float z = null;
 
-  public RelativeCartesianLocation x(TS29571CommonDataYamlcomponentsschemasFloat x) {
+  public RelativeCartesianLocation x(Float x) {
     this.x = x;
     return this;
   }
@@ -39,15 +38,15 @@ public class RelativeCartesianLocation   {
       @NotNull
 
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasFloat getX() {
+    public Float getX() {
     return x;
   }
 
-  public void setX(TS29571CommonDataYamlcomponentsschemasFloat x) {
+  public void setX(Float x) {
     this.x = x;
   }
 
-  public RelativeCartesianLocation y(TS29571CommonDataYamlcomponentsschemasFloat y) {
+  public RelativeCartesianLocation y(Float y) {
     this.y = y;
     return this;
   }
@@ -60,15 +59,15 @@ public class RelativeCartesianLocation   {
       @NotNull
 
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasFloat getY() {
+    public Float getY() {
     return y;
   }
 
-  public void setY(TS29571CommonDataYamlcomponentsschemasFloat y) {
+  public void setY(Float y) {
     this.y = y;
   }
 
-  public RelativeCartesianLocation z(TS29571CommonDataYamlcomponentsschemasFloat z) {
+  public RelativeCartesianLocation z(Float z) {
     this.z = z;
     return this;
   }
@@ -80,11 +79,11 @@ public class RelativeCartesianLocation   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasFloat getZ() {
+    public Float getZ() {
     return z;
   }
 
-  public void setZ(TS29571CommonDataYamlcomponentsschemasFloat z) {
+  public void setZ(Float z) {
     this.z = z;
   }
 

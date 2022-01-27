@@ -3,13 +3,13 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.nwdaf.analytics.model.TS29508NsmfEventExposureYamlcomponentsschemasNotificationMethod;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasDateTime;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasDurationSec;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasNotificationFlag;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasPartitioningCriteria;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasSamplingRatio;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasUinteger;
+import io.nwdaf.analytics.model.NotificationMethod;
+import io.nwdaf.analytics.model.DateTime;
+import io.nwdaf.analytics.model.DurationSec;
+import io.nwdaf.analytics.model.NotificationFlag;
+import io.nwdaf.analytics.model.PartitioningCriteria;
+import io.nwdaf.analytics.model.SamplingRatio;
+import io.nwdaf.analytics.model.Uinteger;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -29,29 +29,29 @@ public class ReportingInformation   {
   private Boolean immRep = null;
 
   @JsonProperty("notifMethod")
-  private TS29508NsmfEventExposureYamlcomponentsschemasNotificationMethod notifMethod = null;
+  private NotificationMethod notifMethod = null;
 
   @JsonProperty("maxReportNbr")
-  private TS29571CommonDataYamlcomponentsschemasUinteger maxReportNbr = null;
+  private Uinteger maxReportNbr = null;
 
   @JsonProperty("monDur")
-  private TS29571CommonDataYamlcomponentsschemasDateTime monDur = null;
+  private DateTime monDur = null;
 
   @JsonProperty("repPeriod")
-  private TS29571CommonDataYamlcomponentsschemasDurationSec repPeriod = null;
+  private DurationSec repPeriod = null;
 
   @JsonProperty("sampRatio")
-  private TS29571CommonDataYamlcomponentsschemasSamplingRatio sampRatio = null;
+  private SamplingRatio sampRatio = null;
 
   @JsonProperty("partitionCriteria")
   @Valid
-  private List<TS29571CommonDataYamlcomponentsschemasPartitioningCriteria> partitionCriteria = null;
+  private List<PartitioningCriteria> partitionCriteria = null;
 
   @JsonProperty("grpRepTime")
-  private TS29571CommonDataYamlcomponentsschemasDurationSec grpRepTime = null;
+  private DurationSec grpRepTime = null;
 
   @JsonProperty("notifFlag")
-  private TS29571CommonDataYamlcomponentsschemasNotificationFlag notifFlag = null;
+  private NotificationFlag notifFlag = null;
 
   public ReportingInformation immRep(Boolean immRep) {
     this.immRep = immRep;
@@ -72,7 +72,7 @@ public class ReportingInformation   {
     this.immRep = immRep;
   }
 
-  public ReportingInformation notifMethod(TS29508NsmfEventExposureYamlcomponentsschemasNotificationMethod notifMethod) {
+  public ReportingInformation notifMethod(NotificationMethod notifMethod) {
     this.notifMethod = notifMethod;
     return this;
   }
@@ -84,15 +84,15 @@ public class ReportingInformation   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29508NsmfEventExposureYamlcomponentsschemasNotificationMethod getNotifMethod() {
+    public NotificationMethod getNotifMethod() {
     return notifMethod;
   }
 
-  public void setNotifMethod(TS29508NsmfEventExposureYamlcomponentsschemasNotificationMethod notifMethod) {
+  public void setNotifMethod(NotificationMethod notifMethod) {
     this.notifMethod = notifMethod;
   }
 
-  public ReportingInformation maxReportNbr(TS29571CommonDataYamlcomponentsschemasUinteger maxReportNbr) {
+  public ReportingInformation maxReportNbr(Uinteger maxReportNbr) {
     this.maxReportNbr = maxReportNbr;
     return this;
   }
@@ -104,15 +104,15 @@ public class ReportingInformation   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasUinteger getMaxReportNbr() {
+    public Uinteger getMaxReportNbr() {
     return maxReportNbr;
   }
 
-  public void setMaxReportNbr(TS29571CommonDataYamlcomponentsschemasUinteger maxReportNbr) {
+  public void setMaxReportNbr(Uinteger maxReportNbr) {
     this.maxReportNbr = maxReportNbr;
   }
 
-  public ReportingInformation monDur(TS29571CommonDataYamlcomponentsschemasDateTime monDur) {
+  public ReportingInformation monDur(DateTime monDur) {
     this.monDur = monDur;
     return this;
   }
@@ -124,15 +124,15 @@ public class ReportingInformation   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasDateTime getMonDur() {
+    public DateTime getMonDur() {
     return monDur;
   }
 
-  public void setMonDur(TS29571CommonDataYamlcomponentsschemasDateTime monDur) {
+  public void setMonDur(DateTime monDur) {
     this.monDur = monDur;
   }
 
-  public ReportingInformation repPeriod(TS29571CommonDataYamlcomponentsschemasDurationSec repPeriod) {
+  public ReportingInformation repPeriod(DurationSec repPeriod) {
     this.repPeriod = repPeriod;
     return this;
   }
@@ -144,15 +144,15 @@ public class ReportingInformation   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasDurationSec getRepPeriod() {
+    public DurationSec getRepPeriod() {
     return repPeriod;
   }
 
-  public void setRepPeriod(TS29571CommonDataYamlcomponentsschemasDurationSec repPeriod) {
+  public void setRepPeriod(DurationSec repPeriod) {
     this.repPeriod = repPeriod;
   }
 
-  public ReportingInformation sampRatio(TS29571CommonDataYamlcomponentsschemasSamplingRatio sampRatio) {
+  public ReportingInformation sampRatio(SamplingRatio sampRatio) {
     this.sampRatio = sampRatio;
     return this;
   }
@@ -164,20 +164,20 @@ public class ReportingInformation   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasSamplingRatio getSampRatio() {
+    public SamplingRatio getSampRatio() {
     return sampRatio;
   }
 
-  public void setSampRatio(TS29571CommonDataYamlcomponentsschemasSamplingRatio sampRatio) {
+  public void setSampRatio(SamplingRatio sampRatio) {
     this.sampRatio = sampRatio;
   }
 
-  public ReportingInformation partitionCriteria(List<TS29571CommonDataYamlcomponentsschemasPartitioningCriteria> partitionCriteria) {
+  public ReportingInformation partitionCriteria(List<PartitioningCriteria> partitionCriteria) {
     this.partitionCriteria = partitionCriteria;
     return this;
   }
 
-  public ReportingInformation addPartitionCriteriaItem(TS29571CommonDataYamlcomponentsschemasPartitioningCriteria partitionCriteriaItem) {
+  public ReportingInformation addPartitionCriteriaItem(PartitioningCriteria partitionCriteriaItem) {
     if (this.partitionCriteria == null) {
       this.partitionCriteria = new ArrayList<>();
     }
@@ -191,15 +191,15 @@ public class ReportingInformation   {
   **/
   @ApiModelProperty(value = "Criteria for partitioning the UEs before applying the sampling ratio.")
       @Valid
-  @Size(min=1)   public List<TS29571CommonDataYamlcomponentsschemasPartitioningCriteria> getPartitionCriteria() {
+  @Size(min=1)   public List<PartitioningCriteria> getPartitionCriteria() {
     return partitionCriteria;
   }
 
-  public void setPartitionCriteria(List<TS29571CommonDataYamlcomponentsschemasPartitioningCriteria> partitionCriteria) {
+  public void setPartitionCriteria(List<PartitioningCriteria> partitionCriteria) {
     this.partitionCriteria = partitionCriteria;
   }
 
-  public ReportingInformation grpRepTime(TS29571CommonDataYamlcomponentsschemasDurationSec grpRepTime) {
+  public ReportingInformation grpRepTime(DurationSec grpRepTime) {
     this.grpRepTime = grpRepTime;
     return this;
   }
@@ -211,15 +211,15 @@ public class ReportingInformation   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasDurationSec getGrpRepTime() {
+    public DurationSec getGrpRepTime() {
     return grpRepTime;
   }
 
-  public void setGrpRepTime(TS29571CommonDataYamlcomponentsschemasDurationSec grpRepTime) {
+  public void setGrpRepTime(DurationSec grpRepTime) {
     this.grpRepTime = grpRepTime;
   }
 
-  public ReportingInformation notifFlag(TS29571CommonDataYamlcomponentsschemasNotificationFlag notifFlag) {
+  public ReportingInformation notifFlag(NotificationFlag notifFlag) {
     this.notifFlag = notifFlag;
     return this;
   }
@@ -231,11 +231,11 @@ public class ReportingInformation   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasNotificationFlag getNotifFlag() {
+    public NotificationFlag getNotifFlag() {
     return notifFlag;
   }
 
-  public void setNotifFlag(TS29571CommonDataYamlcomponentsschemasNotificationFlag notifFlag) {
+  public void setNotifFlag(NotificationFlag notifFlag) {
     this.notifFlag = notifFlag;
   }
 

@@ -65,7 +65,7 @@ public class QosRequirement   {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getGfbrUl() {
+  @Pattern(regexp="^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getGfbrUl() {
     return gfbrUl;
   }
 
@@ -84,7 +84,7 @@ public class QosRequirement   {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^\d+(\.\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getGfbrDl() {
+  @Pattern(regexp="^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$")   public String getGfbrDl() {
     return gfbrDl;
   }
 

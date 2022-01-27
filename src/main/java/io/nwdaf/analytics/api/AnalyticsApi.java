@@ -72,10 +72,10 @@ public interface AnalyticsApi {
         produces = { "application/json", "application/problem+json" }, 
         method = RequestMethod.GET)
     default ResponseEntity<AnalyticsData> getNWDAFAnalytics(@NotNull @ApiParam(value = "Identify the analytics.", required = true) @Valid @RequestParam(value = "event-id", required = true) EventId eventId
-,@ApiParam(value = "Identifies the analytics reporting requirement information.") @Valid @RequestParam(value = "ana-req", required = false)  
-,@ApiParam(value = "Identify the analytics.") @Valid @RequestParam(value = "event-filter", required = false)  
+,@ApiParam(value = "Identifies the analytics reporting requirement information.") @Valid @RequestParam(value = "ana-req", required = false)  String anaReq
+,@ApiParam(value = "Identify the analytics.") @Valid @RequestParam(value = "event-filter", required = false)  String eventFilter
 ,@ApiParam(value = "To filter irrelevant responses related to unsupported features") @Valid @RequestParam(value = "supported-features", required = false) String supportedFeatures
-,@ApiParam(value = "Identify the target UE information.") @Valid @RequestParam(value = "tgt-ue", required = false)  
+,@ApiParam(value = "Identify the target UE information.") @Valid @RequestParam(value = "tgt-ue", required = false)  String tgtUe
 ) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {

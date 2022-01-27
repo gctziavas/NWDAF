@@ -3,9 +3,9 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.nwdaf.analytics.model.TS29520NnwdafEventsSubscriptionYamlcomponentsschemasNnwdafEventsSubscription;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasNfInstanceId;
-import io.nwdaf.analytics.model.TS29571CommonDataYamlcomponentsschemasNfSetId;
+import io.nwdaf.analytics.model.NnwdafEventsSubscription;
+import io.nwdaf.analytics.model.NfInstanceId;
+import io.nwdaf.analytics.model.NfSetId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
@@ -23,13 +23,13 @@ public class SpecificAnalyticsSubscription2   {
   private String subscriptionId = null;
 
   @JsonProperty("producerId")
-  private TS29571CommonDataYamlcomponentsschemasNfInstanceId producerId = null;
+  private NfInstanceId producerId = null;
 
   @JsonProperty("producerSetId")
-  private TS29571CommonDataYamlcomponentsschemasNfSetId producerSetId = null;
+  private NfSetId producerSetId = null;
 
   @JsonProperty("nwdafEvSub")
-  private TS29520NnwdafEventsSubscriptionYamlcomponentsschemasNnwdafEventsSubscription nwdafEvSub = null;
+  private NnwdafEventsSubscription nwdafEvSub = null;
 
   public SpecificAnalyticsSubscription2 subscriptionId(String subscriptionId) {
     this.subscriptionId = subscriptionId;
@@ -51,7 +51,7 @@ public class SpecificAnalyticsSubscription2   {
     this.subscriptionId = subscriptionId;
   }
 
-  public SpecificAnalyticsSubscription2 producerId(TS29571CommonDataYamlcomponentsschemasNfInstanceId producerId) {
+  public SpecificAnalyticsSubscription2 producerId(NfInstanceId producerId) {
     this.producerId = producerId;
     return this;
   }
@@ -63,15 +63,15 @@ public class SpecificAnalyticsSubscription2   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasNfInstanceId getProducerId() {
+    public NfInstanceId getProducerId() {
     return producerId;
   }
 
-  public void setProducerId(TS29571CommonDataYamlcomponentsschemasNfInstanceId producerId) {
+  public void setProducerId(NfInstanceId producerId) {
     this.producerId = producerId;
   }
 
-  public SpecificAnalyticsSubscription2 producerSetId(TS29571CommonDataYamlcomponentsschemasNfSetId producerSetId) {
+  public SpecificAnalyticsSubscription2 producerSetId(NfSetId producerSetId) {
     this.producerSetId = producerSetId;
     return this;
   }
@@ -83,15 +83,15 @@ public class SpecificAnalyticsSubscription2   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public TS29571CommonDataYamlcomponentsschemasNfSetId getProducerSetId() {
+    public NfSetId getProducerSetId() {
     return producerSetId;
   }
 
-  public void setProducerSetId(TS29571CommonDataYamlcomponentsschemasNfSetId producerSetId) {
+  public void setProducerSetId(NfSetId producerSetId) {
     this.producerSetId = producerSetId;
   }
 
-  public SpecificAnalyticsSubscription2 nwdafEvSub(TS29520NnwdafEventsSubscriptionYamlcomponentsschemasNnwdafEventsSubscription nwdafEvSub) {
+  public SpecificAnalyticsSubscription2 nwdafEvSub(NnwdafEventsSubscription nwdafEvSub) {
     this.nwdafEvSub = nwdafEvSub;
     return this;
   }
@@ -104,11 +104,11 @@ public class SpecificAnalyticsSubscription2   {
       @NotNull
 
     @Valid
-    public TS29520NnwdafEventsSubscriptionYamlcomponentsschemasNnwdafEventsSubscription getNwdafEvSub() {
+    public NnwdafEventsSubscription getNwdafEvSub() {
     return nwdafEvSub;
   }
 
-  public void setNwdafEvSub(TS29520NnwdafEventsSubscriptionYamlcomponentsschemasNnwdafEventsSubscription nwdafEvSub) {
+  public void setNwdafEvSub(NnwdafEventsSubscription nwdafEvSub) {
     this.nwdafEvSub = nwdafEvSub;
   }
 

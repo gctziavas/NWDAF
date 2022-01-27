@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.nwdaf.analytics.model.GADShape;
 import io.nwdaf.analytics.model.LocalOrigin;
 import io.nwdaf.analytics.model.RelativeCartesianLocation;
-import io.nwdaf.analytics.model.TS29572NlmfLocationYamlcomponentsschemasSupportedGADShapes;
+import io.nwdaf.analytics.model.SupportedGADShapes;
 import io.nwdaf.analytics.model.UncertaintyEllipsoid;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
