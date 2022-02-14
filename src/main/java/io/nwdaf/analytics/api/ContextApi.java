@@ -66,7 +66,7 @@ public interface ContextApi {
         @ApiResponse(code = 500, message = "Internal Server Error", response = ProblemDetails.class),
         @ApiResponse(code = 503, message = "Service Unavailable", response = ProblemDetails.class),
         @ApiResponse(code = 200, message = "Generic Error") })
-    @RequestMapping(value = "/context",
+    @RequestMapping(value = "/nnwdaf-analyticsinfo/v1/context",
         produces = { "application/json", "application/problem+json" }, 
         method = RequestMethod.GET)
     default ResponseEntity<ContextData> getNwdafContext(@NotNull @ApiParam(value = "Identifies specific context information related to analytics subscriptions.", required = true) @Valid @RequestParam(value = "context-ids", required = true)String contextIds  

@@ -13,8 +13,35 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class EventId  implements AnyOfEventId {
+	
+	private String eventId = null;
+	
+	public EventId(String eventId) {
+		eventId = eventId.toUpperCase();
+	 
+		if(eventId.equals("LOAD_LEVEL_INFORMATION")||eventId.equals("NETWORK_PERFORMANCE")||eventId.equals("NF_LOAD")||eventId.equals("QOS_SUSTAINABILITY")||eventId.equals("SERVICE_EXPERIENCE")||eventId.equals("UE_MOBILITY")||eventId.equals("UE_COMM")||eventId.equals("USER_DATA_CONGESTION")||eventId.equals("ABNORMAL_BEHAVIOUR")||eventId.equals("NSI_LOAD_LEVEL")||eventId.equals("SM_CONGESTION")||eventId.equals("DN_PERFORMANCE")) {
+			this.eventId = eventId;
+		}
+		else { 
+			this.eventId = null;
+		}
+	}
+	
+	
+	
+  public String getEventId() {
+		return eventId;
+	}
 
-  @Override
+
+
+	public void setEventId(String eventId) {
+		this.eventId = eventId;
+	}
+
+
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;

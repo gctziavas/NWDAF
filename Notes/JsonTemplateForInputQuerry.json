@@ -52,6 +52,9 @@
 				{"plmnId":"" , "tac":"", "nid":""}
 			]
 		},
+		"maxTopAppUlNbr":"",
+		"maxTopAppDlNbr":"",
+		
 		"nsiIdInfos":[
 			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]},
 			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]}
@@ -74,17 +77,17 @@
 			"trafficProfile":"",
 			"batteryIndication":"",
 			"validityTime":""
-		}
+		},
+		"ratTypes":["",""],
+		"freqs":["",""]
 	},
 
 	"supported-features":"",
 
 	"tgt-ue":{
-		"snssais":[
-			{"sst":"" , "sd":""},
-			{"sst":"" , "sd":""}
-		],
-		"nsiIds":["", ""],
-		"anySlice":""
+		"anyUe":"",
+		"supis":["",""],
+		"gpsis":["",""],
+		"intGroupIds":["",""]
 	}
 }
