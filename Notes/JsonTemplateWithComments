@@ -1,0 +1,136 @@
+{
+	"event-id":"",  #Type EventId (Enum)(29.520 - 5.2.6.3.3)  
+					#Possible values of event-id are:
+						- LOAD_LEVEL_INFORMATION: Represent the analytics of load level information of corresponding network slice. 
+						- NETWORK_PERFORMANCE: Represent the analytics of network performance information. 
+						- NF_LOAD: Indicates that the event subscribed is NF Load.
+						- SERVICE_EXPERIENCE: Represent the analytics of service experience information of the specific applications. 
+						- UE_MOBILITY: Represent the analytics of UE mobility. - UE_COMMUNICATION: Represent the analytics of UE communication. 
+						- QOS_SUSTAINABILITY: Represent the analytics of QoS sustainability information in the certain area.  
+						- ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour information. 
+						- USER_DATA_CONGESTION: Represent the analytics of the user data congestion in the certain area. 
+						- NSI_LOAD_LEVEL: Represent the analytics of Network Slice and the optionally associated Network Slice Instance.  
+						- SM_CONGESTION: Represent the analytics of Session Management congestion control experience information for specific DNN and/or S-NSSAI. 
+
+	"ana-req" :{					 #Type EventReportingRequirement (29.520 - 5.1.6.2.7)  
+	
+		"accuracy":"",				 #Type Accuracy (Enum) (29.520 - 5.1.6.3.5)
+							 		 #Possible values of accuracy are:
+							 			- LOW
+							 			- HIGH
+
+ 		"startTs":"",                #Type DateTime (String) (29.571 - 5.2.2)
+		
+		"endTs":"",	                 #Type DateTime (String) (29.571 - 5.2.2)
+		
+		"offsetPeriod":"",			 #Type Integer: Offset period in units of seconds to the reporting time, if the value is negative means statistics in the past offset period, 
+									  otherwise a positive value means prediction in the future offset period.
+
+		"sampRatio":"",				 #Type Integer (29.571 - 5.2.2): Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502 [28], expressed in percent.
+									  Minimum = 1. Maximum = 100
+
+		"maxObjectNbr":"",			 #Type UInteger: Maximum number of objects expected for an analytics report. It’s only applicable for the event(s) which may provide more than 
+									  one entries or objects during event notification. 
+
+		"maxSupiNbr":"",			 #Type UInteger: Maximum number of objects expected for an analytics report. It’s only applicable for the event(s) which may provide more 
+									  than one entries or objects during event notification.
+
+		"timeAnaNeeded":"",			 #Type DateTime (String) (29.571 - 5.2.2)
+
+		"anaMeta":["",""],			 #Type AnalyticsMetadata (Enum) (29.520 - 5.1.6.3.14)
+									 #Possible values of anaMeta are:
+									 	- NUM_OF_SAMPLES
+									 	- DATA_WINDOW
+									 	- DATA_STAT_PROPS
+									 	- STRATEGY
+									 	- ACCURACY
+
+		"anaMetaInd":{				  #Type AnalyticsMetadataIndication (29.520 - 5.1.6.2.36)
+
+			"dataWindow":{			  #Type TimeWindow (29.122 - 5.2.1.2.3)
+				"startTime":"", 	  #Type DateTime (String) (29.571 - 5.2.2)
+				"stopTime":""		  #Type DateTime (String) (29.571 - 5.2.2)
+			},
+			"dataStatProps":["",""],  #Type DatasetStatisticalProperty (ENUM) (29.520 - 5.1.6.3.15)
+									  #Possible values of dataStatProps are:
+									  	- UNIFORM_DIST_DATA
+									  	- NO_OUTLIERS
+
+			"strategy":"",			  #Type OutputStrategy (ENUM) (29.520 - 5.1.6.3.16)
+									  #Possible values of strategy are:
+									  	- BINARY
+									  	- GRADIENT
+
+			"aggrNwdafIds":["",""]    #Type NfInstanceId (UUID) (29.571 - 5.3.2)
+		}
+	},
+
+	"event-filter":{
+		"anySlice":"",
+		"appIds":["",""],
+		"dnns":["" , ""],
+		"dnais":["" , ""],
+		"snssais":[
+			{"sst":"" , "sd":""},
+			{"sst":"" , "sd":""}
+		],
+		"nfInstanceIds":["", ""],
+		"nfSetIds":["", ""],
+		"nfTypes":["" , ""],
+		"networkArea":{
+			"ecgis":[
+				{"plmnId":"" , "eutraCellId":"", "nid":""},
+				{"plmnId":"" , "eutraCellId":"", "nid":""}
+			],
+			"ncgis":[
+				{"plmnId":"" , "nrCellId":"", "nid":""},
+				{"plmnId":"" , "nrCellId":"", "nid":""}
+			],
+			"gRanNodeIds":[
+				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""},
+				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""}
+			],
+			"tais":[
+				{"plmnId":"" , "tac":"", "nid":""},
+				{"plmnId":"" , "tac":"", "nid":""}
+			]
+		},
+		"maxTopAppUlNbr":"",
+		"maxTopAppDlNbr":"",
+		
+		"nsiIdInfos":[
+			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]},
+			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]}
+		],
+		"nwPerfTypes":["",""],
+		"qosRequ":{"5qi":"","gfbrUl":"","gfbrDl":"","resType":"","pdb":"","per":""},
+		"bwRequs":[
+			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""},
+			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""}
+		],
+		"excepIds":["",""],
+		"exptAnaType":"",
+		"exptUeBehav":{
+			"stationaryIndication":"",
+			"communicationDurationDurationSecTime":"",
+			"periodicTime":"",
+			"scheduledCommunicationTime":"",
+			"scheduledCommunicationType":"",
+			"expectedUmts":"",
+			"trafficProfile":"",
+			"batteryIndication":"",
+			"validityTime":""
+		},
+		"ratTypes":["",""],
+		"freqs":["",""]
+	},
+
+	"supported-features":"",
+
+	"tgt-ue":{
+		"anyUe":"",
+		"supis":["",""],
+		"gpsis":["",""],
+		"intGroupIds":["",""]
+	}
+}
