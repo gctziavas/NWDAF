@@ -23,7 +23,7 @@ public class EventId  implements AnyOfEventId {
 			this.eventId = eventId;
 		}
 		else { 
-			this.eventId = null;
+			throw new IllegalArgumentException("Not valid EventId argument");
 		}
 	}
 	
@@ -60,8 +60,8 @@ public class EventId  implements AnyOfEventId {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EventId {\n");
-    
+    sb.append("EventId {\n");
+    sb.append("    eventId:"+getEventId());
     sb.append("}");
     return sb.toString();
   }

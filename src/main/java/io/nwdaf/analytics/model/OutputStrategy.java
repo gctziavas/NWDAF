@@ -14,6 +14,19 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class OutputStrategy  implements AnyOfOutputStrategy {
 
+	private String outputStrategy = null;
+	
+	public OutputStrategy(String outputStrategy) {
+		outputStrategy = outputStrategy.toUpperCase();
+		if(outputStrategy.equals("BINARY") || outputStrategy.equals("GRADIENT")) {
+			this.outputStrategy = outputStrategy;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid OutputStrategy argument. Valid values are: \"BINARY\" or \"GRADIENT\"");
+		}
+	}
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

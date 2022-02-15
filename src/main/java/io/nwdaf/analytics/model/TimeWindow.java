@@ -23,11 +23,17 @@ public class TimeWindow   {
   @JsonProperty("stopTime")
   private OffsetDateTime stopTime = null;
 
+  public TimeWindow(OffsetDateTime startTime, OffsetDateTime stopTime) {
+	  this.startTime = startTime;
+	  this.stopTime = stopTime;
+  }
+  
+  
   public TimeWindow startTime(OffsetDateTime startTime) {
     this.startTime = startTime;
     return this;
   }
-
+  
   /**
    * Get startTime
    * @return startTime

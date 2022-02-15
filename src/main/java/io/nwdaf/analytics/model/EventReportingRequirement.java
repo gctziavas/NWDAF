@@ -133,7 +133,12 @@ public class EventReportingRequirement   {
   }
 
   public EventReportingRequirement sampRatio(Integer sampRatio) {
-    this.sampRatio = sampRatio;
+	  if(sampRatio>0 && sampRatio<101) {
+		  this.sampRatio = sampRatio;
+	  }
+	  else {
+		  throw new IllegalArgumentException("SampRatio values range [1 , 100]."); 
+	  }      
     return this;
   }
 
@@ -148,11 +153,22 @@ public class EventReportingRequirement   {
   }
 
   public void setSampRatio(Integer sampRatio) {
-    this.sampRatio = sampRatio;
+	  if(sampRatio>0 && sampRatio<101) {
+		  this.sampRatio = sampRatio;
+	  }
+	  else {
+		  throw new IllegalArgumentException("SampRatio values range [1 , 100]."); 
+	  }      
+	      
   }
 
   public EventReportingRequirement maxObjectNbr(Integer maxObjectNbr) {
-    this.maxObjectNbr = maxObjectNbr;
+    if(maxObjectNbr>0) {
+	  this.maxObjectNbr = maxObjectNbr;
+    }
+    else {
+    	throw new IllegalArgumentException("maxObjectNbr cannot be of negative or zero value"); 
+    }
     return this;
   }
 
@@ -167,11 +183,21 @@ public class EventReportingRequirement   {
   }
 
   public void setMaxObjectNbr(Integer maxObjectNbr) {
-    this.maxObjectNbr = maxObjectNbr;
+	  if(maxObjectNbr>0) {
+		  this.maxObjectNbr = maxObjectNbr;
+	    }
+	    else {
+	    	throw new IllegalArgumentException("maxObjectNbr cannot be of negative or zero value"); 
+	    }
   }
 
   public EventReportingRequirement maxSupiNbr(Integer maxSupiNbr) {
-    this.maxSupiNbr = maxSupiNbr;
+	  if(maxSupiNbr>0) {
+		  this.maxSupiNbr = maxSupiNbr;
+	    }
+	    else {
+	    	throw new IllegalArgumentException("maxSupiNbr cannot be of negative or zero value"); 
+	    }
     return this;
   }
 
@@ -186,7 +212,12 @@ public class EventReportingRequirement   {
   }
 
   public void setMaxSupiNbr(Integer maxSupiNbr) {
-    this.maxSupiNbr = maxSupiNbr;
+	  if(maxSupiNbr>0) {
+		  this.maxSupiNbr = maxSupiNbr;
+	  }
+	  else {
+		  throw new IllegalArgumentException("maxSupiNbr cannot be of negative or zero value"); 
+	  }
   }
 
   public EventReportingRequirement timeAnaNeeded(OffsetDateTime timeAnaNeeded) {

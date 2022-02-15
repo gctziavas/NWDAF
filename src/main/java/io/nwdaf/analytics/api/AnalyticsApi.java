@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.CookieValue;
 
@@ -32,6 +33,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -83,22 +86,25 @@ public interface AnalyticsApi {
             if (getAcceptHeader().get().contains("application/json")) {
                 //Initialization of the response body
             	AnalyticsData responseBuilder = new AnalyticsData(); 
-                
+                responseBuilder.setTimeStampGen(OffsetDateTime.now());
+            	
+            	
                 //Check if the given event-id is valid
                 EventId requestedEventId = new EventId(eventId);
-				if(requestedEventId.equals(null)) {
-					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+								
+				//Check if the requested supported features are valid and add them to the response body
+                SupportedFeatures requestedSupportedFeatures = null;
+                if(supportedFeatures!=null) {
+					requestedSupportedFeatures = new SupportedFeatures(supportedFeatures);
+					responseBuilder.setSuppFeat(requestedSupportedFeatures.getSupportedFeaturesHex());
+					responseBuilder.setSuppFeatString(requestedSupportedFeatures);
 				}
 				
-				//Check if the requested supported features are valid
-				SupportedFeatures requestedSupportedFeatures = new SupportedFeatures(supportedFeatures);
-				if(requestedSupportedFeatures.getNfLoad().equals(null)) {
-					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				if(tgtUe!=null) {
+					System.out.println("aaaa");
 				}
-				
-				
-				
-				return new ResponseEntity<>(responseBuilder, HttpStatus.OK);
+
+				return new ResponseEntity<>(responseBuilder, HttpStatus.NO_CONTENT);
 				
             }
         } 

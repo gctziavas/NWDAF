@@ -13,8 +13,31 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class Accuracy  implements AnyOfAccuracy {
+	
+	private String accuracy = null;
+	
+	public Accuracy(String accuracy){
+		accuracy = accuracy.toUpperCase();
+		if(accuracy.equals("LOW") || accuracy.equals("HIGH")) {
+			this.accuracy = accuracy;
+		}
+		else {
+			this.accuracy = null;
+		}
+	}
+	
+	
+  public String getAccuracy() {
+		return accuracy;
+	}
 
-  @Override
+
+	public void setAccuracy(String accuracy) {
+		this.accuracy = accuracy;
+	}
+
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
