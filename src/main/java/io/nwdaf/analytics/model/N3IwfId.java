@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -14,6 +17,26 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class N3IwfId   {
 
+	private String n3IwfId = null;
+	
+	public N3IwfId(String n3IwfId ) {
+		  String pattern = "^[A-Fa-f0-9]+$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(n3IwfId );
+		  if (m.matches()) {
+			  this.n3IwfId  = n3IwfId ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid n3IwfId  argument. N3IwfId  must must follow the \"^[A-Fa-f0-9]+$\" pattern.");
+		  }
+	}
+  
+	public String n3IwfIdValue() {
+		return this.n3IwfId ;
+	}
+	
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

@@ -64,7 +64,7 @@ public class GlobalRanNodeId  implements OneOfGlobalRanNodeId {
   }
 
   public GlobalRanNodeId n3IwfId(String n3IwfId) {
-    this.n3IwfId = n3IwfId;
+    this.n3IwfId = new N3IwfId(n3IwfId).n3IwfIdValue();
     return this;
   }
 
@@ -79,7 +79,7 @@ public class GlobalRanNodeId  implements OneOfGlobalRanNodeId {
   }
 
   public void setN3IwfId(String n3IwfId) {
-    this.n3IwfId = n3IwfId;
+	  this.n3IwfId = new N3IwfId(n3IwfId).n3IwfIdValue();
   }
 
   public GlobalRanNodeId gNbId(GNbId gNbId) {

@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -13,7 +16,22 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class NgeNbId   {
-
+	
+	private String ngeNbId = null;
+	
+	public NgeNbId(String ngeNbId ) {
+		  String pattern = "^('MacroNGeNB-[A-Fa-f0-9]{5}|LMacroNGeNB-[A-Fa-f0-9]{6}|SMacroNGeNB-[A-Fa-f0-9]{5})$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(ngeNbId );
+		  if (m.matches()) {
+			  this.ngeNbId  = ngeNbId ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid ngeNbId  argument. NgeNbId  must must follow the \"^('MacroNGeNB-[A-Fa-f0-9]{5}|LMacroNGeNB-[A-Fa-f0-9]{6}|SMacroNGeNB-[A-Fa-f0-9]{5})$\" pattern.");
+		  }
+	}
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

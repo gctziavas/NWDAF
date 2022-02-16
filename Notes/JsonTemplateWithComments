@@ -65,29 +65,41 @@
 		}
 	},
 
-	"event-filter":{
+	"event-filter":{				  #Type EventFilter (29.520 - 5.2.6.2.3)
+
 		"anySlice":"",				  #Type AnySlice (boolean) (default is false) (29.520 - 5.1.6.3.2)
-		"appIds":["",""],
-		"dnns":["" , ""],
-		"dnais":["" , ""],
-		"snssais":[
-			{"sst":"" , "sd":""},
+
+		"appIds":["",""],			  #Type ApplicationId (String) (29.571 - 5.4.2)
+
+		"dnns":["" , ""],			  #Type Dnn (String) (29.571 - 5.3.2) 
+
+		"dnais":["" , ""],			  #Type Dnai (String) (29.571 - 5.4.2)
+		
+		"snssais":[				   	  #Type Snssai (29.571 - 5.4.4.2) || sst type unsigned integer within range [0,255]. 
+									  #Standarised values of sst are defined in 23.501 - 5.15.2.2 || sd type string. with pattern:'^[A-Fa-f0-9]{6}$'
+			{"sst":"" , "sd":""},	     
 			{"sst":"" , "sd":""}
 		],
-		"nfInstanceIds":["", ""],
-		"nfSetIds":["", ""],
-		"nfTypes":["" , ""],
-		"networkArea":{
-			"ecgis":[
-				{"plmnId":"" , "eutraCellId":"", "nid":""},
-				{"plmnId":"" , "eutraCellId":"", "nid":""}
+		"nfInstanceIds":["", ""],	  #Type NfInstanceId (UUID) (29.571 - 5.3.2)
+
+		"nfSetIds":["", ""],		  #Type NfSetId (String) (29.571 - 5.4.2)
+
+		"nfTypes":["" , ""],		  #Type NFType (Enum) (29.510 - 6.1.6.3.3)
+
+		"networkArea":{				  #Type NetworkAreaInfo (29.554 - 5.6.2.8)
+
+			"ecgis":[				  #Type Ecgi (29.571 - 5.4.4.5)
+
+				{"plmnId":"" , "eutraCellId":"", "nid":""},  #Type PlmnId (29.571 - 5.4.4.3)|| Type EutraCellId (String) (29.571 - 5.4.2) || 
+				{"plmnId":"" , "eutraCellId":"", "nid":""}   #Type Nid (String) (29.571 - 5.4.2)
 			],
 			"ncgis":[
-				{"plmnId":"" , "nrCellId":"", "nid":""},
+				{"plmnId":"" , "nrCellId":"", "nid":""},     #Type NrCellId (String) (29.571 - 5.4.2)
 				{"plmnId":"" , "nrCellId":"", "nid":""}
 			],
 			"gRanNodeIds":[
-				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""},
+				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""},   #Type n3IwfId (String) (29.571) || Type GNbId (29.571 - 5.4.4.29) || 
+																												  #Type NgeNbId (String) (29.571)
 				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""}
 			],
 			"tais":[

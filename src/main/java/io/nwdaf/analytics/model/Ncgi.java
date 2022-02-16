@@ -48,7 +48,7 @@ public class Ncgi   {
   }
 
   public Ncgi nrCellId(String nrCellId) {
-    this.nrCellId = nrCellId;
+    this.nrCellId = new NrCellId(nrCellId).nrCellIdValue();
     return this;
   }
 
@@ -64,11 +64,11 @@ public class Ncgi   {
   }
 
   public void setNrCellId(String nrCellId) {
-    this.nrCellId = nrCellId;
+	  this.nrCellId = new NrCellId(nrCellId).nrCellIdValue();
   }
 
   public Ncgi nid(String nid) {
-    this.nid = nid;
+    this.nid = new Nid(nid).nidValue();
     return this;
   }
 
@@ -83,7 +83,7 @@ public class Ncgi   {
   }
 
   public void setNid(String nid) {
-    this.nid = nid;
+	  this.nid = new Nid(nid).nidValue();
   }
 
 

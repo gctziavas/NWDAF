@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -14,6 +17,25 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class NrCellId   {
 
+	private String nrCellId = null;
+	
+	public NrCellId(String nrCellId) {
+		  String pattern = "^[A-Fa-f0-9]{9}$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(nrCellId);
+		  if (m.matches()) {
+			  this.nrCellId = nrCellId;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid nrCellId argument. NrCellId must must follow the \"^[A-Fa-f0-9]{9}$\" pattern.");
+		  }
+	}
+  
+	public String nrCellIdValue() {
+		return this.nrCellId;
+	}
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
