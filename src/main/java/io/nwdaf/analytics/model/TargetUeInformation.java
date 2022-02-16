@@ -53,15 +53,26 @@ public class TargetUeInformation   {
   }
 
   public TargetUeInformation supis(List<String> supis) {
-    this.supis = supis;
+    int flag = 0;
+    for(int i = 0; i<supis.size(); i++) {
+    	if(!supis.get(i).equals(new Supi(supis.get(i)).supiValue())) {
+    		flag++;
+    	}
+    }
+	if(flag==0) {  
+	  this.supis = supis;
     return this;
+	}
+	else {
+		throw new IllegalArgumentException("Not valid supi argument. Supi must must follow the \"^(imsi-[0-9]{5,15}|nai-.+| gci-.+|gli-.+|.+)$\" pattern.");
+	}
   }
 
   public TargetUeInformation addSupisItem(String supisItem) {
     if (this.supis == null) {
       this.supis = new ArrayList<>();
     }
-    this.supis.add(supisItem);
+    this.supis.add(new Supi(supisItem).supiValue());
     return this;
   }
 
@@ -76,19 +87,41 @@ public class TargetUeInformation   {
   }
 
   public void setSupis(List<String> supis) {
-    this.supis = supis;
+	    int flag = 0;
+	    for(int i = 0; i<supis.size(); i++) {
+	    	if(!supis.get(i).equals(new Supi(supis.get(i)).supiValue())) {
+	    		flag++;
+	    	}
+	    }
+		if(flag==0) {  
+		  this.supis = supis;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid supi argument. Supi must must follow the \"^(imsi-[0-9]{5,15}|nai-.+| gci-.+|gli-.+|.+)$\" pattern.");
+		}
   }
 
   public TargetUeInformation gpsis(List<String> gpsis) {
-    this.gpsis = gpsis;
-    return this;
+	    int flag = 0;
+	    for(int i = 0; i<gpsis.size(); i++) {
+	    	if(!gpsis.get(i).equals(new Gpsi(gpsis.get(i)).gpsiValue())) {
+	    		flag++;
+	    	}
+	    }
+		if(flag==0) {  
+		  this.gpsis = gpsis;
+		  return this;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid gpsi argument. Gpsi must must follow the \"^(msisdn-[0-9]{5,15}|extid-.+@.+|.+)$\" pattern.");
+		}
   }
 
   public TargetUeInformation addGpsisItem(String gpsisItem) {
     if (this.gpsis == null) {
       this.gpsis = new ArrayList<>();
     }
-    this.gpsis.add(gpsisItem);
+    this.gpsis.add(new Gpsi(gpsisItem).gpsiValue());
     return this;
   }
 
@@ -103,19 +136,42 @@ public class TargetUeInformation   {
   }
 
   public void setGpsis(List<String> gpsis) {
-    this.gpsis = gpsis;
+	    int flag = 0;
+	    for(int i = 0; i<gpsis.size(); i++) {
+	    	if(!gpsis.get(i).equals(new Gpsi(gpsis.get(i)).gpsiValue())) {
+	    		flag++;
+	    	}
+	    }
+		if(flag==0) {  
+		  this.gpsis = gpsis;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid gpsi argument. Gpsi must must follow the \"^(msisdn-[0-9]{5,15}|extid-.+@.+|.+)$\" pattern.");
+		}
   }
+  
 
   public TargetUeInformation intGroupIds(List<String> intGroupIds) {
-    this.intGroupIds = intGroupIds;
-    return this;
+	    int flag = 0;
+	    for(int i = 0; i<intGroupIds.size(); i++) {
+	    	if(!intGroupIds.get(i).equals(new GroupId(intGroupIds.get(i)).groupIdValue())) {
+	    		flag++;
+	    	}
+	    }
+		if(flag==0) {  
+		  this.intGroupIds = intGroupIds;
+		  return this;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid groupId argument. GroupId must must follow the \"^[A-Fa-f0-9]{8}-[0-9]{3}-[0-9]{2,3}-([A-Fa-f0-9][A-Fa-f0-9]){1,10}$\" pattern.");
+		}
   }
 
   public TargetUeInformation addIntGroupIdsItem(String intGroupIdsItem) {
     if (this.intGroupIds == null) {
       this.intGroupIds = new ArrayList<>();
     }
-    this.intGroupIds.add(intGroupIdsItem);
+    this.intGroupIds.add(new GroupId(intGroupIdsItem).groupIdValue());
     return this;
   }
 
@@ -130,7 +186,18 @@ public class TargetUeInformation   {
   }
 
   public void setIntGroupIds(List<String> intGroupIds) {
-    this.intGroupIds = intGroupIds;
+	    int flag = 0;
+	    for(int i = 0; i<intGroupIds.size(); i++) {
+	    	if(!intGroupIds.get(i).equals(new GroupId(intGroupIds.get(i)).groupIdValue())) {
+	    		flag++;
+	    	}
+	    }
+		if(flag==0) {  
+		  this.intGroupIds = intGroupIds;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid groupId argument. GroupId must must follow the \"^[A-Fa-f0-9]{8}-[0-9]{3}-[0-9]{2,3}-([A-Fa-f0-9][A-Fa-f0-9]){1,10}$\" pattern.");
+		}
   }
 
 

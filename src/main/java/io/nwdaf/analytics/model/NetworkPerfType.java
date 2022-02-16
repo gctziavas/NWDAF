@@ -1,8 +1,12 @@
 package io.nwdaf.analytics.model;
 
+import java.util.Arrays;
 import java.util.Objects;
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -13,7 +17,27 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class NetworkPerfType  implements AnyOfNetworkPerfType {
+	
+	private String networkPerfType = null;
+	
+	@JsonIgnore
+	private String[] possibleValues = {"GNB_ACTIVE_RATIO", "GNB_COMPUTING_USAGE","GNB_MEMORY_USAGE","GNB_DISK_USAGE","NUM_OF_UE","SESS_SUCC_RATIO","HO_SUCC_RATIO","MOBILITY","COMMUN","MOBILITY_AND_COMMUN"};                                                                                         
+	
+	
+	public NetworkPerfType(String networkPerfType) {
 
+		  if (Arrays.asList(possibleValues).contains(networkPerfType)) {
+			  this.networkPerfType = networkPerfType;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid networkPerfType value.");
+		  }
+	}
+  
+	public String getNetworkPerfType() {
+		return this.networkPerfType;
+	}
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

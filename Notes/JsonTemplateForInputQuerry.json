@@ -68,6 +68,8 @@
 		"excepIds":["",""],
 		"exptAnaType":"",
 		"exptUeBehav":{
+			"afInstanceId":"",
+			"referenceId":"",
 			"stationaryIndication":"",
 			"communicationDurationDurationSecTime":"",
 			"periodicTime":"",
@@ -76,7 +78,8 @@
 			"expectedUmts":"",
 			"trafficProfile":"",
 			"batteryIndication":"",
-			"validityTime":""
+			"validityTime":"",
+			"mtcProviderInformation":""
 		},
 		"ratTypes":["",""],
 		"freqs":["",""]

@@ -31,6 +31,22 @@ public class NgeNbId   {
 		  }
 	}
 	
+	public String getNgeNbId() {
+		return ngeNbId;
+	}
+
+
+	public void setNgeNbId(String ngeNbId) {
+		  String pattern = "^('MacroNGeNB-[A-Fa-f0-9]{5}|LMacroNGeNB-[A-Fa-f0-9]{6}|SMacroNGeNB-[A-Fa-f0-9]{5})$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(ngeNbId );
+		  if (m.matches()) {
+			  this.ngeNbId  = ngeNbId ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid ngeNbId  argument. NgeNbId  must must follow the \"^('MacroNGeNB-[A-Fa-f0-9]{5}|LMacroNGeNB-[A-Fa-f0-9]{6}|SMacroNGeNB-[A-Fa-f0-9]{5})$\" pattern.");
+		  }
+	}	
 	
   @Override
   public boolean equals(java.lang.Object o) {

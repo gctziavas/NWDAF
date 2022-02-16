@@ -99,31 +99,55 @@
 			],
 			"gRanNodeIds":[
 				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""},   #Type n3IwfId (String) (29.571) || Type GNbId (29.571 - 5.4.4.29) || 
-																												  #Type NgeNbId (String) (29.571)
+																												  #Type NgeNbId (String) (29.571) || Type WAgfId (String)||
+																												  #Type TngfId (String) (29.571)  || Type EnbId (String)
 				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""}
 			],
-			"tais":[
-				{"plmnId":"" , "tac":"", "nid":""},
+			"tais":[											#Type Tai (29.571 - 5.4.4.4)
+
+				{"plmnId":"" , "tac":"", "nid":""},  			#Type Tac (String) (29.571)						
 				{"plmnId":"" , "tac":"", "nid":""}
 			]
 		},
-		"maxTopAppUlNbr":"",
-		"maxTopAppDlNbr":"",
+		"maxTopAppUlNbr":"",  #Type UInteger (29.520 - 5.1.6.2.3)
+
+		"maxTopAppDlNbr":"",  #Type UInteger (29.520 - 5.1.6.2.3) 
 		
-		"nsiIdInfos":[
-			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]},
+		"nsiIdInfos":[											 #Type NsiIdInfo (29.520 - 5.1.6.2.33)
+
+			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]},    #Type NsiId (String) (29.531 - 6.1.6.3.2)
 			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]}
 		],
-		"nwPerfTypes":["",""],
-		"qosRequ":{"5qi":"","gfbrUl":"","gfbrDl":"","resType":"","pdb":"","per":""},
-		"bwRequs":[
-			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""},
+		"nwPerfTypes":["",""],									 #Type NetworkPerfType (Enum) (29.520 - 5.1.6.3.10)
+
+		"qosRequ":{												 #Type QosRequirement (29.520 - 5.1.6.2.20)
+
+			"5qi":"",											 #Type 5Qi (Integer) (29.571 - 5.5.2)
+
+			"gfbrUl":"",										 #Type BitRate (String) (29.571 - 5.5.2)
+
+			"gfbrDl":"",										 #Type BitRate (String) (29.571 - 5.5.2)
+
+			"resType":"", 										 #Type QosResourceType (Enum) (29.571 - 5.5.3.6)							 
+
+			"pdb":"",										     #Type PacketDelBudget (Integer) (29.571 - 5.5.2)
+
+			"per":""},											 #Type PacketErrRate (String) (29.571 - 5.5.2)
+
+		"bwRequs":[                                              #Type BwRequirement (29.520 - 5.1.6.2.25)
+
+
+			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""},   #Type ApplicationId (String)(29.571)||
+																					#Everything else Type BitRate (String) (29.571 - 5.5.2)
 			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""}
 		],
-		"excepIds":["",""],
-		"exptAnaType":"",
-		"exptUeBehav":{
-			"stationaryIndication":"",
+		"excepIds":["",""],           #Type ExceptionId (Enum) (5.1.6.3.6)
+
+		"exptAnaType":"",			  #Type ExpectedAnalyticsType (Enum) (5.1.6.3.11)
+
+		"exptUeBehav":{				  						#Type ExpectedUeBehaviour	(29.503 - 6.5.6.2.8) #Not implemented so far
+
+			"stationaryIndication":"",						
 			"communicationDurationDurationSecTime":"",
 			"periodicTime":"",
 			"scheduledCommunicationTime":"",
@@ -133,16 +157,19 @@
 			"batteryIndication":"",
 			"validityTime":""
 		},
-		"ratTypes":["",""],
-		"freqs":["",""]
+		"ratTypes":["",""],      #Type RatType (Enum)(29.571 - 5.4.3.2)
+
+		"freqs":["",""]				
 	},
 
-	"supported-features":"",
+	"supported-features":"",   #Type SupportedFeatures (29.571)
 
-	"tgt-ue":{
+	"tgt-ue":{					#Type TargetUeInformation (29.520 - 5.1.6.2.8)
 		"anyUe":"",
 		"supis":["",""],
 		"gpsis":["",""],
 		"intGroupIds":["",""]
 	}
 }
+
+

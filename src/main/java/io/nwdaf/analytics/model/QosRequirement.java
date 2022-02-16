@@ -27,7 +27,7 @@ public class QosRequirement   {
   private String gfbrDl = null;
 
   @JsonProperty("resType")
-  private QosResourceType resType = null;
+  private String resType = null;
 
   @JsonProperty("pdb")
   private Integer pdb = null;
@@ -35,8 +35,11 @@ public class QosRequirement   {
   @JsonProperty("per")
   private String per = null;
 
+  
+  
+  
   public QosRequirement _5qi(Integer _5qi) {
-    this._5qi = _5qi;
+    this._5qi = new FiveQi(_5qi).fiveQiValue();
     return this;
   }
 
@@ -51,11 +54,11 @@ public class QosRequirement   {
   }
 
   public void set5qi(Integer _5qi) {
-    this._5qi = _5qi;
+	  this._5qi = new FiveQi(_5qi).fiveQiValue();
   }
 
   public QosRequirement gfbrUl(String gfbrUl) {
-    this.gfbrUl = gfbrUl;
+    this.gfbrUl = new BitRate(gfbrUl).bitRateValue();
     return this;
   }
 
@@ -70,11 +73,11 @@ public class QosRequirement   {
   }
 
   public void setGfbrUl(String gfbrUl) {
-    this.gfbrUl = gfbrUl;
+	  this.gfbrUl = new BitRate(gfbrUl).bitRateValue();
   }
 
   public QosRequirement gfbrDl(String gfbrDl) {
-    this.gfbrDl = gfbrDl;
+    this.gfbrDl = new BitRate(gfbrDl).bitRateValue();
     return this;
   }
 
@@ -89,11 +92,11 @@ public class QosRequirement   {
   }
 
   public void setGfbrDl(String gfbrDl) {
-    this.gfbrDl = gfbrDl;
+	  this.gfbrDl = new BitRate(gfbrDl).bitRateValue();
   }
 
-  public QosRequirement resType(QosResourceType resType) {
-    this.resType = resType;
+  public QosRequirement resType(String resType) {
+    this.resType = new QosResourceType(resType).getQosResourceType();
     return this;
   }
 
@@ -104,16 +107,16 @@ public class QosRequirement   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public QosResourceType getResType() {
+    public String getResType() {
     return resType;
   }
 
-  public void setResType(QosResourceType resType) {
-    this.resType = resType;
+  public void setResType(String resType) {
+	  this.resType = new QosResourceType(resType).getQosResourceType();
   }
 
   public QosRequirement pdb(Integer pdb) {
-    this.pdb = pdb;
+    this.pdb = new PacketDelBudget(pdb).packetDelBudgetValue();
     return this;
   }
 
@@ -128,11 +131,11 @@ public class QosRequirement   {
   }
 
   public void setPdb(Integer pdb) {
-    this.pdb = pdb;
+	  this.pdb = new PacketDelBudget(pdb).packetDelBudgetValue();
   }
 
   public QosRequirement per(String per) {
-    this.per = per;
+    this.per = new PacketErrRate(per).getpacketErrRate();
     return this;
   }
 
@@ -147,7 +150,7 @@ public class QosRequirement   {
   }
 
   public void setPer(String per) {
-    this.per = per;
+	  this.per = new PacketErrRate(per).getpacketErrRate();
   }
 
 

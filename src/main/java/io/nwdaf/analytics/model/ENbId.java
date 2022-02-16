@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -14,6 +17,39 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class ENbId   {
 
+	private String eNbId = null;
+	
+	public ENbId(String eNbId ) {
+		  String pattern = "^('MacroeNB-[A-Fa-f0-9]{5}|LMacroeNB-[A-Fa-f0-9]{6}|\n"
+		  		+ "SMacroeNB-[A-Fa-f0-9]{5}|HomeeNB-[A-Fa-f0-9]{7})";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(eNbId );
+		  if (m.matches()) {
+			  this.eNbId  = eNbId ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid eNbId  argument. ENbId  must must follow the \"^('MacroeNB-[A-Fa-f0-9]{5}|LMacroeNB-[A-Fa-f0-9]{6}|SMacroeNB-[A-Fa-f0-9]{5}|HomeeNB-[A-Fa-f0-9]{7})\" pattern.");
+		  }
+	}
+	
+	public String geteNbId() {
+		return eNbId;
+	}
+
+
+	public void seteNbId(String eNbId) {
+		  String pattern = "^[A-Fa-f0-9]+$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(eNbId );
+		  if (m.matches()) {
+			  this.eNbId  = eNbId ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid eNbId  argument. ENbId  must must follow the \"^('MacroeNB-[A-Fa-f0-9]{5}|LMacroeNB-[A-Fa-f0-9]{6}|SMacroeNB-[A-Fa-f0-9]{5}|HomeeNB-[A-Fa-f0-9]{7})\" pattern.");
+		  }
+	}
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

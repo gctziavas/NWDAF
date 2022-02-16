@@ -52,7 +52,7 @@ public class BwRequirement   {
   }
 
   public BwRequirement marBwDl(String marBwDl) {
-    this.marBwDl = marBwDl;
+    this.marBwDl = new BitRate(marBwDl).bitRateValue();
     return this;
   }
 
@@ -67,11 +67,11 @@ public class BwRequirement   {
   }
 
   public void setMarBwDl(String marBwDl) {
-    this.marBwDl = marBwDl;
+	  this.marBwDl = new BitRate(marBwDl).bitRateValue();
   }
 
   public BwRequirement marBwUl(String marBwUl) {
-    this.marBwUl = marBwUl;
+	  this.marBwUl = new BitRate(marBwUl).bitRateValue();
     return this;
   }
 
@@ -86,11 +86,11 @@ public class BwRequirement   {
   }
 
   public void setMarBwUl(String marBwUl) {
-    this.marBwUl = marBwUl;
+	  this.marBwUl = new BitRate(marBwUl).bitRateValue();
   }
 
   public BwRequirement mirBwDl(String mirBwDl) {
-    this.mirBwDl = mirBwDl;
+	  this.mirBwDl = new BitRate(mirBwDl).bitRateValue();
     return this;
   }
 
@@ -105,11 +105,11 @@ public class BwRequirement   {
   }
 
   public void setMirBwDl(String mirBwDl) {
-    this.mirBwDl = mirBwDl;
+	  this.mirBwDl = new BitRate(mirBwDl).bitRateValue();
   }
 
   public BwRequirement mirBwUl(String mirBwUl) {
-    this.mirBwUl = mirBwUl;
+	  this.mirBwUl = new BitRate(mirBwUl).bitRateValue();
     return this;
   }
 
@@ -124,7 +124,7 @@ public class BwRequirement   {
   }
 
   public void setMirBwUl(String mirBwUl) {
-    this.mirBwUl = mirBwUl;
+	  this.mirBwUl = new BitRate(mirBwUl).bitRateValue();
   }
 
 

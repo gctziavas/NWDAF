@@ -565,16 +565,33 @@ public class EventFilter   {
   }
 
   public EventFilter freqs(List<Integer> freqs) {
-    this.freqs = freqs;
-    return this;
+    int flag =0;
+    for(int i=0; i<freqs.size(); i++) {
+    	if(freqs.get(i)<0 || freqs.get(i)>3279165) {
+    		flag = 1;
+    	}
+    }
+	if(flag==0) {
+		this.freqs = freqs;
+		return this;
+	}
+	else {
+		throw new IllegalArgumentException("Not valid ArfcnValueNR value.");
+	}
   }
 
   public EventFilter addFreqsItem(Integer freqsItem) {
     if (this.freqs == null) {
       this.freqs = new ArrayList<>();
     }
-    this.freqs.add(freqsItem);
-    return this;
+    if(freqsItem>=0 && freqsItem<3279166) {
+    	this.freqs.add(freqsItem);
+        return this;
+    }
+    else {
+    	throw new IllegalArgumentException("Not valid ArfcnValueNR value.");
+    }
+    
   }
 
   /**
@@ -588,7 +605,18 @@ public class EventFilter   {
   }
 
   public void setFreqs(List<Integer> freqs) {
-    this.freqs = freqs;
+	    int flag =0;
+	    for(int i=0; i<freqs.size(); i++) {
+	    	if(freqs.get(i)<0 || freqs.get(i)>3279165) {
+	    		flag = 1;
+	    	}
+	    }
+		if(flag==0) {
+			this.freqs = freqs;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid ArfcnValueNR value.");
+		}
   }
 
 

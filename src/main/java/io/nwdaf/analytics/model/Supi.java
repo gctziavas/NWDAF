@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -13,7 +16,25 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class Supi   {
-
+	
+	private String supi = null;
+	
+	public Supi(String supi ) {
+		  String pattern = "^(imsi-[0-9]{5,15}|nai-.+| gci-.+|gli-.+|.+)$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(supi );
+		  if (m.matches()) {
+			  this.supi  = supi ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid supi argument. Supi must must follow the \"^(imsi-[0-9]{5,15}|nai-.+| gci-.+|gli-.+|.+)$\" pattern.");
+		  }
+	}
+	
+	public String supiValue() {
+		return this.supi;
+	}
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
