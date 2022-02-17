@@ -120,24 +120,10 @@ public class InputDataHandler {
 			}
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		System.out.println(givenEventReportingRequirements.toString());
-		//supportedFeats = new SupportedFeatures("8");
-		// supportedFeats = new SupportedFeatures(supportedFeatures);
-
-		
-		
 		return givenEventReportingRequirements;
 	}
 	
-	
+	//Check to see for nested key values
 	public static boolean keyExists(JSONObject  object, String searchedKey) {
 	    boolean exists = object.has(searchedKey);
 	    if(!exists) {      
