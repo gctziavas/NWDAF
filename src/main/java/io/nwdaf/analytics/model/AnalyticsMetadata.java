@@ -17,13 +17,7 @@ public class AnalyticsMetadata  implements AnyOfAnalyticsMetadata {
 	private String analyticsMetadata = null;
 	
 	public AnalyticsMetadata(String analyticsMetadata) {
-		analyticsMetadata = analyticsMetadata.toUpperCase();
-		if(analyticsMetadata.equals("NUM_OF_SAMPLES") || analyticsMetadata.equals("DATA_WINDOW") || analyticsMetadata.equals("DATA_STAT_PROPS") || analyticsMetadata.equals("STRATEGY") || analyticsMetadata.equals("ACCURACY")) {
-			this.analyticsMetadata = analyticsMetadata;
-		}
-		else {
-			throw new IllegalArgumentException("Not valid AnalyticsMetadata argument");
-		}
+		setAnalyticsMetadata(analyticsMetadata);
 	}
 	
 	
@@ -32,11 +26,15 @@ public class AnalyticsMetadata  implements AnyOfAnalyticsMetadata {
 			return analyticsMetadata;
 		}
 	
-	
-	
-		public void setAnalyticsMetadata(String analyticsMetadata) {
-			this.analyticsMetadata = analyticsMetadata;
-		}
+	  public void setAnalyticsMetadata(String analyticsMetadata) {
+		  analyticsMetadata = analyticsMetadata.toUpperCase();
+		  if(analyticsMetadata.equals("NUM_OF_SAMPLES") || analyticsMetadata.equals("DATA_WINDOW") || analyticsMetadata.equals("DATA_STAT_PROPS") || analyticsMetadata.equals("STRATEGY") || analyticsMetadata.equals("ACCURACY")) {
+			  this.analyticsMetadata = analyticsMetadata;
+		  }
+		  else {
+			  throw new IllegalArgumentException("Not valid AnalyticsMetadata argument");
+		  }
+	  }
 	
 	
 
@@ -58,13 +56,17 @@ public class AnalyticsMetadata  implements AnyOfAnalyticsMetadata {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AnalyticsMetadata {\n");
-    
-    sb.append("}");
-    return sb.toString();
-  }
-
+	    StringBuilder sb = new StringBuilder();
+	    sb.append(this.analyticsMetadata);
+	    return sb.toString();
+	  }
+  public String toJsonValue() {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append(this.analyticsMetadata);
+	    return sb.toString();
+	  }
+  
+  
   /**
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).

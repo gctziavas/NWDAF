@@ -22,7 +22,7 @@ public class Accuracy  implements AnyOfAccuracy {
 			this.accuracy = accuracy;
 		}
 		else {
-			this.accuracy = null;
+			throw new IllegalArgumentException("Not valid Accuracy value. Possible values are either \"HIGH\" or \"LOW\"");
 		}
 	}
 	
@@ -55,11 +55,7 @@ public class Accuracy  implements AnyOfAccuracy {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Accuracy {\n");
-    
-    sb.append("}");
-    return sb.toString();
+    return this.accuracy;
   }
 
   /**

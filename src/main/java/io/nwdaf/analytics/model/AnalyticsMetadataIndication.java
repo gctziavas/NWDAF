@@ -82,7 +82,16 @@ public class AnalyticsMetadataIndication   {
   public void setDataStatProps(List<DatasetStatisticalProperty> dataStatProps) {
     this.dataStatProps = dataStatProps;
   }
-
+  
+  public void setDataStatPropsFromStringList(List<String> dataStatPropsStringList) {
+	  List<DatasetStatisticalProperty> dataStatProps = new ArrayList<DatasetStatisticalProperty>();
+	  
+	  for(int i=0; i<dataStatPropsStringList.size(); i++) {
+		  dataStatProps.add(new DatasetStatisticalProperty(dataStatPropsStringList.get(i)));
+	  }
+	  this.dataStatProps = dataStatProps;
+  }
+  
   public AnalyticsMetadataIndication strategy(OutputStrategy strategy) {
     this.strategy = strategy;
     return this;
@@ -129,6 +138,16 @@ public class AnalyticsMetadataIndication   {
   public void setAggrNwdafIds(List<UUID> aggrNwdafIds) {
     this.aggrNwdafIds = aggrNwdafIds;
   }
+  
+  public void setAggrNwdafIdsFromString(List<String> aggrNwdafIdsString) {
+	  List<UUID> aggrNwdafIds = new ArrayList<UUID>();
+	  for(int i=0; i<aggrNwdafIdsString.size(); i++) {
+		  UUID curUUID = UUID.fromString(aggrNwdafIdsString.get(i));
+		  aggrNwdafIds.add(curUUID);
+	  }
+	  this.aggrNwdafIds = aggrNwdafIds;
+  }
+
 
 
   @Override
@@ -154,11 +173,11 @@ public class AnalyticsMetadataIndication   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AnalyticsMetadataIndication {\n");
+    sb.append("{\n");
     
-    sb.append("    dataWindow: ").append(toIndentedString(dataWindow)).append("\n");
-    sb.append("    dataStatProps: ").append(toIndentedString(dataStatProps)).append("\n");
-    sb.append("    strategy: ").append(toIndentedString(strategy)).append("\n");
+    sb.append("    dataWindow: ").append(toIndentedString(dataWindow)).append(",\n");
+    sb.append("    dataStatProps: ").append(toIndentedString(dataStatProps)).append(",\n");
+    sb.append("    strategy: ").append(toIndentedString(strategy)).append(",\n");
     sb.append("    aggrNwdafIds: ").append(toIndentedString(aggrNwdafIds)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -165,9 +165,11 @@
 	"supported-features":"",   #Type SupportedFeatures (29.571)
 
 	"tgt-ue":{					#Type TargetUeInformation (29.520 - 5.1.6.2.8)
-		"anyUe":"",
-		"supis":["",""],
-		"gpsis":["",""],
+
+		"anyUe":"",				#Type Boolean (29.520 - 5.1.6.2.8)
+
+		"supis":["",""],		#Type Supi (String) (29.571 - 5.3.2)
+		"gpsis":["",""],		#Type Gpsi
 		"intGroupIds":["",""]
 	}
 }

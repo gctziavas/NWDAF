@@ -26,7 +26,27 @@ public class DatasetStatisticalProperty  implements AnyOfDatasetStatisticalPrope
 		}
 	}
 	
-  @Override
+	
+	
+  public String getDatasetStatisticalProperty() {
+		return datasetStatisticalProperty;
+	}
+
+
+
+	public void setDatasetStatisticalProperty(String datasetStatisticalProperty) {
+		datasetStatisticalProperty = datasetStatisticalProperty.toUpperCase();
+		if(datasetStatisticalProperty.equals("UNIFORM_DIST_DATA") || datasetStatisticalProperty.equals("NO_OUTLIERS")) {
+			this.datasetStatisticalProperty = datasetStatisticalProperty;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid DatasetStatisticalProperty argument. Valid values are: \"UNIFORM_DIST_DATA\" or \"NO_OUTLIERS\"");
+		}
+	}
+
+
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
@@ -44,11 +64,7 @@ public class DatasetStatisticalProperty  implements AnyOfDatasetStatisticalPrope
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class DatasetStatisticalProperty {\n");
-    
-    sb.append("}");
-    return sb.toString();
+     return this.datasetStatisticalProperty;
   }
 
   /**

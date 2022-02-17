@@ -45,11 +45,7 @@ public class OutputStrategy  implements AnyOfOutputStrategy {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class OutputStrategy {\n");
-    
-    sb.append("}");
-    return sb.toString();
+	  return this.outputStrategy;
   }
 
   /**

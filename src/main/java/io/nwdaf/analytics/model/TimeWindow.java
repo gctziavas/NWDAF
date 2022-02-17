@@ -27,7 +27,9 @@ public class TimeWindow   {
 	  this.startTime = startTime;
 	  this.stopTime = stopTime;
   }
-  
+  public TimeWindow() {
+	  
+  }
   
   public TimeWindow startTime(OffsetDateTime startTime) {
     this.startTime = startTime;
@@ -93,9 +95,9 @@ public class TimeWindow   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TimeWindow {\n");
+    sb.append("{\n");
     
-    sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
+    sb.append("    startTime: ").append(toIndentedString(startTime)).append(",\n");
     sb.append("    stopTime: ").append(toIndentedString(stopTime)).append("\n");
     sb.append("}");
     return sb.toString();

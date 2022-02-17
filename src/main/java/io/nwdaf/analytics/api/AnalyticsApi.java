@@ -7,12 +7,17 @@ package io.nwdaf.analytics.api;
 
 import io.nwdaf.analytics.model.AnalyticsData;
 import io.nwdaf.analytics.model.EventId;
+import io.nwdaf.analytics.model.EventReportingRequirement;
 import io.nwdaf.analytics.model.ProblemDetails;
 import io.nwdaf.analytics.model.ProblemDetailsAnalyticsInfoRequest;
 import io.nwdaf.analytics.model.SupportedFeatures;
-
+import io.nwdaf.analytics.api.InputDataHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -86,11 +91,15 @@ public interface AnalyticsApi {
             if (getAcceptHeader().get().contains("application/json")) {
                 //Initialization of the response body
             	AnalyticsData responseBuilder = new AnalyticsData(); 
+            	EventReportingRequirement givenAnaReq = new EventReportingRequirement();
+            	
                 responseBuilder.setTimeStampGen(OffsetDateTime.now());
             	
             	
                 //Check if the given event-id is valid
                 EventId requestedEventId = new EventId(eventId);
+                
+                
 								
 				//Check if the requested supported features are valid and add them to the response body
                 SupportedFeatures requestedSupportedFeatures = null;
@@ -100,6 +109,15 @@ public interface AnalyticsApi {
 					responseBuilder.setSuppFeatString(requestedSupportedFeatures);
 				}
 				
+                //Check if the requested anaReq are valid and extract the arguments included in it
+                if(anaReq!=null) {
+                	givenAnaReq = InputDataHandler.eventReportingRequirementExtractor(anaReq);
+                	
+    				return new ResponseEntity<>(responseBuilder, HttpStatus.NO_CONTENT);
+                }
+                
+                
+                
 				if(tgtUe!=null) {
 					System.out.println("aaaa");
 				}
@@ -110,5 +128,7 @@ public interface AnalyticsApi {
         } 
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
+
+
 
 }
