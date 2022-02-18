@@ -6,11 +6,17 @@
 package io.nwdaf.analytics.api;
 
 import io.nwdaf.analytics.model.AnalyticsData;
+import io.nwdaf.analytics.model.EventFilter;
 import io.nwdaf.analytics.model.EventId;
 import io.nwdaf.analytics.model.EventReportingRequirement;
+import io.nwdaf.analytics.model.NfLoadLevelInformation;
+import io.nwdaf.analytics.model.NsiIdInfo;
+import io.nwdaf.analytics.model.NsiLoadLevelInfo;
 import io.nwdaf.analytics.model.ProblemDetails;
 import io.nwdaf.analytics.model.ProblemDetailsAnalyticsInfoRequest;
 import io.nwdaf.analytics.model.SupportedFeatures;
+import io.nwdaf.analytics.model.TargetUeInformation;
+import io.nwdaf.analytics.response.builders.NfLoadLevelResponseBuilder;
 import io.nwdaf.analytics.api.InputDataHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
@@ -40,6 +46,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -92,7 +99,13 @@ public interface AnalyticsApi {
                 //Initialization of the response body
             	AnalyticsData responseBuilder = new AnalyticsData(); 
             	EventReportingRequirement givenAnaReq = new EventReportingRequirement();
+            	EventFilter givenEventFilter = new EventFilter();
+            	NsiLoadLevelInfo nsiLoadLevelInfo = new NsiLoadLevelInfo();
+            	TargetUeInformation givenTgtUe = new TargetUeInformation();
             	
+            	List<NsiLoadLevelInfo> nsiLoadLevelInfos =  new ArrayList<NsiLoadLevelInfo>();
+            	List<NsiIdInfo> nsiIdInfos = new ArrayList<NsiIdInfo>();
+            			
                 responseBuilder.setTimeStampGen(OffsetDateTime.now());
             	
             	
@@ -109,20 +122,42 @@ public interface AnalyticsApi {
 					responseBuilder.setSuppFeatString(requestedSupportedFeatures);
 				}
 				
-                //Check if the requested anaReq are valid and extract the arguments included in it
+                //Check if the requested anaReq is valid and create the requested EventReportingRequirements Object
                 if(anaReq!=null) {
                 	givenAnaReq = InputDataHandler.eventReportingRequirementExtractor(anaReq);
-                	
-    				return new ResponseEntity<>(responseBuilder, HttpStatus.NO_CONTENT);
                 }
                 
-                
+                //Check if the requested event-filter is valid and create the requested EventFilter Object
+                if(eventFilter!=null) {
+                	givenEventFilter = InputDataHandler.eventFilterextractor(eventFilter);
+                	
+                	//Get the nsiIdInfos from the event filter and add them to the nsiLoadLevelInfos
+                	nsiIdInfos =  givenEventFilter.getNsiIdInfos();
+                	for(int i=0; i<nsiIdInfos.size();i++) {
+                		NsiIdInfo curNsiIdInfo = nsiIdInfos.get(i);
+                		for(int j=0; j<curNsiIdInfo.getNsiIds().size(); j++) {
+                			NsiLoadLevelInfo curNsiLoadLevelInfo = new NsiLoadLevelInfo();
+                			curNsiLoadLevelInfo.setSnssai(curNsiIdInfo.getSnssai());
+                			curNsiLoadLevelInfo.setNsiId(curNsiIdInfo.getNsiIds().get(j));
+                			nsiLoadLevelInfos.add(curNsiLoadLevelInfo);
+                		}
+                	}
+                	responseBuilder.setNsiLoadLevelInfos(nsiLoadLevelInfos);
+                }
                 
 				if(tgtUe!=null) {
-					System.out.println("aaaa");
+					givenTgtUe = InputDataHandler.tgtUeExtractor(tgtUe);
+					
 				}
-
-				return new ResponseEntity<>(responseBuilder, HttpStatus.NO_CONTENT);
+				
+				if(requestedEventId.getEventId().equals("NF_LOAD")) {
+					List<NfLoadLevelInformation> nfLoadLevelInformation = new NfLoadLevelResponseBuilder().nfLoadLevelInformation(givenEventFilter, givenTgtUe);
+					
+					responseBuilder.setNfLoadLevelInfos(nfLoadLevelInformation);
+				}
+				
+				
+				return new ResponseEntity<>(responseBuilder, HttpStatus.OK);
 				
             }
         } 

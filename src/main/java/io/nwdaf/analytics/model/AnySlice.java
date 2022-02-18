@@ -25,7 +25,21 @@ public class AnySlice   {
 		}
 	}
 	
-  @Override
+	
+	
+  public boolean getAnySlice() {
+		return anySlice;
+	}
+
+
+
+	public void setAnySlice(boolean anySlice) {
+		this.anySlice = anySlice;
+	}
+
+
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
