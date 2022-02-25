@@ -9,7 +9,7 @@ import io.nwdaf.analytics.model.DurationSec;
 import io.nwdaf.analytics.model.NotificationFlag;
 import io.nwdaf.analytics.model.PartitioningCriteria;
 import io.nwdaf.analytics.model.SamplingRatio;
-import io.nwdaf.analytics.model.Uinteger;
+import io.nwdaf.analytics.model.UInteger;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class ReportingInformation   {
   private NotificationMethod notifMethod = null;
 
   @JsonProperty("maxReportNbr")
-  private Uinteger maxReportNbr = null;
+  private UInteger maxReportNbr = null;
 
   @JsonProperty("monDur")
   private DateTime monDur = null;
@@ -92,7 +92,7 @@ public class ReportingInformation   {
     this.notifMethod = notifMethod;
   }
 
-  public ReportingInformation maxReportNbr(Uinteger maxReportNbr) {
+  public ReportingInformation maxReportNbr(UInteger maxReportNbr) {
     this.maxReportNbr = maxReportNbr;
     return this;
   }
@@ -104,11 +104,11 @@ public class ReportingInformation   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public Uinteger getMaxReportNbr() {
+    public UInteger getMaxReportNbr() {
     return maxReportNbr;
   }
 
-  public void setMaxReportNbr(Uinteger maxReportNbr) {
+  public void setMaxReportNbr(UInteger maxReportNbr) {
     this.maxReportNbr = maxReportNbr;
   }
 
