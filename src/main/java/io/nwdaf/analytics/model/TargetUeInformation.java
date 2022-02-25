@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class TargetUeInformation   {
   @JsonProperty("anyUe")
-  private Boolean anyUe = null;
+  private Boolean anyUe = false;
 
   @JsonProperty("supis")
   @Valid

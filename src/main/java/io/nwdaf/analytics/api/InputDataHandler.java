@@ -2,11 +2,11 @@ package io.nwdaf.analytics.api;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import net.bytebuddy.asm.Advice.This;
 import net.minidev.json.JSONArray;
 import org.json.JSONObject;
 
@@ -172,7 +172,7 @@ public class InputDataHandler {
 						curSnssai.put("sst", ((LinkedHashMap) curNsiIdInfoMap.get("snssai")).get("sst"));
 						Integer curSst = Integer.parseInt((String) curSnssai.get("sst"));
 						
-						if(curNsiIdInfoMap.containsKey("sd")) {
+						if(((LinkedHashMap) curNsiIdInfoMap.get("snssai")).containsKey("sd")) {
 							curSnssai.put("sd", ((LinkedHashMap) curNsiIdInfoMap.get("snssai")).get("sd"));
 							String curSd = (String) curSnssai.get("sd");
 							curNsiIdInfo.setSnssai(new Snssai(curSst, curSd));
