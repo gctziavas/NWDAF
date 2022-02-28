@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -14,6 +17,40 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class PacketErrRate   {
 
+	
+	
+	private String packetErrRate = null;
+	
+	public PacketErrRate(String packetErrRate ) {
+		  String pattern = "^([0-9]E-[0-9])$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(packetErrRate );
+		  if (m.matches()) {
+			  this.packetErrRate  = packetErrRate ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid packetErrRate  argument. PacketErrRate must must follow the \"^([0-9]E-[0-9])$\" pattern.");
+		  }
+	}
+	
+	public String getpacketErrRate() {
+		return packetErrRate;
+	}
+
+
+	public void setpacketErrRate(String packetErrRate) {
+		  String pattern = "^([0-9]E-[0-9])$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(packetErrRate );
+		  if (m.matches()) {
+			  this.packetErrRate  = packetErrRate ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid packetErrRate  argument. PacketErrRate must must follow the \"^([0-9]E-[0-9])$\" pattern.");
+		  }
+	}	
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

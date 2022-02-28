@@ -133,7 +133,12 @@ public class EventReportingRequirement   {
   }
 
   public EventReportingRequirement sampRatio(Integer sampRatio) {
-    this.sampRatio = sampRatio;
+	  if(sampRatio>0 && sampRatio<101) {
+		  this.sampRatio = sampRatio;
+	  }
+	  else {
+		  throw new IllegalArgumentException("SampRatio values range [1 , 100]."); 
+	  }      
     return this;
   }
 
@@ -148,11 +153,22 @@ public class EventReportingRequirement   {
   }
 
   public void setSampRatio(Integer sampRatio) {
-    this.sampRatio = sampRatio;
+	  if(sampRatio>0 && sampRatio<101) {
+		  this.sampRatio = sampRatio;
+	  }
+	  else {
+		  throw new IllegalArgumentException("SampRatio values range [1 , 100]."); 
+	  }      
+	      
   }
 
   public EventReportingRequirement maxObjectNbr(Integer maxObjectNbr) {
-    this.maxObjectNbr = maxObjectNbr;
+    if(maxObjectNbr>0) {
+	  this.maxObjectNbr = maxObjectNbr;
+    }
+    else {
+    	throw new IllegalArgumentException("maxObjectNbr cannot be of negative or zero value"); 
+    }
     return this;
   }
 
@@ -167,11 +183,21 @@ public class EventReportingRequirement   {
   }
 
   public void setMaxObjectNbr(Integer maxObjectNbr) {
-    this.maxObjectNbr = maxObjectNbr;
+	  if(maxObjectNbr>0) {
+		  this.maxObjectNbr = maxObjectNbr;
+	    }
+	    else {
+	    	throw new IllegalArgumentException("maxObjectNbr cannot be of negative or zero value"); 
+	    }
   }
 
   public EventReportingRequirement maxSupiNbr(Integer maxSupiNbr) {
-    this.maxSupiNbr = maxSupiNbr;
+	  if(maxSupiNbr>0) {
+		  this.maxSupiNbr = maxSupiNbr;
+	    }
+	    else {
+	    	throw new IllegalArgumentException("maxSupiNbr cannot be of negative or zero value"); 
+	    }
     return this;
   }
 
@@ -186,7 +212,12 @@ public class EventReportingRequirement   {
   }
 
   public void setMaxSupiNbr(Integer maxSupiNbr) {
-    this.maxSupiNbr = maxSupiNbr;
+	  if(maxSupiNbr>0) {
+		  this.maxSupiNbr = maxSupiNbr;
+	  }
+	  else {
+		  throw new IllegalArgumentException("maxSupiNbr cannot be of negative or zero value"); 
+	  }
   }
 
   public EventReportingRequirement timeAnaNeeded(OffsetDateTime timeAnaNeeded) {
@@ -214,6 +245,15 @@ public class EventReportingRequirement   {
     return this;
   }
 
+  	public EventReportingRequirement anaMetaFromStringList(List<String> anaMetaStringList) {
+  		List<AnalyticsMetadata> anaMeta = null;
+  		for(int i=0; i<anaMetaStringList.size(); i++) {
+  			anaMeta.add(new AnalyticsMetadata(anaMetaStringList.get(i)));
+  		}
+  		this.anaMeta = anaMeta;
+	    return this;
+	  }
+  
   public EventReportingRequirement addAnaMetaItem(AnalyticsMetadata anaMetaItem) {
     if (this.anaMeta == null) {
       this.anaMeta = new ArrayList<>();
@@ -221,6 +261,16 @@ public class EventReportingRequirement   {
     this.anaMeta.add(anaMetaItem);
     return this;
   }
+  
+  public EventReportingRequirement addAnaMetaItemFromString(String anaMetaItem) {
+	    if (this.anaMeta == null) {
+	      this.anaMeta = new ArrayList<>();
+	    }
+	    this.anaMeta.add(new AnalyticsMetadata(anaMetaItem));
+	    return this;
+	  }
+  
+  
 
   /**
    * Get anaMeta
@@ -235,7 +285,15 @@ public class EventReportingRequirement   {
   public void setAnaMeta(List<AnalyticsMetadata> anaMeta) {
     this.anaMeta = anaMeta;
   }
-
+  
+  public void setAnaMetaFromStringList(List<String> anaMetaStringList) {
+		List<AnalyticsMetadata> anaMeta = new ArrayList<AnalyticsMetadata>();
+		for(int i=0; i<anaMetaStringList.size(); i++) {
+			anaMeta.add(new AnalyticsMetadata(anaMetaStringList.get(i)));
+		}
+		this.anaMeta = anaMeta;
+  }
+  
   public EventReportingRequirement anaMetaInd(AnalyticsMetadataIndication anaMetaInd) {
     this.anaMetaInd = anaMetaInd;
     return this;

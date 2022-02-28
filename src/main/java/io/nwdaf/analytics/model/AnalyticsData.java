@@ -90,6 +90,9 @@ public class AnalyticsData   {
   @JsonProperty("suppFeat")
   private String suppFeat = null;
 
+  @JsonProperty("suppFeatString")
+  private SupportedFeatures suppFeatString = null;  
+  
   public AnalyticsData start(OffsetDateTime start) {
     this.start = start;
     return this;
@@ -485,7 +488,22 @@ public class AnalyticsData   {
   public void setSuppFeat(String suppFeat) {
     this.suppFeat = suppFeat;
   }
+  
+  //-------------------------------------------------------------------------
+  
+  public AnalyticsData suppFeatString(SupportedFeatures suppFeatString) {
+	    this.suppFeatString = suppFeatString;
+	    return this;
+	  }
 
+	  
+	  public SupportedFeatures getSuppFeatString() {
+	    return suppFeatString;
+	  }
+
+	  public void setSuppFeatString(SupportedFeatures suppFeatString) {
+	    this.suppFeatString = suppFeatString;
+	  }
 
   @Override
   public boolean equals(java.lang.Object o) {

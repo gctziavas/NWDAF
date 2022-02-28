@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -13,7 +16,37 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class TngfId   {
+	private String tngfId = null;
+	
+	public TngfId(String tngfId ) {
+		  String pattern = "^[A-Fa-f0-9]+$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(tngfId );
+		  if (m.matches()) {
+			  this.tngfId  = tngfId ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid tngfId  argument. TngfId  must must follow the \"^[A-Fa-f0-9]+$\" pattern.");
+		  }
+	}
+	
+	public String gettngfId() {
+		return tngfId;
+	}
 
+
+	public void settngfId(String tngfId) {
+		  String pattern = "^[A-Fa-f0-9]+$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(tngfId );
+		  if (m.matches()) {
+			  this.tngfId  = tngfId ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid tngfId  argument. TngfId  must must follow the \"^[A-Fa-f0-9]+$\" pattern.");
+		  }
+	}
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

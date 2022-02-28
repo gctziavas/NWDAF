@@ -26,11 +26,22 @@ public class Ecgi   {
   @JsonProperty("nid")
   private String nid = null;
 
-  public Ecgi plmnId(PlmnId plmnId) {
-    this.plmnId = plmnId;
-    return this;
+  public Ecgi(PlmnId plmnId, String eutraCellId, String nid) {
+	  setPlmnId(plmnId);
+	  setEutraCellId(eutraCellId);
+	  setNid(nid);
   }
-
+  public Ecgi(PlmnId plmnId, String eutraCellId) {
+	  setPlmnId(plmnId);
+	  setEutraCellId(eutraCellId);
+  }
+  
+  
+  public Ecgi plmnId(PlmnId plmnId) {
+	    this.plmnId = plmnId;
+	    return this;
+	  }
+  
   /**
    * Get plmnId
    * @return plmnId
@@ -48,7 +59,7 @@ public class Ecgi   {
   }
 
   public Ecgi eutraCellId(String eutraCellId) {
-    this.eutraCellId = eutraCellId;
+    this.eutraCellId = new EutraCellId(eutraCellId).eutraCellIdValue();
     return this;
   }
 
@@ -64,11 +75,12 @@ public class Ecgi   {
   }
 
   public void setEutraCellId(String eutraCellId) {
-    this.eutraCellId = eutraCellId;
+	  this.eutraCellId = new EutraCellId(eutraCellId).eutraCellIdValue();
+
   }
 
   public Ecgi nid(String nid) {
-    this.nid = nid;
+    this.nid = new Nid(nid).nidValue();
     return this;
   }
 
@@ -83,7 +95,7 @@ public class Ecgi   {
   }
 
   public void setNid(String nid) {
-    this.nid = nid;
+	  this.nid = new Nid(nid).nidValue();
   }
 
 

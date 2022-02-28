@@ -13,8 +13,32 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class AnalyticsMetadata  implements AnyOfAnalyticsMetadata {
+	
+	private String analyticsMetadata = null;
+	
+	public AnalyticsMetadata(String analyticsMetadata) {
+		setAnalyticsMetadata(analyticsMetadata);
+	}
+	
+	
+	
+	  public String getAnalyticsMetadata() {
+			return analyticsMetadata;
+		}
+	
+	  public void setAnalyticsMetadata(String analyticsMetadata) {
+		  analyticsMetadata = analyticsMetadata.toUpperCase();
+		  if(analyticsMetadata.equals("NUM_OF_SAMPLES") || analyticsMetadata.equals("DATA_WINDOW") || analyticsMetadata.equals("DATA_STAT_PROPS") || analyticsMetadata.equals("STRATEGY") || analyticsMetadata.equals("ACCURACY")) {
+			  this.analyticsMetadata = analyticsMetadata;
+		  }
+		  else {
+			  throw new IllegalArgumentException("Not valid AnalyticsMetadata argument");
+		  }
+	  }
+	
+	
 
-  @Override
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
@@ -32,13 +56,17 @@ public class AnalyticsMetadata  implements AnyOfAnalyticsMetadata {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AnalyticsMetadata {\n");
-    
-    sb.append("}");
-    return sb.toString();
-  }
-
+	    StringBuilder sb = new StringBuilder();
+	    sb.append(this.analyticsMetadata);
+	    return sb.toString();
+	  }
+  public String toJsonValue() {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append(this.analyticsMetadata);
+	    return sb.toString();
+	  }
+  
+  
   /**
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).

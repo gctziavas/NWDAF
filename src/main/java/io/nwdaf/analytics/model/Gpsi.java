@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -14,6 +17,25 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class Gpsi   {
 
+	private String gpsi = null;
+	
+	public Gpsi(String gpsi ) {
+		  String pattern = "^(msisdn-[0-9]{5,15}|extid-.+@.+|.+)$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(gpsi );
+		  if (m.matches()) {
+			  this.gpsi  = gpsi ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid gpsi argument. Gpsi must must follow the \"^(msisdn-[0-9]{5,15}|extid-.+@.+|.+)$\" pattern.");
+		  }
+	}
+	
+	public String gpsiValue() {
+		return this.gpsi;
+	}
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

@@ -1,20 +1,35 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
-import io.swagger.annotations.ApiModel;
-import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 
-/**
- * Unsigned Integer, i.e. only value 0 and integers above 0 are permissible.
- */
-@ApiModel(description = "Unsigned Integer, i.e. only value 0 and integers above 0 are permissible.")
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
-public class Uinteger   {
+public class AnyUe {
+private boolean anyUe = false;
+	
+	public AnyUe(String anyUe) {
+		anyUe = anyUe.toLowerCase();
+		if(anyUe.equals("true")) {
+			this.anyUe = true;
+		}
+		else {
+			this.anyUe = false;
+		}
+	}
+	
+	
+	
+  public boolean getAnyUe() {
+		return anyUe;
+	}
 
-  @Override
+
+
+	public void setAnyUe(boolean anyUe) {
+		this.anyUe = anyUe;
+	}
+
+
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
@@ -33,8 +48,8 @@ public class Uinteger   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Uinteger {\n");
-    
+    sb.append("{\n");
+    sb.append(this.anyUe);
     sb.append("}");
     return sb.toString();
   }

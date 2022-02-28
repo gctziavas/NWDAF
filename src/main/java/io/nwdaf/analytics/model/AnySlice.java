@@ -13,8 +13,33 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class AnySlice   {
+	private boolean anySlice = false;
+	
+	public AnySlice(String anySlice) {
+		anySlice = anySlice.toLowerCase();
+		if(anySlice.equals("true")) {
+			this.anySlice = true;
+		}
+		else {
+			this.anySlice = false;
+		}
+	}
+	
+	
+	
+  public boolean getAnySlice() {
+		return anySlice;
+	}
 
-  @Override
+
+
+	public void setAnySlice(boolean anySlice) {
+		this.anySlice = anySlice;
+	}
+
+
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;

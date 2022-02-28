@@ -96,7 +96,7 @@ public class NsiIdInfo   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NsiIdInfo {\n");
+    sb.append("{\n");
     
     sb.append("    snssai: ").append(toIndentedString(snssai)).append("\n");
     sb.append("    nsiIds: ").append(toIndentedString(nsiIds)).append("\n");

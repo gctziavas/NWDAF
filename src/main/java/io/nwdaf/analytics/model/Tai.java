@@ -48,7 +48,7 @@ public class Tai   {
   }
 
   public Tai tac(String tac) {
-    this.tac = tac;
+    this.tac = new Tac(tac).tacValue();
     return this;
   }
 
@@ -64,11 +64,11 @@ public class Tai   {
   }
 
   public void setTac(String tac) {
-    this.tac = tac;
+	    this.tac = new Tac(tac).tacValue();
   }
 
   public Tai nid(String nid) {
-    this.nid = nid;
+    this.nid = new Nid(nid).nidValue();
     return this;
   }
 

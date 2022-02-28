@@ -13,8 +13,31 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class SamplingRatio   {
+	 
+	private Integer samplingRatio = null;
+	 
+	 public SamplingRatio(String samplingRatio) {
+		 int samplingRatioInteger = Integer.parseInt(samplingRatio);
+		 if(samplingRatioInteger>0 && samplingRatioInteger<101) {
+			 this.samplingRatio = samplingRatioInteger;
+		 }
+		 else {
+			 throw new IllegalArgumentException("Not valid Sampling Ratio value. SamplingRatio must be within range [1 , 100].");
+		 }
+	 }
+	
+	
+  public Integer getSamplingRatio() {
+		return samplingRatio;
+	}
 
-  @Override
+
+	public void setSamplingRatio(Integer samplingRatio) {
+		this.samplingRatio = samplingRatio;
+	}
+
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;

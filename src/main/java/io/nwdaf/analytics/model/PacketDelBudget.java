@@ -14,6 +14,22 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class PacketDelBudget   {
 
+	private Integer packetDelBudget = null;
+	
+	public PacketDelBudget(Integer packetDelBudget) {
+		  if (packetDelBudget>=0 && packetDelBudget<255) {
+			  this.packetDelBudget = packetDelBudget;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid packetDelBudget argument. PacketDelBudget must be at least of value 1.");
+		  }
+	}
+  
+	public Integer packetDelBudgetValue() {
+		return this.packetDelBudget;
+	}
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

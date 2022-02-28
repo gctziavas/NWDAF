@@ -3,6 +3,8 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
@@ -21,9 +23,22 @@ public class PlmnId   {
 
   @JsonProperty("mnc")
   private String mnc = null;
-
+  
+   
+  
+  public PlmnId(String mcc, String mnc) {
+	  setMcc(mcc);
+	  setMnc(mnc);
+  }
+  
+  public String plmnIdValue() {
+	  String plmnIdValue = this.mcc+"-"+this.mnc;
+	  return plmnIdValue;
+  }
+  
+  
   public PlmnId mcc(String mcc) {
-    this.mcc = mcc;
+    this.mcc = new Mcc(mcc).mccValue();
     return this;
   }
 
@@ -39,11 +54,11 @@ public class PlmnId   {
   }
 
   public void setMcc(String mcc) {
-    this.mcc = mcc;
+	  this.mcc = new Mcc(mcc).mccValue();
   }
 
   public PlmnId mnc(String mnc) {
-    this.mnc = mnc;
+	  this.mnc = new Mnc(mnc).mncValue();
     return this;
   }
 
@@ -59,9 +74,11 @@ public class PlmnId   {
   }
 
   public void setMnc(String mnc) {
-    this.mnc = mnc;
+	  this.mnc = new Mnc(mnc).mncValue();
   }
-
+  
+  
+  
 
   @Override
   public boolean equals(java.lang.Object o) {

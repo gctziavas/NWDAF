@@ -13,8 +13,40 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class DatasetStatisticalProperty  implements AnyOfDatasetStatisticalProperty {
+	
+	private String datasetStatisticalProperty = null;
+	
+	public DatasetStatisticalProperty(String datasetStatisticalProperty) {
+		datasetStatisticalProperty = datasetStatisticalProperty.toUpperCase();
+		if(datasetStatisticalProperty.equals("UNIFORM_DIST_DATA") || datasetStatisticalProperty.equals("NO_OUTLIERS")) {
+			this.datasetStatisticalProperty = datasetStatisticalProperty;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid DatasetStatisticalProperty argument. Valid values are: \"UNIFORM_DIST_DATA\" or \"NO_OUTLIERS\"");
+		}
+	}
+	
+	
+	
+  public String getDatasetStatisticalProperty() {
+		return datasetStatisticalProperty;
+	}
 
-  @Override
+
+
+	public void setDatasetStatisticalProperty(String datasetStatisticalProperty) {
+		datasetStatisticalProperty = datasetStatisticalProperty.toUpperCase();
+		if(datasetStatisticalProperty.equals("UNIFORM_DIST_DATA") || datasetStatisticalProperty.equals("NO_OUTLIERS")) {
+			this.datasetStatisticalProperty = datasetStatisticalProperty;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid DatasetStatisticalProperty argument. Valid values are: \"UNIFORM_DIST_DATA\" or \"NO_OUTLIERS\"");
+		}
+	}
+
+
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
@@ -32,11 +64,7 @@ public class DatasetStatisticalProperty  implements AnyOfDatasetStatisticalPrope
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class DatasetStatisticalProperty {\n");
-    
-    sb.append("}");
-    return sb.toString();
+     return this.datasetStatisticalProperty;
   }
 
   /**

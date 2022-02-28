@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -13,7 +16,41 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class Tac   {
+	
+	private String tac = null;
+	
+	public Tac(String tac ) {
+		  String pattern = "^[A-Fa-f0-9]{4,6}$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(tac );
+		  if (m.matches()) {
+			  this.tac  = tac ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid tac argument. Tac must must follow the \"^[A-Fa-f0-9]{4,6}$\" pattern.");
+		  }
+	}
+	
+	public String tacValue() {
+		return tac;
+	}
 
+
+	public void settac(String tac) {
+		  String pattern = "^[A-Fa-f0-9]{4,6}$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(tac );
+		  if (m.matches()) {
+			  this.tac  = tac ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid tac  argument. Tac  must must follow the \"^[A-Fa-f0-9]{4,6}$\" pattern.");
+		  }
+	}	
+	
+	
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

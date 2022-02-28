@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -13,7 +16,25 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class Nid   {
-
+	
+	private String nid = null;
+	
+	public Nid(String nid) {
+		  String pattern = "^[A-Fa-f0-9]{11}$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(nid);
+		  if (m.matches()) {
+			  this.nid = nid;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid nid argument. Nid must must follow the \"^[A-Fa-f0-9]{11}$\" pattern.");
+		  }
+	}
+  
+	public String nidValue() {
+		return this.nid;
+	}
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

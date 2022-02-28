@@ -1,0 +1,47 @@
+
+	{
+		"accuracy":"",
+		"startTs":"",
+		"endTs":"",
+		"offsetPeriod":"",
+		"sampRatio":"",
+		"maxObjectNbr":"",
+		"maxSupiNbr":"",
+		"timeAnaNeeded":"",
+		"anaMeta":["",""],
+		"anaMetaInd":{
+			"dataWindow":{
+				"startTime":"",
+				"stopTime":""
+			},
+			"dataStatProps":["",""],
+			"strategy":"",
+			"aggrNwdafIds":["",""]
+			}
+	}
+
+
+
+
+
+{
+		"accuracy":"LOW",
+		"startTs":"2021-02-08T10:25:00+02:00",
+		"endTs":"2021-02-10T10:25:00+02:00",
+		"offsetPeriod":"4",
+		"sampRatio":"6",
+		"maxObjectNbr":"1",
+		"maxSupiNbr":"1",
+		"timeAnaNeeded":"2022-02-21T15:55:00+02:00",
+		"anaMeta":["DATA_WINDOW","DATA_STAT_PROPS"],
+		"anaMetaInd":{
+			"dataWindow":{
+				"startTime":"2022-02-21T15:55:00+02:00",
+				"stopTime":"2022-02-22T15:55:00+02:00"
+			},
+			"dataStatProps":["UNIFORM_DIST_DATA","UNIFORM_DIST_DATA"],
+			"strategy":"BINARY",
+			"aggrNwdafIds":["c3c6438c-8fff-11ec-b909-0242ac120002","c3c6438c-8fff-11ec-b909-0242ac120055"]
+			}
+
+	}

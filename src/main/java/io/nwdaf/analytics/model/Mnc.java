@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -14,6 +17,24 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class Mnc   {
 
+	private String mnc = null;
+	
+	public Mnc(String mnc) {
+		  String pattern = "^[0-9]{2,3}$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(mnc);
+		  if (m.matches()) {
+			  this.mnc = mnc;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid mnc argument. Mnc must must follow the \"^[0-9]{2,3}$\" pattern.");
+		  }
+	}
+  
+	public String mncValue() {
+		return this.mnc;
+	}
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

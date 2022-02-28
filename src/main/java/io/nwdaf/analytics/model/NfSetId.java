@@ -3,6 +3,9 @@ package io.nwdaf.analytics.model;
 import java.util.Objects;
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -13,7 +16,32 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class NfSetId   {
-
+	
+	@JsonIgnore
+	private String setId = null;
+	@JsonIgnore
+	private String mcc = null;
+	@JsonIgnore
+	private String mnc = null;
+	@JsonIgnore
+	private String nfType= null;
+	
+	private String nfSetId = null;
+	
+	public NfSetId(String setId, String mcc, String mnc, String nfType ) {
+		this.setId = new SetId(setId).setIdValue();
+		this.mcc = new Mcc(mcc).mccValue();
+		this.mnc = new Mnc(mnc).mncValue();
+		this.nfType = new NFType(nfType).nfTypeValue().toLowerCase();
+		StringBuilder sb = new StringBuilder();
+		sb.append("set"+this.setId+".");
+		sb.append(this.nfType+"set.");
+		sb.append("5gc.");
+		sb.append("mnc"+this.mnc+".");
+		sb.append("mcc"+this.mcc);
+		this.nfSetId = sb.toString();
+	}
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

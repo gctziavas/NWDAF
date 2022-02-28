@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
@@ -22,9 +25,21 @@ public class GNbId   {
   @JsonProperty("gNBValue")
   private String gNBValue = null;
 
+  
+  public GNbId(Integer bitLength , String gNBValue) {
+	  setBitLength(bitLength);
+	  setGNBValue(gNBValue);
+  }
+  
+  
   public GNbId bitLength(Integer bitLength) {
-    this.bitLength = bitLength;
-    return this;
+    if (bitLength>21 &&bitLength<33) {
+		this.bitLength = bitLength;
+		return this;
+	}
+    else {
+    	throw new IllegalArgumentException("Not valid bitLength argument. BitLength must be within range [22 , 32].");
+    }
   }
 
   /**
@@ -41,12 +56,25 @@ public class GNbId   {
   }
 
   public void setBitLength(Integer bitLength) {
-    this.bitLength = bitLength;
+	    if (bitLength>21 &&bitLength<33) {
+			this.bitLength = bitLength;
+		}
+	    else {
+	    	throw new IllegalArgumentException("Not valid bitLength argument. BitLength must be within range [22 , 32].");
+	    }
   }
 
   public GNbId gNBValue(String gNBValue) {
-    this.gNBValue = gNBValue;
-    return this;
+	  String pattern = "^[A-Fa-f0-9]{6,8}$";
+	  Pattern r = Pattern.compile(pattern);
+	  Matcher m = r.matcher(gNBValue );
+	  if (m.matches()) {
+		  this.gNBValue  = gNBValue ;
+		  return this;
+	}
+	  else {
+		  throw new IllegalArgumentException("Not valid gNBValue  argument. GNBValue  must must follow the \"^[A-Fa-f0-9]{6,8}$\" pattern.");
+	  }
   }
 
   /**
@@ -56,13 +84,22 @@ public class GNbId   {
   @ApiModelProperty(required = true, value = "This represents the identifier of the gNB. The value of the gNB ID shall be encoded in hexadecimal representation. Each character in the string shall take a value of \"0\" to \"9\", \"a\" to \"f\" or \"A\" to \"F\" and shall represent 4 bits. The padding 0 shall be added to make multiple nibbles, the most significant character representing the padding 0 if required together with the 4 most significant bits of the gNB ID shall appear first in the string, and the character representing the 4 least significant bit of the gNB ID shall appear last in the string. ")
       @NotNull
 
-  @Pattern(regexp="^[A-Fa-f0-9]{6,8}$")   public String getGNBValue() {
+ public String getGNBValue() {
     return gNBValue;
   }
 
   public void setGNBValue(String gNBValue) {
-    this.gNBValue = gNBValue;
+	  String pattern = "^[A-Fa-f0-9]{6,8}$";
+	  Pattern r = Pattern.compile(pattern);
+	  Matcher m = r.matcher(gNBValue );
+	  if (m.matches()) {
+		  this.gNBValue  = gNBValue ;
+	}
+	  else {
+		  throw new IllegalArgumentException("Not valid gNBValue  argument. GNBValue  must must follow the \"^[A-Fa-f0-9]{6,8}$\" pattern.");
+	  }
   }
+
 
 
   @Override

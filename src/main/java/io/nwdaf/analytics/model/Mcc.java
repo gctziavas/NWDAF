@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -13,7 +16,25 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class Mcc   {
-
+	
+	private String mcc = null;
+	
+	public Mcc(String mcc) {
+		  String pattern = "^[0-9]{3}$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(mcc);
+		  if (m.matches()) {
+			  this.mcc = mcc;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid mcc argument. Mcc must must follow the \"^[0-9]{3}$\" pattern.");
+		  }
+	}
+  
+	public String mccValue() {
+		return this.mcc;
+	}
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {

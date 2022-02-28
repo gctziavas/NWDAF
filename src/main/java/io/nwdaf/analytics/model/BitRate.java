@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -13,7 +16,26 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class BitRate   {
-
+	
+	private String bitRate = null;
+	
+	public BitRate(String bitRate) {
+		  String pattern = "^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(bitRate);
+		  if (m.matches()) {
+			  this.bitRate = bitRate;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid bitRate argument. BitRate must must follow the \"^\\d+(\\.\\d+)? (bps|Kbps|Mbps|Gbps|Tbps)$\" pattern.");
+		  }
+	}
+  
+	public String bitRateValue() {
+		return this.bitRate;
+	}
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
