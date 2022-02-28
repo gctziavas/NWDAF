@@ -208,7 +208,7 @@ public class InputDataHandler {
 		String anyUe = null;		  String anyUeQuery = "$.anyUe";
 		JSONArray supis = new JSONArray(); String supisQuery = "$.supis";
 		
-		if(tgtUeJSON.has("anySlice")) {
+		if(tgtUeJSON.has("anyUe")) {
 			anyUe = JsonPath.read(document, anyUeQuery);
 			if (anyUe!=null && anyUe!="") {givenTargetUeInformation.setAnyUe(new AnyUe(anyUe).getAnyUe());}
 		}
@@ -226,6 +226,8 @@ public class InputDataHandler {
 		}
 		
 		return givenTargetUeInformation;
+		
+
 	}
 	
 	
