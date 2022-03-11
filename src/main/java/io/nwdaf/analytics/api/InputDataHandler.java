@@ -19,6 +19,8 @@ import io.nwdaf.analytics.model.AnySlice;
 import io.nwdaf.analytics.model.AnyUe;
 import io.nwdaf.analytics.model.EventFilter;
 import io.nwdaf.analytics.model.EventReportingRequirement;
+import io.nwdaf.analytics.model.Gpsi;
+import io.nwdaf.analytics.model.GroupId;
 import io.nwdaf.analytics.model.NsiIdInfo;
 import io.nwdaf.analytics.model.OutputStrategy;
 import io.nwdaf.analytics.model.SamplingRatio;
@@ -207,6 +209,8 @@ public class InputDataHandler {
 		
 		String anyUe = null;		  String anyUeQuery = "$.anyUe";
 		JSONArray supis = new JSONArray(); String supisQuery = "$.supis";
+		JSONArray gpsis = new JSONArray(); String gpsisQuery = "$.gpsis";
+		JSONArray intGroupIds = new JSONArray(); String intGroupIdsQuery = "$.intGroupIds";		
 		
 		if(tgtUeJSON.has("anyUe")) {
 			anyUe = JsonPath.read(document, anyUeQuery);
@@ -214,7 +218,7 @@ public class InputDataHandler {
 		}
 		
 		if(tgtUeJSON.has("supis")) {
-			supis = JsonPath.read(tgtUeJSON, supisQuery);
+			supis = JsonPath.read(document, supisQuery);
 			if(supis!=null) {
 				List<String> supisList = new ArrayList<String>();
 				for(int i=0; i<supis.size(); i++) {
@@ -224,6 +228,30 @@ public class InputDataHandler {
 				givenTargetUeInformation.setSupis(supisList);
 			}
 		}
+		
+		if(tgtUeJSON.has("gpsis")) {
+			gpsis = JsonPath.read(document, gpsisQuery);
+			if(gpsis!=null) {
+				List<String> gpsisList = new ArrayList<String>();
+				for(int i=0; i<gpsis.size(); i++) {
+					String curGpsi = (String) gpsis.get(i);
+					gpsisList.add(new Gpsi(curGpsi).gpsiValue());
+				}
+				givenTargetUeInformation.setGpsis(gpsisList);
+			}
+		}	
+		
+		if(tgtUeJSON.has("intGroupIds")) {
+			intGroupIds = JsonPath.read(document, intGroupIdsQuery);
+			if(intGroupIds!=null) {
+				List<String> intGroupIdsList = new ArrayList<String>();
+				for(int i=0; i<intGroupIds.size(); i++) {
+					String curIntGroupIds = (String) intGroupIds.get(i);
+					intGroupIdsList.add(new GroupId(curIntGroupIds).groupIdValue());
+				}
+				givenTargetUeInformation.setIntGroupIds(intGroupIdsList);
+			}
+		}			
 		
 		return givenTargetUeInformation;
 		

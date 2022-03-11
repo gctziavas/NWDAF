@@ -71,7 +71,7 @@ public interface AnalyticsApi {
     @ApiOperation(value = "Read a NWDAF Analytics", nickname = "getNWDAFAnalytics", notes = "", response = AnalyticsData.class, authorizations = {
         @Authorization(value = "oAuth2ClientCredentials", scopes = { 
             @AuthorizationScope(scope = "nnwdaf-analyticsinfo", description = "Access to the Nnwdaf_AnalyticsInfo API")
-            })    }, tags={ "NWDAF Analytics (Document)", })
+            })    }, tags={ "NWDAF Analytics API", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Containing the analytics with parameters as relevant for the requesting NF service consumer.", response = AnalyticsData.class),
         @ApiResponse(code = 204, message = "No Content (The request NWDAF Analytics data does not exist)"),
@@ -125,6 +125,8 @@ public interface AnalyticsApi {
                 //Check if the requested anaReq is valid and create the requested EventReportingRequirements Object
                 if(anaReq!=null) {
                 	givenAnaReq = InputDataHandler.eventReportingRequirementExtractor(anaReq);
+                	responseBuilder.setStart(givenAnaReq.getStartTs());
+                	responseBuilder.setExpiry(givenAnaReq.getEndTs());
                 }
                 
                 //Check if the requested event-filter is valid and create the requested EventFilter Object
@@ -133,16 +135,18 @@ public interface AnalyticsApi {
                 	
                 	//Get the nsiIdInfos from the event filter and add them to the nsiLoadLevelInfos
                 	nsiIdInfos =  givenEventFilter.getNsiIdInfos();
-                	for(int i=0; i<nsiIdInfos.size();i++) {
-                		NsiIdInfo curNsiIdInfo = nsiIdInfos.get(i);
-                		for(int j=0; j<curNsiIdInfo.getNsiIds().size(); j++) {
-                			NsiLoadLevelInfo curNsiLoadLevelInfo = new NsiLoadLevelInfo();
-                			curNsiLoadLevelInfo.setSnssai(curNsiIdInfo.getSnssai());
-                			curNsiLoadLevelInfo.setNsiId(curNsiIdInfo.getNsiIds().get(j));
-                			nsiLoadLevelInfos.add(curNsiLoadLevelInfo);
-                		}
-                	}
-                	responseBuilder.setNsiLoadLevelInfos(nsiLoadLevelInfos);
+                	if (nsiIdInfos!=null) {
+						for (int i = 0; i < nsiIdInfos.size(); i++) {
+							NsiIdInfo curNsiIdInfo = nsiIdInfos.get(i);
+							for (int j = 0; j < curNsiIdInfo.getNsiIds().size(); j++) {
+								NsiLoadLevelInfo curNsiLoadLevelInfo = new NsiLoadLevelInfo();
+								curNsiLoadLevelInfo.setSnssai(curNsiIdInfo.getSnssai());
+								curNsiLoadLevelInfo.setNsiId(curNsiIdInfo.getNsiIds().get(j));
+								nsiLoadLevelInfos.add(curNsiLoadLevelInfo);
+							}
+						} 
+					}
+					responseBuilder.setNsiLoadLevelInfos(nsiLoadLevelInfos);
                 }
                 
 				if(tgtUe!=null) {

@@ -52,7 +52,7 @@ public interface ContextApi {
     @ApiOperation(value = "Get context information related to analytics subscriptions.", nickname = "getNwdafContext", notes = "", response = ContextData.class, authorizations = {
         @Authorization(value = "oAuth2ClientCredentials", scopes = { 
             @AuthorizationScope(scope = "nnwdaf-analyticsinfo", description = "Access to the Nnwdaf_AnalyticsInfo API")
-            })    }, tags={ "NWDAF Context (Document)", })
+            })    }, tags={ "NWDAF Context API", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Contains context information related to analytics subscriptions corresponding with one or more context identifiers.", response = ContextData.class),
         @ApiResponse(code = 204, message = "No Content (No context information could be retrieved for the requested context identifiers)."),
