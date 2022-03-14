@@ -31,7 +31,11 @@ public class PlmnId   {
 	  setMnc(mnc);
   }
   
-  public String plmnIdValue() {
+  public PlmnId() {
+	// TODO Auto-generated constructor stub
+}
+
+public String plmnIdValue() {
 	  String plmnIdValue = this.mcc+"-"+this.mnc;
 	  return plmnIdValue;
   }

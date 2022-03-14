@@ -40,6 +40,11 @@ public class Snssai   {
 	  setSd(sd);
   }
   
+  public Snssai(String sst , String sd) {
+	  setSst(Integer.parseInt(sst));
+	  setSd(sd);
+  }
+  
   public Snssai(Integer sst) {
 	  setSst(sst);
   }

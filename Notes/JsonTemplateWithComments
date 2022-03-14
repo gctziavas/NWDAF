@@ -90,8 +90,9 @@
 
 			"ecgis":[				  #Type Ecgi (29.571 - 5.4.4.5)
 
-				{"plmnId":"" , "eutraCellId":"", "nid":""},  #Type PlmnId (29.571 - 5.4.4.3)|| Type EutraCellId (String) (29.571 - 5.4.2) || 
-				{"plmnId":"" , "eutraCellId":"", "nid":""}   #Type Nid (String) (29.571 - 5.4.2)
+				{"plmnId":{"mcc":"","mnc":""} , "eutraCellId":"", "nid":""},  #Type PlmnId (29.571 - 5.4.4.3)  || Type EutraCellId (String) (29.571 - 5.4.2)
+				{"plmnId":{"mcc":"","mnc":""} , "eutraCellId":"", "nid":""}   || #Type Nid (String) (29.571 - 5.4.2)
+				
 			],
 			"ncgis":[
 				{"plmnId":"" , "nrCellId":"", "nid":""},     #Type NrCellId (String) (29.571 - 5.4.2)

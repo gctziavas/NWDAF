@@ -26,6 +26,8 @@ public class Ecgi   {
   @JsonProperty("nid")
   private String nid = null;
 
+  public Ecgi() {};
+  
   public Ecgi(PlmnId plmnId, String eutraCellId, String nid) {
 	  setPlmnId(plmnId);
 	  setEutraCellId(eutraCellId);

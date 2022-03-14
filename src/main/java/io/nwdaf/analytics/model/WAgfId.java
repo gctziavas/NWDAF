@@ -69,7 +69,7 @@ public class WAgfId   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WAgfId {\n");
-    
+    sb.append("    "+this.wAgfId+"\n");
     sb.append("}");
     return sb.toString();
   }

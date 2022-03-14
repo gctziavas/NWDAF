@@ -28,19 +28,19 @@ public class GlobalRanNodeId  implements OneOfGlobalRanNodeId {
   private GNbId gNbId = null;
 
   @JsonProperty("ngeNbId")
-  private String ngeNbId = null;
+  private NgeNbId ngeNbId = null;
 
   @JsonProperty("wagfId")
-  private String wagfId = null;
+  private WAgfId wagfId = null;
 
   @JsonProperty("tngfId")
-  private String tngfId = null;
+  private TngfId tngfId = null;
 
   @JsonProperty("nid")
-  private String nid = null;
+  private Nid nid = null;
 
   @JsonProperty("eNbId")
-  private String eNbId = null;
+  private ENbId eNbId = null;
 
   public GlobalRanNodeId plmnId(PlmnId plmnId) {
     this.plmnId = plmnId;
@@ -103,7 +103,7 @@ public class GlobalRanNodeId  implements OneOfGlobalRanNodeId {
   }
 
   public GlobalRanNodeId ngeNbId(String ngeNbId) {
-    this.ngeNbId = ngeNbId;
+    this.ngeNbId = new NgeNbId(ngeNbId);
     return this;
   }
 
@@ -113,16 +113,16 @@ public class GlobalRanNodeId  implements OneOfGlobalRanNodeId {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^(MacroNGeNB-[A-Fa-f0-9]{5}|LMacroNGeNB-[A-Fa-f0-9]{6}|SMacroNGeNB-[A-Fa-f0-9]{5})$")   public String getNgeNbId() {
+  @Pattern(regexp="^(MacroNGeNB-[A-Fa-f0-9]{5}|LMacroNGeNB-[A-Fa-f0-9]{6}|SMacroNGeNB-[A-Fa-f0-9]{5})$")   public NgeNbId getNgeNbId() {
     return ngeNbId;
   }
 
   public void setNgeNbId(String ngeNbId) {
-    this.ngeNbId = ngeNbId;
+    this.ngeNbId = new NgeNbId(ngeNbId);
   }
 
   public GlobalRanNodeId wagfId(String wagfId) {
-    this.wagfId = wagfId;
+    this.wagfId = new WAgfId(wagfId);
     return this;
   }
 
@@ -132,16 +132,16 @@ public class GlobalRanNodeId  implements OneOfGlobalRanNodeId {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^[A-Fa-f0-9]+$")   public String getWagfId() {
+  @Pattern(regexp="^[A-Fa-f0-9]+$")   public WAgfId getWagfId() {
     return wagfId;
   }
 
   public void setWagfId(String wagfId) {
-    this.wagfId = wagfId;
+    this.wagfId = new WAgfId(wagfId);
   }
 
   public GlobalRanNodeId tngfId(String tngfId) {
-    this.tngfId = tngfId;
+    this.tngfId = new TngfId(tngfId);
     return this;
   }
 
@@ -151,16 +151,16 @@ public class GlobalRanNodeId  implements OneOfGlobalRanNodeId {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^[A-Fa-f0-9]+$")   public String getTngfId() {
+  @Pattern(regexp="^[A-Fa-f0-9]+$")   public TngfId getTngfId() {
     return tngfId;
   }
 
   public void setTngfId(String tngfId) {
-    this.tngfId = tngfId;
+    this.tngfId = new TngfId(tngfId);
   }
 
   public GlobalRanNodeId nid(String nid) {
-    this.nid = nid;
+    this.nid = new Nid(nid);
     return this;
   }
 
@@ -170,16 +170,16 @@ public class GlobalRanNodeId  implements OneOfGlobalRanNodeId {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^[A-Fa-f0-9]{11}$")   public String getNid() {
+  @Pattern(regexp="^[A-Fa-f0-9]{11}$")   public Nid getNid() {
     return nid;
   }
 
   public void setNid(String nid) {
-    this.nid = nid;
+    this.nid = new Nid(nid);
   }
 
   public GlobalRanNodeId eNbId(String eNbId) {
-    this.eNbId = eNbId;
+    this.eNbId = new ENbId(eNbId);
     return this;
   }
 
@@ -189,12 +189,12 @@ public class GlobalRanNodeId  implements OneOfGlobalRanNodeId {
   **/
   @ApiModelProperty(value = "")
   
-  @Pattern(regexp="^(MacroeNB-[A-Fa-f0-9]{5}|LMacroeNB-[A-Fa-f0-9]{6}|SMacroeNB-[A-Fa-f0-9]{5}|HomeeNB-[A-Fa-f0-9]{7})$")   public String getENbId() {
+  @Pattern(regexp="^(MacroeNB-[A-Fa-f0-9]{5}|LMacroeNB-[A-Fa-f0-9]{6}|SMacroeNB-[A-Fa-f0-9]{5}|HomeeNB-[A-Fa-f0-9]{7})$")   public ENbId getENbId() {
     return eNbId;
   }
 
   public void setENbId(String eNbId) {
-    this.eNbId = eNbId;
+    this.eNbId = new ENbId(eNbId);
   }
 
 

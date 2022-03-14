@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -16,7 +19,7 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class Nid   {
-	
+	@JsonProperty
 	private String nid = null;
 	
 	public Nid(String nid) {
@@ -55,7 +58,7 @@ public class Nid   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Nid {\n");
-    
+    sb.append("    "+this.nid+"\n");
     sb.append("}");
     return sb.toString();
   }

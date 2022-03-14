@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.UUID;
 
 import net.minidev.json.JSONArray;
 import org.json.JSONObject;
@@ -17,15 +18,23 @@ import io.nwdaf.analytics.model.Accuracy;
 import io.nwdaf.analytics.model.AnalyticsMetadataIndication;
 import io.nwdaf.analytics.model.AnySlice;
 import io.nwdaf.analytics.model.AnyUe;
+import io.nwdaf.analytics.model.Ecgi;
 import io.nwdaf.analytics.model.EventFilter;
 import io.nwdaf.analytics.model.EventReportingRequirement;
+import io.nwdaf.analytics.model.GNbId;
+import io.nwdaf.analytics.model.GlobalRanNodeId;
 import io.nwdaf.analytics.model.Gpsi;
 import io.nwdaf.analytics.model.GroupId;
+import io.nwdaf.analytics.model.NFType;
+import io.nwdaf.analytics.model.Ncgi;
+import io.nwdaf.analytics.model.NetworkAreaInfo;
 import io.nwdaf.analytics.model.NsiIdInfo;
 import io.nwdaf.analytics.model.OutputStrategy;
+import io.nwdaf.analytics.model.PlmnId;
 import io.nwdaf.analytics.model.SamplingRatio;
 import io.nwdaf.analytics.model.Snssai;
 import io.nwdaf.analytics.model.Supi;
+import io.nwdaf.analytics.model.Tai;
 import io.nwdaf.analytics.model.TargetUeInformation;
 import io.nwdaf.analytics.model.TimeWindow;
 import io.nwdaf.analytics.model.UInteger;
@@ -151,50 +160,258 @@ public class InputDataHandler {
 		
 		String anySlice = null;		  String anySliceQuery = "$.anySlice";
 		JSONArray nsiIdInfos = new JSONArray();	  String nsiIdInfosQuery = "$.nsiIdInfos";
-			String snssai = null;
-				String sst = null;
-				String sd = null;
-			String nsiIds = null;
+		LinkedHashMap networkArea = new LinkedHashMap<>();	  String networkAreaQuery = "$.networkArea";
+		JSONArray snssais = new JSONArray();	  String snssaisQuery = "$.snssais";
+		ArrayList<String> nfInstanceIds = new ArrayList<String>(); String nfInstanceIdsQuery = "$.nfInstanceIds";
+		ArrayList<String> nfSetIds = new ArrayList<String>(); String nfSetIdsQuery = "$.nfSetIds";
+		ArrayList<String> nfTypes = new ArrayList<String>(); String nfTypesQuery = "$.nfTypes";
+	
+		if(eventFiltJSON.has("snssais")) {
+			snssais = JsonPath.read(document,snssaisQuery);
+			if(snssais!=null) {
+				ArrayList<Snssai> snssaisSnssai = new ArrayList<Snssai>();
+				for(int i=0; i<snssais.size(); i++) {
+					Snssai curSnssai = new Snssai((String)((LinkedHashMap) snssais.get(i)).get("sst"), (String)((LinkedHashMap) snssais.get(i)).get("sd"));
+					snssaisSnssai.add(curSnssai);
+				}
+				givenEventFilter.setSnssais(snssaisSnssai);
+			}
+		}
 		
-			if(eventFiltJSON.has("anySlice")) {
-				anySlice = JsonPath.read(document, anySliceQuery);
-				if (anySlice!=null && anySlice!="") {givenEventFilter.setAnySlice(new AnySlice(anySlice).getAnySlice());}
+		if(eventFiltJSON.has("nfTypes")) {
+			nfTypes = JsonPath.read(document, nfTypesQuery);
+			if(nfTypes!=null) {
+				ArrayList<NFType> nfTypesNFType = new ArrayList<NFType>();
+				for(int i=0; i<nfTypes.size(); i++) {
+					String curNFType = nfTypes.get(i);
+					nfTypesNFType.add(new NFType(curNFType));
+				}
+				givenEventFilter.setNfTypes(nfTypesNFType);
 			}
-			if(eventFiltJSON.has("nsiIdInfos")) {
-				nsiIdInfos = JsonPath.read(document, nsiIdInfosQuery);
-				if(nsiIdInfos!=null) {
-					for(int i=0; i<nsiIdInfos.size(); i++) {
-						
-						NsiIdInfo curNsiIdInfo = new NsiIdInfo();
-						LinkedHashMap curNsiIdInfoMap = new LinkedHashMap();
-						LinkedHashMap curSnssai = new LinkedHashMap();
-						JSONArray curNsiIds = new JSONArray();
-						
-						curNsiIdInfoMap = (LinkedHashMap) nsiIdInfos.get(i);		
-						curSnssai.put("sst", ((LinkedHashMap) curNsiIdInfoMap.get("snssai")).get("sst"));
-						Integer curSst = Integer.parseInt((String) curSnssai.get("sst"));
-						
-						if(((LinkedHashMap) curNsiIdInfoMap.get("snssai")).containsKey("sd")) {
-							curSnssai.put("sd", ((LinkedHashMap) curNsiIdInfoMap.get("snssai")).get("sd"));
-							String curSd = (String) curSnssai.get("sd");
-							curNsiIdInfo.setSnssai(new Snssai(curSst, curSd));
+		}
+				
+		if(eventFiltJSON.has("nfSetIds")) {
+			nfSetIds = JsonPath.read(document, nfSetIdsQuery);
+			if(nfSetIds!=null) {
+				givenEventFilter.setNfSetIds(nfSetIds);
+			}
+		}
+		
+		
+		if(eventFiltJSON.has("networkArea")) {
+			networkArea = JsonPath.read(document, networkAreaQuery);
+			if (networkArea!=null) {
+				NetworkAreaInfo givenNetworkAreaInfo = new NetworkAreaInfo();
+				
+				ArrayList<Ecgi> ecgis = new ArrayList<Ecgi>();
+				JSONArray givenEcgis = new JSONArray();
+				if(networkArea.containsKey("ecgis")) {
+					givenEcgis = (JSONArray) networkArea.get("ecgis");
+				}
+				if(givenEcgis!=null) {
+					for(int i=0; i<givenEcgis.size(); i++) {
+						LinkedHashMap curEcgi = (LinkedHashMap) givenEcgis.get(i);
+						Ecgi curEcgiEcgi = new Ecgi();
+						LinkedHashMap curPlmnId = new LinkedHashMap<>();
+						if(curEcgi.containsKey("plmnId")) {
+							curPlmnId = (LinkedHashMap) curEcgi.get("plmnId");
+							PlmnId curPlmnIdPlmnId = new PlmnId();
+							if(curPlmnId.containsKey("mcc")) { curPlmnIdPlmnId.setMcc((String) curPlmnId.get("mcc")); }
+							if(curPlmnId.containsKey("mnc")) { curPlmnIdPlmnId.setMnc((String) curPlmnId.get("mnc")); }							
+							curEcgiEcgi.setPlmnId(curPlmnIdPlmnId);
 						}
-						else {
-							curNsiIdInfo.setSnssai(new Snssai(curSst));
+						
+						if(curEcgi.containsKey("eutraCellId")) {
+							curEcgiEcgi.setEutraCellId((String) curEcgi.get("eutraCellId"));
 						}
 						
-						if(curNsiIdInfoMap.size()>1) {
-							curNsiIds = (JSONArray) curNsiIdInfoMap.get("nsiIds");
-							List<String> curNsiIdsList = new ArrayList<String>();
-							for(int k = 0; k < curNsiIds.size(); k++){
-								curNsiIdsList.add((String) curNsiIds.get(k));
-							}
-							curNsiIdInfo.setNsiIds(curNsiIdsList);
-						}
-						givenNsiIdInfos.add(curNsiIdInfo);
+						if(curEcgi.containsKey("nid")) {
+							curEcgiEcgi.setNid((String) curEcgi.get("nid"));          
+						}						
+						ecgis.add(curEcgiEcgi);
 					}
-					givenEventFilter.setNsiIdInfos(givenNsiIdInfos);}
+					givenNetworkAreaInfo.setEcgis(ecgis);
+				}
+				
+				ArrayList<Ncgi> ncgis = new ArrayList<Ncgi>();
+				JSONArray givenNcgis = new JSONArray();
+				if(networkArea.containsKey("ncgis")) {
+					givenNcgis = (JSONArray) networkArea.get("ncgis");
+				}
+				if(givenNcgis!=null) {
+					for(int i=0; i<givenNcgis.size(); i++) {
+						LinkedHashMap curNcgi = (LinkedHashMap) givenNcgis.get(i);
+						Ncgi curNcgiNcgi = new Ncgi();
+						LinkedHashMap curPlmnId = new LinkedHashMap<>();
+						if(curNcgi.containsKey("plmnId")) {
+							curPlmnId = (LinkedHashMap) curNcgi.get("plmnId");
+							PlmnId curPlmnIdPlmnId = new PlmnId();
+							if(curPlmnId.containsKey("mcc")) { curPlmnIdPlmnId.setMcc((String) curPlmnId.get("mcc")); }
+							if(curPlmnId.containsKey("mnc")) { curPlmnIdPlmnId.setMnc((String) curPlmnId.get("mnc")); }							
+							curNcgiNcgi.setPlmnId(curPlmnIdPlmnId);
+						}
+						
+						if(curNcgi.containsKey("nrCellId")) {
+							curNcgiNcgi.setNrCellId((String) curNcgi.get("nrCellId"));
+						}
+						
+						if(curNcgi.containsKey("nid")) {
+							curNcgiNcgi.setNid((String) curNcgi.get("nid"));          
+						}						
+						ncgis.add(curNcgiNcgi);
+					}
+					givenNetworkAreaInfo.setNcgis(ncgis);
+				}
+								
+				ArrayList<GlobalRanNodeId> gRanNodeIds = new ArrayList<GlobalRanNodeId>();
+				JSONArray givenGRanNodeIds = new JSONArray();
+				if(networkArea.containsKey("gRanNodeIds")) {
+					givenGRanNodeIds = (JSONArray) networkArea.get("gRanNodeIds");
+				}
+				if(givenGRanNodeIds!=null) {
+					for(int i=0; i<givenGRanNodeIds.size(); i++) {
+						LinkedHashMap curGRanNodeId = (LinkedHashMap) givenGRanNodeIds.get(i);
+						GlobalRanNodeId curGRanNIdGlobalRanNodeId = new GlobalRanNodeId();
+						
+						LinkedHashMap curPlmnId = new LinkedHashMap<>();
+						if(curGRanNodeId.containsKey("plmnId")) {
+							curPlmnId = (LinkedHashMap) curGRanNodeId.get("plmnId");
+							PlmnId curPlmnIdPlmnId = new PlmnId();
+							if(curPlmnId.containsKey("mcc")) { curPlmnIdPlmnId.setMcc((String) curPlmnId.get("mcc")); }
+							if(curPlmnId.containsKey("mnc")) { curPlmnIdPlmnId.setMnc((String) curPlmnId.get("mnc")); }							
+							curGRanNIdGlobalRanNodeId.setPlmnId(curPlmnIdPlmnId);
+						}
+						
+						if(curGRanNodeId.containsKey("nid")) {
+							String nid = (String) curGRanNodeId.get("nid");
+							curGRanNIdGlobalRanNodeId.setNid(nid);          
+						}	
+						
+						if(curGRanNodeId.containsKey("n3IwfId")) {
+							curGRanNIdGlobalRanNodeId.setN3IwfId((String) curGRanNodeId.get("n3IwfId"));
+						}
+
+						if(curGRanNodeId.containsKey("ngeNbId")) {
+							curGRanNIdGlobalRanNodeId.setNgeNbId((String) curGRanNodeId.get("ngeNbId"));
+						}
+						if(curGRanNodeId.containsKey("wagfId")) {
+							curGRanNIdGlobalRanNodeId.setWagfId((String) curGRanNodeId.get("wagfId"));
+						}
+						if(curGRanNodeId.containsKey("tngfId")) {
+							curGRanNIdGlobalRanNodeId.setTngfId((String) curGRanNodeId.get("tngfId"));
+						}
+						if(curGRanNodeId.containsKey("eNbId")) {
+							curGRanNIdGlobalRanNodeId.setENbId((String) curGRanNodeId.get("eNbId"));
+						}
+
+						if(curGRanNodeId.containsKey("gNbId")) {
+							LinkedHashMap curGNbId = (LinkedHashMap) curGRanNodeId.get("gNbId");
+							
+							GNbId curGNbIdGNbId = new GNbId();
+							if(curGNbId.containsKey("bitLength")) {
+								Integer bitLength = Integer.parseInt((String) curGNbId.get("bitLength"));
+								curGNbIdGNbId.setBitLength(bitLength);
+							}
+							if(curGNbId.containsKey("gNBValue")) {
+								curGNbIdGNbId.setGNBValue((String) curGNbId.get("gNBValue"));
+							}
+							
+							curGRanNIdGlobalRanNodeId.setGNbId(curGNbIdGNbId);
+						}
+						
+						gRanNodeIds.add(curGRanNIdGlobalRanNodeId);
+					}
+					givenNetworkAreaInfo.setGRanNodeIds(gRanNodeIds);
+				}
+				
+				ArrayList<Tai> tais = new ArrayList<Tai>();
+				JSONArray givenTais = new JSONArray();
+				if(networkArea.containsKey("tais")) {
+					givenTais = (JSONArray) networkArea.get("tais");
+				}
+				if(givenTais!=null) {
+					for(int i=0; i<givenTais.size(); i++) {
+						LinkedHashMap curTai = (LinkedHashMap) givenTais.get(i);
+						Tai curTaiTai = new Tai();
+						
+						LinkedHashMap curPlmnId = new LinkedHashMap<>();
+						if(curTai.containsKey("plmnId")) {
+							curPlmnId = (LinkedHashMap) curTai.get("plmnId");
+							PlmnId curPlmnIdPlmnId = new PlmnId();
+							if(curPlmnId.containsKey("mcc")) { curPlmnIdPlmnId.setMcc((String) curPlmnId.get("mcc")); }
+							if(curPlmnId.containsKey("mnc")) { curPlmnIdPlmnId.setMnc((String) curPlmnId.get("mnc")); }							
+							curTaiTai.setPlmnId(curPlmnIdPlmnId);
+						}
+						
+						
+						if(curTai.containsKey("tac")) {
+							curTaiTai.setTac((String) curTai.get("tac"));
+						}
+						
+						
+						if(curTai.containsKey("nid")) {
+							curTaiTai.setNid((String) curTai.get("nid"));          
+						}		
+						
+						tais.add(curTaiTai);
+					}
+					givenNetworkAreaInfo.setTais(tais);
+				}
+				givenEventFilter.setNetworkArea(givenNetworkAreaInfo);
 			}
+		}
+			
+		if(eventFiltJSON.has("nfInstanceIds")) {
+			nfInstanceIds = JsonPath.read(document , nfInstanceIdsQuery);
+			ArrayList<UUID> nfInstanceIdsUUID = new ArrayList<UUID>();
+			if(nfInstanceIds!=null) { 
+				for(int i=0; i<nfInstanceIds.size(); i++) {
+					String curUUID = nfInstanceIds.get(i);
+					nfInstanceIdsUUID.add(UUID.fromString(curUUID));
+				}
+				givenEventFilter.setNfInstanceIds(nfInstanceIdsUUID);
+			};
+		}
+		
+		if(eventFiltJSON.has("anySlice")) {
+			anySlice = JsonPath.read(document, anySliceQuery);
+			if (anySlice!=null && anySlice!="") {givenEventFilter.setAnySlice(new AnySlice(anySlice).getAnySlice());}
+		}
+		if(eventFiltJSON.has("nsiIdInfos")) {
+			nsiIdInfos = JsonPath.read(document, nsiIdInfosQuery);
+			if(nsiIdInfos!=null) {
+				for(int i=0; i<nsiIdInfos.size(); i++) {
+					
+					NsiIdInfo curNsiIdInfo = new NsiIdInfo();
+					LinkedHashMap curNsiIdInfoMap = new LinkedHashMap();
+					LinkedHashMap curSnssai = new LinkedHashMap();
+					JSONArray curNsiIds = new JSONArray();
+						
+					curNsiIdInfoMap = (LinkedHashMap) nsiIdInfos.get(i);		
+					curSnssai.put("sst", ((LinkedHashMap) curNsiIdInfoMap.get("snssai")).get("sst"));
+					Integer curSst = Integer.parseInt((String) curSnssai.get("sst"));
+					
+					if(((LinkedHashMap) curNsiIdInfoMap.get("snssai")).containsKey("sd")) {
+						curSnssai.put("sd", ((LinkedHashMap) curNsiIdInfoMap.get("snssai")).get("sd"));
+						String curSd = (String) curSnssai.get("sd");
+						curNsiIdInfo.setSnssai(new Snssai(curSst, curSd));
+					}
+					else {
+						curNsiIdInfo.setSnssai(new Snssai(curSst));
+					}
+						
+					if(curNsiIdInfoMap.size()>1) {
+						curNsiIds = (JSONArray) curNsiIdInfoMap.get("nsiIds");
+						List<String> curNsiIdsList = new ArrayList<String>();
+						for(int k = 0; k < curNsiIds.size(); k++){
+							curNsiIdsList.add((String) curNsiIds.get(k));
+						}
+						curNsiIdInfo.setNsiIds(curNsiIdsList);
+					}
+					givenNsiIdInfos.add(curNsiIdInfo);
+				}
+				givenEventFilter.setNsiIdInfos(givenNsiIdInfos);}
+		}
 
 		return givenEventFilter;
 	}
@@ -210,7 +427,7 @@ public class InputDataHandler {
 		String anyUe = null;		  String anyUeQuery = "$.anyUe";
 		JSONArray supis = new JSONArray(); String supisQuery = "$.supis";
 		JSONArray gpsis = new JSONArray(); String gpsisQuery = "$.gpsis";
-		JSONArray intGroupIds = new JSONArray(); String intGroupIdsQuery = "$.intGroupIds";		
+		ArrayList<String> intGroupIds = new ArrayList<String>(); String intGroupIdsQuery = "$.intGroupIds";		
 		
 		if(tgtUeJSON.has("anyUe")) {
 			anyUe = JsonPath.read(document, anyUeQuery);

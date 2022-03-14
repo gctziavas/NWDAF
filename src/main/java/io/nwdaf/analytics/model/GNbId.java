@@ -31,8 +31,18 @@ public class GNbId   {
 	  setGNBValue(gNBValue);
   }
   
+  public GNbId(String bitLength , String gNBValue) {
+	  Integer bitLengthInteger = Integer.parseInt(bitLength);
+	  setBitLength(bitLengthInteger);
+	  setGNBValue(gNBValue);
+  }
   
-  public GNbId bitLength(Integer bitLength) {
+  public GNbId() {
+	// TODO Auto-generated constructor stub
+}
+
+
+public GNbId bitLength(Integer bitLength) {
     if (bitLength>21 &&bitLength<33) {
 		this.bitLength = bitLength;
 		return this;

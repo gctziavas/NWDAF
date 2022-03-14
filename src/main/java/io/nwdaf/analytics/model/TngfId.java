@@ -67,7 +67,7 @@ public class TngfId   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TngfId {\n");
-    
+    sb.append("    "+this.tngfId+"\n");
     sb.append("}");
     return sb.toString();
   }
