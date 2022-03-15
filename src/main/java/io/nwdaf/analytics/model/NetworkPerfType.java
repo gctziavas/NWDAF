@@ -58,7 +58,7 @@ public class NetworkPerfType  implements AnyOfNetworkPerfType {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class NetworkPerfType {\n");
-    
+    sb.append("    "+this.networkPerfType+"\n");
     sb.append("}");
     return sb.toString();
   }

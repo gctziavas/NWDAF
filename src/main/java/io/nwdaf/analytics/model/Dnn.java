@@ -1,6 +1,9 @@
 package io.nwdaf.analytics.model;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
@@ -13,7 +16,36 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class Dnn   {
-
+	
+	
+	private String dnn = null;
+		
+	public Dnn(String dnn ) {
+		  setDnn(dnn);
+	}
+	public Dnn() {}
+		
+	public String getDnn() {
+		return dnn;
+	}
+	
+	public void setDnn(String dnn) {
+		String pattern = "^[0-9a-zA-Z\\.]{1,100}$";
+		  Pattern r = Pattern.compile(pattern);
+		  Matcher m = r.matcher(dnn );
+		  if (m.matches()) {
+			  this.dnn  = dnn ;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid dnn argument. Dnn must must follow the \"^[0-9a-zA-Z\\.]{1,100}$\" pattern.");
+		  }
+	}
+	
+	public String dnnValue() {
+		return this.dnn;
+	}
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -34,7 +66,7 @@ public class Dnn   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Dnn {\n");
-    
+    sb.append("    "+dnn+"\n");
     sb.append("}");
     return sb.toString();
   }

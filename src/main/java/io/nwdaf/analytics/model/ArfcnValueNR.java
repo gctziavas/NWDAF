@@ -14,7 +14,26 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class ArfcnValueNR   {
 
-  @Override
+	private Integer arfcnValueNR = null;
+	
+	public ArfcnValueNR(Integer arfcnValueNR) {
+		setArfcnValueNR(arfcnValueNR);
+	}
+	
+  public Integer getArfcnValueNR() {
+		return arfcnValueNR;
+	}
+
+	public void setArfcnValueNR(Integer arfcnValueNR) {
+		if(arfcnValueNR>-1 && arfcnValueNR<3279166) {
+			this.arfcnValueNR = arfcnValueNR;
+		}
+		else {
+			throw new IllegalArgumentException("Not valid arfcnValueNR value. ArfcnValueNR must be in range [0 , 3279165].");
+		}
+	}
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;
@@ -34,7 +53,7 @@ public class ArfcnValueNR   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ArfcnValueNR {\n");
-    
+    sb.append("    "+ this.arfcnValueNR+"\n");
     sb.append("}");
     return sb.toString();
   }

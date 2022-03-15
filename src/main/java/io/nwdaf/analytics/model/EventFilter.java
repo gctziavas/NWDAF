@@ -43,7 +43,7 @@ public class EventFilter   {
 
   @JsonProperty("dnns")
   @Valid
-  private List<String> dnns = null;
+  private List<Dnn> dnns = null;
 
   @JsonProperty("dnais")
   @Valid
@@ -101,7 +101,7 @@ public class EventFilter   {
 
   @JsonProperty("freqs")
   @Valid
-  private List<Integer> freqs = null;
+  private List<ArfcnValueNR> freqs = null;
 
   public EventFilter anySlice(Boolean anySlice) {
     this.anySlice = anySlice;
@@ -176,12 +176,12 @@ public class EventFilter   {
     this.appIds = appIds;
   }
 
-  public EventFilter dnns(List<String> dnns) {
+  public EventFilter dnns(List<Dnn> dnns) {
     this.dnns = dnns;
     return this;
   }
 
-  public EventFilter addDnnsItem(String dnnsItem) {
+  public EventFilter addDnnsItem(Dnn dnnsItem) {
     if (this.dnns == null) {
       this.dnns = new ArrayList<>();
     }
@@ -195,11 +195,11 @@ public class EventFilter   {
   **/
   @ApiModelProperty(value = "")
   
-  @Size(min=1)   public List<String> getDnns() {
+  @Size(min=1)   public List<Dnn> getDnns() {
     return dnns;
   }
 
-  public void setDnns(List<String> dnns) {
+  public void setDnns(List<Dnn> dnns) {
     this.dnns = dnns;
   }
 
@@ -564,34 +564,18 @@ public class EventFilter   {
     this.ratTypes = ratTypes;
   }
 
-  public EventFilter freqs(List<Integer> freqs) {
-    int flag =0;
-    for(int i=0; i<freqs.size(); i++) {
-    	if(freqs.get(i)<0 || freqs.get(i)>3279165) {
-    		flag = 1;
-    	}
-    }
-	if(flag==0) {
-		this.freqs = freqs;
-		return this;
-	}
-	else {
-		throw new IllegalArgumentException("Not valid ArfcnValueNR value.");
-	}
+  public EventFilter freqs(List<ArfcnValueNR> freqs) {
+	this.freqs = freqs;
+	return this;
+
   }
 
   public EventFilter addFreqsItem(Integer freqsItem) {
     if (this.freqs == null) {
       this.freqs = new ArrayList<>();
     }
-    if(freqsItem>=0 && freqsItem<3279166) {
-    	this.freqs.add(freqsItem);
-        return this;
-    }
-    else {
-    	throw new IllegalArgumentException("Not valid ArfcnValueNR value.");
-    }
-    
+   	this.freqs.add(new ArfcnValueNR(freqsItem));
+    return this;
   }
 
   /**
@@ -600,23 +584,12 @@ public class EventFilter   {
   **/
   @ApiModelProperty(value = "")
   
-  @Size(min=1)   public List<Integer> getFreqs() {
+  @Size(min=1)   public List<ArfcnValueNR> getFreqs() {
     return freqs;
   }
 
-  public void setFreqs(List<Integer> freqs) {
-	    int flag =0;
-	    for(int i=0; i<freqs.size(); i++) {
-	    	if(freqs.get(i)<0 || freqs.get(i)>3279165) {
-	    		flag = 1;
-	    	}
-	    }
-		if(flag==0) {
-			this.freqs = freqs;
-		}
-		else {
-			throw new IllegalArgumentException("Not valid ArfcnValueNR value.");
-		}
+  public void setFreqs(List<ArfcnValueNR> freqs) {
+	this.freqs = freqs;
   }
 
 

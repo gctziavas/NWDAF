@@ -18,9 +18,15 @@ import io.nwdaf.analytics.model.Accuracy;
 import io.nwdaf.analytics.model.AnalyticsMetadataIndication;
 import io.nwdaf.analytics.model.AnySlice;
 import io.nwdaf.analytics.model.AnyUe;
+import io.nwdaf.analytics.model.ArfcnValueNR;
+import io.nwdaf.analytics.model.BwRequirement;
+import io.nwdaf.analytics.model.Dnn;
 import io.nwdaf.analytics.model.Ecgi;
 import io.nwdaf.analytics.model.EventFilter;
 import io.nwdaf.analytics.model.EventReportingRequirement;
+import io.nwdaf.analytics.model.ExceptionId;
+import io.nwdaf.analytics.model.ExpectedAnalyticsType;
+import io.nwdaf.analytics.model.ExpectedUeBehaviourData;
 import io.nwdaf.analytics.model.GNbId;
 import io.nwdaf.analytics.model.GlobalRanNodeId;
 import io.nwdaf.analytics.model.Gpsi;
@@ -28,11 +34,14 @@ import io.nwdaf.analytics.model.GroupId;
 import io.nwdaf.analytics.model.NFType;
 import io.nwdaf.analytics.model.Ncgi;
 import io.nwdaf.analytics.model.NetworkAreaInfo;
+import io.nwdaf.analytics.model.NetworkPerfType;
 import io.nwdaf.analytics.model.NsiIdInfo;
 import io.nwdaf.analytics.model.OutputStrategy;
 import io.nwdaf.analytics.model.PlmnId;
+import io.nwdaf.analytics.model.RatType;
 import io.nwdaf.analytics.model.SamplingRatio;
 import io.nwdaf.analytics.model.Snssai;
+import io.nwdaf.analytics.model.StationaryIndication;
 import io.nwdaf.analytics.model.Supi;
 import io.nwdaf.analytics.model.Tai;
 import io.nwdaf.analytics.model.TargetUeInformation;
@@ -159,13 +168,153 @@ public class InputDataHandler {
 		Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
 		
 		String anySlice = null;		  String anySliceQuery = "$.anySlice";
+		String exptAnaType = null;		  String exptAnaTypeQuery = "$.exptAnaType";
 		JSONArray nsiIdInfos = new JSONArray();	  String nsiIdInfosQuery = "$.nsiIdInfos";
 		LinkedHashMap networkArea = new LinkedHashMap<>();	  String networkAreaQuery = "$.networkArea";
+		LinkedHashMap exptUeBehav = new LinkedHashMap<>();	  String exptUeBehavQuery = "$.exptUeBehav";
 		JSONArray snssais = new JSONArray();	  String snssaisQuery = "$.snssais";
+		JSONArray bwRequs = new JSONArray();	  String bwRequsQuery = "$.bwRequs";
 		ArrayList<String> nfInstanceIds = new ArrayList<String>(); String nfInstanceIdsQuery = "$.nfInstanceIds";
 		ArrayList<String> nfSetIds = new ArrayList<String>(); String nfSetIdsQuery = "$.nfSetIds";
 		ArrayList<String> nfTypes = new ArrayList<String>(); String nfTypesQuery = "$.nfTypes";
-	
+		ArrayList<String> appIds = new ArrayList<String>(); String appIdsQuery = "$.appIds";
+		ArrayList<String> dnns = new ArrayList<String>(); String dnnsQuery = "$.dnns";
+		ArrayList<String> nwPerfTypes = new ArrayList<String>(); String nwPerfTypesQuery = "$.nwPerfTypes";
+		ArrayList<String> dnais = new ArrayList<String>(); String dnaisQuery = "$.dnais";
+		ArrayList<String> ratTypes = new ArrayList<String>(); String ratTypesQuery = "$.ratTypes";
+		ArrayList<String> freqs = new ArrayList<String>(); String freqsQuery = "$.freqs";
+		ArrayList<String> excepIds = new ArrayList<String>(); String excepIdsQuery = "$.excepIds";
+		
+		if(eventFiltJSON.has("exptUeBehav")){
+			exptUeBehav = JsonPath.read(document, exptUeBehavQuery);
+			if(exptUeBehav!=null) {
+				ExpectedUeBehaviourData exptUeBehavData = new ExpectedUeBehaviourData();
+				
+				String curStationaryIndication = (String) exptUeBehav.get("stationaryIndication");
+				String curCommunicationDurationDurationSecTime = (String) exptUeBehav.get("communicationDurationDurationSecTime");
+				String curPeriodicTime = (String) exptUeBehav.get("periodicTime");
+				LinkedHashMap curScheduledCommunicationTime = (LinkedHashMap) exptUeBehav.get("scheduledCommunicationTime");
+				String curScheduledCommunicationType = (String) exptUeBehav.get("scheduledCommunicationType");
+				String curExpectedUmts = (String) exptUeBehav.get("expectedUmts");
+				String curTrafficProfile = (String) exptUeBehav.get("trafficProfile");
+				String curBatteryIndication = (String) exptUeBehav.get("batteryIndication");
+				String curValidityTime = (String) exptUeBehav.get("validityTime");
+
+				exptUeBehavData.setStationaryIndication(new StationaryIndication(curStationaryIndication));
+				exptUeBehavData.setCommunicationDurationTime(new UInteger(curCommunicationDurationDurationSecTime).getValue());
+				exptUeBehavData.setPeriodicTime(new UInteger(curPeriodicTime).getValue());
+				
+				//Emeina sto scheduled communicaiton time
+				
+				
+				givenEventFilter.setExptUeBehav(exptUeBehavData);
+			}
+		}
+		
+		if(eventFiltJSON.has("exptAnaType")){
+			exptAnaType = JsonPath.read(document,exptAnaType);
+			givenEventFilter.setExptAnaType(new ExpectedAnalyticsType(exptAnaType));
+			
+		}
+		if(eventFiltJSON.has("excepIds")) {
+			excepIds = JsonPath.read(document,excepIdsQuery);
+			if (excepIds!=null) {
+				ArrayList<ExceptionId> excepIdsExceptionId = new ArrayList<ExceptionId>();
+				for(int i=0; i<excepIds.size(); i++) {
+					ExceptionId curExcepId = new ExceptionId(excepIds.get(i));
+					excepIdsExceptionId.add(curExcepId);
+				}				
+				givenEventFilter.setExcepIds(excepIdsExceptionId);
+			}
+		}
+		
+		if(eventFiltJSON.has("bwRequs")) {
+			bwRequs = JsonPath.read(document,bwRequsQuery);
+			if(bwRequs!=null) {
+				ArrayList<BwRequirement> bwRequsBwRequirement = new ArrayList<BwRequirement>();
+				for(int i=0; i<bwRequs.size(); i++) {
+					BwRequirement curBwRequirement = new BwRequirement();
+					LinkedHashMap curBwRequirementMap = (LinkedHashMap) bwRequs.get(i);
+					
+					String curAppId = (String) curBwRequirementMap.get("appId");
+					String curMarBwUl = (String) curBwRequirementMap.get("marBwUl");
+					String curMarBwDl = (String) curBwRequirementMap.get("marBwDl");
+					String curMirBwUl = (String) curBwRequirementMap.get("mirBwUl");
+					String curMirBwDl = (String) curBwRequirementMap.get("mirBwDl");
+					
+					curBwRequirement.setAppId(curAppId);
+					curBwRequirement.setMarBwUl(curMarBwUl);
+					curBwRequirement.setMarBwDl(curMarBwDl);
+					curBwRequirement.setMirBwUl(curMirBwUl);
+					curBwRequirement.setMirBwDl(curMirBwDl);
+					bwRequsBwRequirement.add(curBwRequirement);
+				}
+				givenEventFilter.setBwRequs(bwRequsBwRequirement);
+			}
+		}
+		
+		if(eventFiltJSON.has("ratTypes")) {
+			ratTypes = JsonPath.read(document,ratTypesQuery);
+			if(ratTypes!=null) {
+				ArrayList<RatType> ratTypesRatType = new ArrayList<RatType>();
+				for(int i=0; i<ratTypes.size(); i++) {
+					String curRatType = ratTypes.get(i);
+					ratTypesRatType.add(new RatType(curRatType));
+				}
+				givenEventFilter.setRatTypes(ratTypesRatType);
+			}
+		}
+		
+		if(eventFiltJSON.has("freqs")) {
+			freqs = JsonPath.read(document,freqsQuery);
+			if(freqs!=null) {
+				ArrayList<ArfcnValueNR> freqsArfcnValueNR = new ArrayList<ArfcnValueNR>();
+				for(int i=0; i<freqs.size(); i++) {
+					Integer curFreq = Integer.parseInt(freqs.get(i));
+					freqsArfcnValueNR.add(new ArfcnValueNR(curFreq));
+				}
+				givenEventFilter.setFreqs(freqsArfcnValueNR);
+			}
+		}		
+		
+		if(eventFiltJSON.has("dnais")) {
+			dnais = JsonPath.read(document, dnaisQuery);
+			if(appIds!=null) {
+				givenEventFilter.setDnais(dnais);
+			}
+		}
+		
+		if(eventFiltJSON.has("nwPerfTypes")) {
+			nwPerfTypes = JsonPath.read(document,nwPerfTypesQuery);
+			if(nwPerfTypes!=null) {
+				ArrayList<NetworkPerfType> nwPerfTypesNwPerfTypes = new ArrayList<NetworkPerfType>();
+				for(int i=0; i<nwPerfTypes.size(); i++) {
+					String curNwPerfType = nwPerfTypes.get(i);
+					nwPerfTypesNwPerfTypes.add(new NetworkPerfType(curNwPerfType));
+				}
+				givenEventFilter.setNwPerfTypes(nwPerfTypesNwPerfTypes);
+			}
+		}
+		
+		if(eventFiltJSON.has("appIds")) {
+			appIds = JsonPath.read(document, appIdsQuery);
+			if(appIds!=null) {
+				givenEventFilter.setAppIds(appIds);
+			}
+		}
+		
+		if(eventFiltJSON.has("dnns")) {
+			dnns = JsonPath.read(document, dnnsQuery);
+			if(dnns!=null) {
+				ArrayList<Dnn> dnnsDnn = new ArrayList<Dnn>();
+				for(int i=0; i<dnns.size(); i++) {
+					String curDnn = dnns.get(i);
+					dnnsDnn.add(new Dnn(curDnn));
+				}
+				givenEventFilter.setDnns(dnnsDnn);
+			}
+		}		
+		
 		if(eventFiltJSON.has("snssais")) {
 			snssais = JsonPath.read(document,snssaisQuery);
 			if(snssais!=null) {

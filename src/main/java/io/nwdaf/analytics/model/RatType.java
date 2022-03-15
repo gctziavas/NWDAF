@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -18,7 +19,7 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class RatType  implements AnyOfRatType {
 
-	
+	@JsonProperty
 	private String ratType = null;
 	
 	@JsonIgnore
@@ -26,12 +27,12 @@ public class RatType  implements AnyOfRatType {
 	
 	
 	public RatType(String ratType) {
-
-		  if (Arrays.asList(possibleValues).contains(ratType)) {
-			  this.ratType = ratType;
+		ratType = ratType.toUpperCase();
+		if (Arrays.asList(possibleValues).contains(ratType)) {
+			this.ratType = ratType;
 		}
-		  else {
-			  throw new IllegalArgumentException("Not valid ratType value.");
+		else {
+			throw new IllegalArgumentException("Not valid ratType value.");
 		  }
 	}
   
