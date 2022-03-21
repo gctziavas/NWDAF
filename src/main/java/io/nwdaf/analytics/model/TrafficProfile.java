@@ -1,8 +1,12 @@
 package io.nwdaf.analytics.model;
 
+import java.util.Arrays;
 import java.util.Objects;
 import io.swagger.annotations.ApiModel;
 import org.springframework.validation.annotation.Validated;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -14,6 +18,31 @@ import javax.validation.constraints.*;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-01-27T12:24:16.086762+02:00[Europe/Athens]")
 public class TrafficProfile  implements AnyOfTrafficProfile {
 
+	private String trafficProfile = null;
+	
+	@JsonIgnore
+	private String[] possibleValues = {"SINGLE_TRANS_UL" , "SINGLE_TRANS_DL" , "DUAL_TRANS_UL_FIRST" , "DUAL_TRANS_DL_FIRST" , "MULTI_TRANS"};                                                                                         
+	
+	
+	public TrafficProfile(String trafficProfile) {
+		setScheduledCommunicationType(trafficProfile);
+	}
+	
+	public void setScheduledCommunicationType(String trafficProfile) {
+
+		  if (Arrays.asList(possibleValues).contains(trafficProfile)) {
+			  this.trafficProfile = trafficProfile;
+		}
+		  else {
+			  throw new IllegalArgumentException("Not valid trafficProfile value.");
+		  }
+	}
+  
+	public String getNetworkPerfType() {
+		return this.trafficProfile;
+	}
+	
+	
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -34,7 +63,7 @@ public class TrafficProfile  implements AnyOfTrafficProfile {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TrafficProfile {\n");
-    
+    sb.append("    " + this.trafficProfile +"\n");
     sb.append("}");
     return sb.toString();
   }

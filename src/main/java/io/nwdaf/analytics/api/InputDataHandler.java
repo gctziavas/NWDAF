@@ -19,6 +19,7 @@ import io.nwdaf.analytics.model.AnalyticsMetadataIndication;
 import io.nwdaf.analytics.model.AnySlice;
 import io.nwdaf.analytics.model.AnyUe;
 import io.nwdaf.analytics.model.ArfcnValueNR;
+import io.nwdaf.analytics.model.BatteryIndication;
 import io.nwdaf.analytics.model.BwRequirement;
 import io.nwdaf.analytics.model.Dnn;
 import io.nwdaf.analytics.model.Ecgi;
@@ -40,12 +41,14 @@ import io.nwdaf.analytics.model.OutputStrategy;
 import io.nwdaf.analytics.model.PlmnId;
 import io.nwdaf.analytics.model.RatType;
 import io.nwdaf.analytics.model.SamplingRatio;
+import io.nwdaf.analytics.model.ScheduledCommunicationType;
 import io.nwdaf.analytics.model.Snssai;
 import io.nwdaf.analytics.model.StationaryIndication;
 import io.nwdaf.analytics.model.Supi;
 import io.nwdaf.analytics.model.Tai;
 import io.nwdaf.analytics.model.TargetUeInformation;
 import io.nwdaf.analytics.model.TimeWindow;
+import io.nwdaf.analytics.model.TrafficProfile;
 import io.nwdaf.analytics.model.UInteger;
 
 public class InputDataHandler {
@@ -167,45 +170,92 @@ public class InputDataHandler {
 		String json = eventFilter;
 		Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
 		
-		String anySlice = null;		  String anySliceQuery = "$.anySlice";
-		String exptAnaType = null;		  String exptAnaTypeQuery = "$.exptAnaType";
-		JSONArray nsiIdInfos = new JSONArray();	  String nsiIdInfosQuery = "$.nsiIdInfos";
-		LinkedHashMap networkArea = new LinkedHashMap<>();	  String networkAreaQuery = "$.networkArea";
-		LinkedHashMap exptUeBehav = new LinkedHashMap<>();	  String exptUeBehavQuery = "$.exptUeBehav";
-		JSONArray snssais = new JSONArray();	  String snssaisQuery = "$.snssais";
-		JSONArray bwRequs = new JSONArray();	  String bwRequsQuery = "$.bwRequs";
+		String anySlice = null;		                               String anySliceQuery = "$.anySlice";
+		String exptAnaType = null;		                           String exptAnaTypeQuery = "$.exptAnaType";
+		String maxTopAppUlNbr = null;                              String maxTopAppUlNbrQuery = "$.maxTopAppUlNbr";
+		String maxTopAppDlNbr = null;                              String maxTopAppDlNbrQuery = "$.maxTopAppDlNbr";
+		JSONArray nsiIdInfos = new JSONArray();	                   String nsiIdInfosQuery = "$.nsiIdInfos";
+		LinkedHashMap networkArea = new LinkedHashMap<>();	       String networkAreaQuery = "$.networkArea";
+		LinkedHashMap exptUeBehav = new LinkedHashMap<>();	       String exptUeBehavQuery = "$.exptUeBehav";
+		JSONArray snssais = new JSONArray();	                   String snssaisQuery = "$.snssais";
+		JSONArray bwRequs = new JSONArray();	                   String bwRequsQuery = "$.bwRequs";
 		ArrayList<String> nfInstanceIds = new ArrayList<String>(); String nfInstanceIdsQuery = "$.nfInstanceIds";
-		ArrayList<String> nfSetIds = new ArrayList<String>(); String nfSetIdsQuery = "$.nfSetIds";
-		ArrayList<String> nfTypes = new ArrayList<String>(); String nfTypesQuery = "$.nfTypes";
-		ArrayList<String> appIds = new ArrayList<String>(); String appIdsQuery = "$.appIds";
-		ArrayList<String> dnns = new ArrayList<String>(); String dnnsQuery = "$.dnns";
-		ArrayList<String> nwPerfTypes = new ArrayList<String>(); String nwPerfTypesQuery = "$.nwPerfTypes";
-		ArrayList<String> dnais = new ArrayList<String>(); String dnaisQuery = "$.dnais";
-		ArrayList<String> ratTypes = new ArrayList<String>(); String ratTypesQuery = "$.ratTypes";
-		ArrayList<String> freqs = new ArrayList<String>(); String freqsQuery = "$.freqs";
-		ArrayList<String> excepIds = new ArrayList<String>(); String excepIdsQuery = "$.excepIds";
+		ArrayList<String> nfSetIds = new ArrayList<String>();      String nfSetIdsQuery = "$.nfSetIds";
+		ArrayList<String> nfTypes = new ArrayList<String>();       String nfTypesQuery = "$.nfTypes";
+		ArrayList<String> appIds = new ArrayList<String>();        String appIdsQuery = "$.appIds";
+		ArrayList<String> dnns = new ArrayList<String>();          String dnnsQuery = "$.dnns";
+		ArrayList<String> nwPerfTypes = new ArrayList<String>();   String nwPerfTypesQuery = "$.nwPerfTypes";
+		ArrayList<String> dnais = new ArrayList<String>();         String dnaisQuery = "$.dnais";
+		ArrayList<String> ratTypes = new ArrayList<String>();      String ratTypesQuery = "$.ratTypes";
+		ArrayList<String> freqs = new ArrayList<String>();         String freqsQuery = "$.freqs";
+		ArrayList<String> excepIds = new ArrayList<String>();      String excepIdsQuery = "$.excepIds";
+		
+		
+		if(eventFiltJSON.has("maxTopAppUlNbr")) {
+			maxTopAppUlNbr = JsonPath.read(document,maxTopAppUlNbrQuery);
+			if (maxTopAppUlNbr!=null &&  maxTopAppUlNbr!="") {givenEventFilter.setMaxTopAppUlNbr((new UInteger(maxTopAppUlNbr).getValue()));}   
+		}
+		if(eventFiltJSON.has("maxTopAppDlNbr")) {
+			maxTopAppDlNbr = JsonPath.read(document,maxTopAppDlNbrQuery);
+			if (maxTopAppDlNbr!=null &&  maxTopAppDlNbr!="") {givenEventFilter.setMaxTopAppDlNbr((new UInteger(maxTopAppDlNbr).getValue()));}   
+		}		
 		
 		if(eventFiltJSON.has("exptUeBehav")){
 			exptUeBehav = JsonPath.read(document, exptUeBehavQuery);
 			if(exptUeBehav!=null) {
 				ExpectedUeBehaviourData exptUeBehavData = new ExpectedUeBehaviourData();
 				
-				String curStationaryIndication = (String) exptUeBehav.get("stationaryIndication");
-				String curCommunicationDurationDurationSecTime = (String) exptUeBehav.get("communicationDurationDurationSecTime");
-				String curPeriodicTime = (String) exptUeBehav.get("periodicTime");
-				LinkedHashMap curScheduledCommunicationTime = (LinkedHashMap) exptUeBehav.get("scheduledCommunicationTime");
-				String curScheduledCommunicationType = (String) exptUeBehav.get("scheduledCommunicationType");
-				String curExpectedUmts = (String) exptUeBehav.get("expectedUmts");
-				String curTrafficProfile = (String) exptUeBehav.get("trafficProfile");
-				String curBatteryIndication = (String) exptUeBehav.get("batteryIndication");
-				String curValidityTime = (String) exptUeBehav.get("validityTime");
-
-				exptUeBehavData.setStationaryIndication(new StationaryIndication(curStationaryIndication));
-				exptUeBehavData.setCommunicationDurationTime(new UInteger(curCommunicationDurationDurationSecTime).getValue());
-				exptUeBehavData.setPeriodicTime(new UInteger(curPeriodicTime).getValue());
+				if(exptUeBehav.containsKey("stationaryIndication")) {
+					String curStationaryIndication = (String) exptUeBehav.get("stationaryIndication");
+					exptUeBehavData.setStationaryIndication(new StationaryIndication(curStationaryIndication));
+				}
+				if (exptUeBehav.containsKey("communicationDurationDurationSecTime")) {
+					String curCommunicationDurationDurationSecTime = (String) exptUeBehav.get("communicationDurationDurationSecTime");
+					exptUeBehavData.setCommunicationDurationTime(new UInteger(curCommunicationDurationDurationSecTime).getValue());
+				}
+				if (exptUeBehav.containsKey("periodicTime")) {
+					String curPeriodicTime = (String) exptUeBehav.get("periodicTime");
+					exptUeBehavData.setPeriodicTime(new UInteger(curPeriodicTime).getValue());
+				}
+				if (exptUeBehav.containsKey("scheduledCommunicationTime")) {
+					LinkedHashMap curScheduledCommunicationTime = (LinkedHashMap) exptUeBehav.get("scheduledCommunicationTime");
+					//exptUeBehavData.setScheduledCommunicationTime(null);
+				}
+				if (exptUeBehav.containsKey("scheduledCommunicationType")) {
+					String curScheduledCommunicationType = (String) exptUeBehav.get("scheduledCommunicationType");
+					exptUeBehavData.setScheduledCommunicationType(new ScheduledCommunicationType(curScheduledCommunicationType));
+				}
+				if (exptUeBehav.containsKey("expectedUmts")) {
+					String curExpectedUmts = (String) exptUeBehav.get("expectedUmts");
+					//exptUeBehavData.setExpectedUmts(null);
+				}
+				if (exptUeBehav.containsKey("trafficProfile")) {
+					String curTrafficProfile = (String) exptUeBehav.get("trafficProfile");
+					exptUeBehavData.setTrafficProfile(new TrafficProfile(curTrafficProfile));
+				}
 				
-				//Emeina sto scheduled communicaiton time
-				
+				if (exptUeBehav.containsKey("batteryIndication")) {
+					LinkedHashMap curBatteryIndication = (LinkedHashMap) exptUeBehav.get("batteryIndication");
+					BatteryIndication curBatteryIndicationBatteryIndication = new BatteryIndication();
+					if (curBatteryIndication.containsKey("batteryInd")) {
+						boolean curBatteryInd = stringToBool((String) curBatteryIndication.get("batteryInd"));
+						curBatteryIndicationBatteryIndication.setBatteryInd(curBatteryInd);
+					}
+					if (curBatteryIndication.containsKey("replaceableInd")) {
+						boolean curReplaceableInd = stringToBool((String) curBatteryIndication.get("replaceableInd"));
+						curBatteryIndicationBatteryIndication.setReplaceableInd(curReplaceableInd);
+					}
+					if (curBatteryIndication.containsKey("rechargeableInd")) {
+						boolean curRechargeableInd = stringToBool((String) curBatteryIndication.get("rechargeableInd"));
+						curBatteryIndicationBatteryIndication.setRechargeableInd(curRechargeableInd);
+					}
+					
+					exptUeBehavData.setBatteryIndication(curBatteryIndicationBatteryIndication);
+				}
+				if (exptUeBehav.containsKey("validityTime")) {
+					OffsetDateTime curValidityTime = OffsetDateTime.parse((String) exptUeBehav.get("validityTime"));
+					exptUeBehavData.setValidityTime(curValidityTime);
+				}
 				
 				givenEventFilter.setExptUeBehav(exptUeBehavData);
 			}
@@ -641,4 +691,14 @@ public class InputDataHandler {
 	    return exists;
 	}
 	
+	private static boolean stringToBool(String input) {
+		boolean output = false;
+		input = input.toLowerCase();
+		if(input=="true") {
+			output = true;
+		}
+		return output;
+	}
 }
+
+

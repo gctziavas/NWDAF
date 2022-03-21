@@ -21,16 +21,16 @@
 ✓			],
 ✓			"gRanNodeIds":[
 ✓				{"plmnId":{"mcc":"","mnc":""},"n3IwfId":"","gNbId":{"bitLength":"","gNBValue":""},"ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""},
-✓				{"plmnId":{"mcc":"","mnc":""},"n3IwfId":"","gNbId":"","ngeNbId":{"bitLength":"","gNBValue":""},"wagfId":"","tngfId":"","nid":"","eNbId":""}
+c				{"plmnId":{"mcc":"","mnc":""},"n3IwfId":"","gNbId":"","ngeNbId":{"bitLength":"","gNBValue":""},"wagfId":"","tngfId":"","nid":"","eNbId":""}
 ✓			],
 ✓			"tais":[
 ✓				{"plmnId":{"mcc":"","mnc":""} , "tac":"", "nid":""},
 ✓				{"plmnId":{"mcc":"","mnc":""} , "tac":"", "nid":""}
 ✓			]
 ✓		},
-		"maxTopAppUlNbr":"",
-		"maxTopAppDlNbr":"",
-		
+✓		"maxTopAppUlNbr":"",
+✓		"maxTopAppDlNbr":"",
+✓		
 ✓		"nsiIdInfos":[
 ✓			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]},
 ✓			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]}
@@ -43,20 +43,20 @@
 ✓		],
 ✓		"excepIds":["",""],
 ✓		"exptAnaType":"",
-		"exptUeBehav":{
-			"stationaryIndication":"STATIONARY",
-			"communicationDurationDurationSecTime":"",
-			"periodicTime":"",
+✓		"exptUeBehav":{
+✓			"stationaryIndication":"STATIONARY",
+✓			"communicationDurationDurationSecTime":"",
+✓			"periodicTime":"",
 			"scheduledCommunicationTime":"",
-			"scheduledCommunicationType":"",
+✓			"scheduledCommunicationType":"",
 			"expectedUmts":"",
-			"trafficProfile":"",
-			"batteryIndication":"",
-			"validityTime":""
-		},
+✓			"trafficProfile":"",
+✓			"batteryIndication":"",
+✓			"validityTime":""
+✓		},
 ✓		"ratTypes":["",""],
 ✓		"freqs":["",""]
-	}
+✓	}
 
 ------------------------>NSI_LOAD_LEVEL<------------------------
 {
@@ -255,3 +255,6 @@
 	
 	
 }	
+
+
+
