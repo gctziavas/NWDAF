@@ -1,0 +1,178 @@
+{
+	"event-id":"",  #Type EventId (Enum)(29.520 - 5.2.6.3.3)  
+					#Possible values of event-id are:
+						- LOAD_LEVEL_INFORMATION: Represent the analytics of load level information of corresponding network slice. 
+						- NETWORK_PERFORMANCE: Represent the analytics of network performance information. 
+						- NF_LOAD: Indicates that the event subscribed is NF Load.
+						- SERVICE_EXPERIENCE: Represent the analytics of service experience information of the specific applications. 
+						- UE_MOBILITY: Represent the analytics of UE mobility. - UE_COMMUNICATION: Represent the analytics of UE communication. 
+						- QOS_SUSTAINABILITY: Represent the analytics of QoS sustainability information in the certain area.  
+						- ABNORMAL_BEHAVIOUR: Indicates that the event subscribed is abnormal behaviour information. 
+						- USER_DATA_CONGESTION: Represent the analytics of the user data congestion in the certain area. 
+						- NSI_LOAD_LEVEL: Represent the analytics of Network Slice and the optionally associated Network Slice Instance.  
+						- SM_CONGESTION: Represent the analytics of Session Management congestion control experience information for specific DNN and/or S-NSSAI. 
+
+	"ana-req" :{					 #Type EventReportingRequirement (29.520 - 5.1.6.2.7)  
+	
+		"accuracy":"",				 #Type Accuracy (Enum) (29.520 - 5.1.6.3.5)
+							 		 #Possible values of accuracy are:
+							 			- LOW
+							 			- HIGH
+
+ 		"startTs":"",                #Type DateTime (String) (29.571 - 5.2.2)
+		
+		"endTs":"",	                 #Type DateTime (String) (29.571 - 5.2.2)
+		
+		"offsetPeriod":"",			 #Type Integer: Offset period in units of seconds to the reporting time, if the value is negative means statistics in the past offset period, 
+									  otherwise a positive value means prediction in the future offset period.
+
+		"sampRatio":"",				 #Type Integer (29.571 - 5.2.2): Unsigned integer indicating Sampling Ratio (see clauses 4.15.1 of 3GPP TS 23.502 [28], expressed in percent.
+									  Minimum = 1. Maximum = 100
+
+		"maxObjectNbr":"",			 #Type UInteger: Maximum number of objects expected for an analytics report. It’s only applicable for the event(s) which may provide more than 
+									  one entries or objects during event notification. 
+
+		"maxSupiNbr":"",			 #Type UInteger: Maximum number of objects expected for an analytics report. It’s only applicable for the event(s) which may provide more 
+									  than one entries or objects during event notification.
+
+		"timeAnaNeeded":"",			 #Type DateTime (String) (29.571 - 5.2.2)
+
+		"anaMeta":["",""],			 #Type AnalyticsMetadata (Enum) (29.520 - 5.1.6.3.14)
+									 #Possible values of anaMeta are:
+									 	- NUM_OF_SAMPLES
+									 	- DATA_WINDOW
+									 	- DATA_STAT_PROPS
+									 	- STRATEGY
+									 	- ACCURACY
+
+		"anaMetaInd":{				  #Type AnalyticsMetadataIndication (29.520 - 5.1.6.2.36)
+
+			"dataWindow":{			  #Type TimeWindow (29.122 - 5.2.1.2.3)
+				"startTime":"", 	  #Type DateTime (String) (29.571 - 5.2.2)
+				"stopTime":""		  #Type DateTime (String) (29.571 - 5.2.2)
+			},
+			"dataStatProps":["",""],  #Type DatasetStatisticalProperty (ENUM) (29.520 - 5.1.6.3.15)
+									  #Possible values of dataStatProps are:
+									  	- UNIFORM_DIST_DATA
+									  	- NO_OUTLIERS
+
+			"strategy":"",			  #Type OutputStrategy (ENUM) (29.520 - 5.1.6.3.16)
+									  #Possible values of strategy are:
+									  	- BINARY
+									  	- GRADIENT
+
+			"aggrNwdafIds":["",""]    #Type NfInstanceId (UUID) (29.571 - 5.3.2)
+		}
+	},
+
+	"event-filter":{				  #Type EventFilter (29.520 - 5.2.6.2.3)
+
+		"anySlice":"",				  #Type AnySlice (boolean) (default is false) (29.520 - 5.1.6.3.2)
+
+		"appIds":["",""],			  #Type ApplicationId (String) (29.571 - 5.4.2)
+
+		"dnns":["" , ""],			  #Type Dnn (String) (29.571 - 5.3.2) 
+
+		"dnais":["" , ""],			  #Type Dnai (String) (29.571 - 5.4.2)
+		
+		"snssais":[				   	  #Type Snssai (29.571 - 5.4.4.2) || sst type unsigned integer within range [0,255]. 
+									  #Standarised values of sst are defined in 23.501 - 5.15.2.2 || sd type string. with pattern:'^[A-Fa-f0-9]{6}$'
+			{"sst":"" , "sd":""},	     
+			{"sst":"" , "sd":""}
+		],
+		"nfInstanceIds":["", ""],	  #Type NfInstanceId (UUID) (29.571 - 5.3.2)
+
+		"nfSetIds":["", ""],		  #Type NfSetId (String) (29.571 - 5.4.2)
+
+		"nfTypes":["" , ""],		  #Type NFType (Enum) (29.510 - 6.1.6.3.3)
+
+		"networkArea":{				  #Type NetworkAreaInfo (29.554 - 5.6.2.8)
+
+			"ecgis":[				  #Type Ecgi (29.571 - 5.4.4.5)
+
+				{"plmnId":{"mcc":"","mnc":""} , "eutraCellId":"", "nid":""},  #Type PlmnId (29.571 - 5.4.4.3)  || Type EutraCellId (String) (29.571 - 5.4.2)
+				{"plmnId":{"mcc":"","mnc":""} , "eutraCellId":"", "nid":""}   || #Type Nid (String) (29.571 - 5.4.2)
+				
+			],
+			"ncgis":[
+				{"plmnId":"" , "nrCellId":"", "nid":""},     #Type NrCellId (String) (29.571 - 5.4.2)
+				{"plmnId":"" , "nrCellId":"", "nid":""}
+			],
+			"gRanNodeIds":[
+				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""},   #Type n3IwfId (String) (29.571) || Type GNbId (29.571 - 5.4.4.29) || 
+																												  #Type NgeNbId (String) (29.571) || Type WAgfId (String)||
+																												  #Type TngfId (String) (29.571)  || Type EnbId (String)
+				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""}
+			],
+			"tais":[											#Type Tai (29.571 - 5.4.4.4)
+
+				{"plmnId":"" , "tac":"", "nid":""},  			#Type Tac (String) (29.571)						
+				{"plmnId":"" , "tac":"", "nid":""}
+			]
+		},
+		"maxTopAppUlNbr":"",  #Type UInteger (29.520 - 5.1.6.2.3)
+
+		"maxTopAppDlNbr":"",  #Type UInteger (29.520 - 5.1.6.2.3) 
+		
+		"nsiIdInfos":[											 #Type NsiIdInfo (29.520 - 5.1.6.2.33)
+
+			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]},    #Type NsiId (String) (29.531 - 6.1.6.3.2)
+			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]}
+		],
+		"nwPerfTypes":["",""],									 #Type NetworkPerfType (Enum) (29.520 - 5.1.6.3.10)
+
+		"qosRequ":{												 #Type QosRequirement (29.520 - 5.1.6.2.20)
+
+			"5qi":"",											 #Type 5Qi (Integer) (29.571 - 5.5.2)
+
+			"gfbrUl":"",										 #Type BitRate (String) (29.571 - 5.5.2)
+
+			"gfbrDl":"",										 #Type BitRate (String) (29.571 - 5.5.2)
+
+			"resType":"", 										 #Type QosResourceType (Enum) (29.571 - 5.5.3.6)							 
+
+			"pdb":"",										     #Type PacketDelBudget (Integer) (29.571 - 5.5.2)
+
+			"per":""},											 #Type PacketErrRate (String) (29.571 - 5.5.2)
+
+		"bwRequs":[                                              #Type BwRequirement (29.520 - 5.1.6.2.25)
+
+
+			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""},   #Type ApplicationId (String)(29.571)||
+																					#Everything else Type BitRate (String) (29.571 - 5.5.2)
+			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""}
+		],
+		"excepIds":["",""],           #Type ExceptionId (Enum) (5.1.6.3.6)
+
+		"exptAnaType":"",			  #Type ExpectedAnalyticsType (Enum) (5.1.6.3.11)
+
+		"exptUeBehav":{				  						#Type ExpectedUeBehaviour	(29.503 - 6.5.6.2.8) #Not implemented so far
+
+			"stationaryIndication":"",						
+			"communicationDurationDurationSecTime":"",
+			"periodicTime":"",
+			"scheduledCommunicationTime":"",
+			"scheduledCommunicationType":"",
+			"expectedUmts":"",
+			"trafficProfile":"",
+			"batteryIndication":"",
+			"validityTime":""
+		},
+		"ratTypes":["",""],      #Type RatType (Enum)(29.571 - 5.4.3.2)
+
+		"freqs":["",""]				
+	},
+
+	"supported-features":"",   #Type SupportedFeatures (29.571)
+
+	"tgt-ue":{					#Type TargetUeInformation (29.520 - 5.1.6.2.8)
+
+		"anyUe":"",				#Type Boolean (29.520 - 5.1.6.2.8)
+
+		"supis":["",""],		#Type Supi (String) (29.571 - 5.3.2)
+		"gpsis":["",""],		#Type Gpsi
+		"intGroupIds":["",""]
+	}
+}
+
+

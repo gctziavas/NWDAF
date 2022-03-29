@@ -1,0 +1,10 @@
+{
+"java8" : true,
+"basePackage":"io.nwdaf.analytics.api",
+"configPackage":"io.nwdaf.analytics.api.config",
+"modelPackage":"io.nwdaf.analytics.model",
+"apiPackage":"io.nwdaf.analytics.api",
+"dateLibrary":"java8",
+"springBootVersion" : "2.1.7.RELEASE"
+
+}

@@ -1,0 +1,12 @@
+THIS WAS THE GIVEN EXAMPLE OF myOptions.json FILE.
+
+{
+"java8" : true,
+"basePackage":"io.openslice.tmf.am642.api",
+"configPackage":"io.openslice.tmf.am642.api.config",
+"modelPackage":"io.openslice.tmf.am642.model",
+"apiPackage":"io.openslice.tmf.am642.api",
+"dateLibrary":"java8",
+"springBootVersion" : "2.1.7.RELEASE"
+
+}

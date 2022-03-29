@@ -1,0 +1,96 @@
+{
+	"event-id":"",
+
+	"ana-req":{
+		"accuracy":"",
+		"startTs":"",
+		"endTs":"",
+		"offsetPeriod":"",
+		"sampRatio":"",
+		"maxObjectNbr":"",
+		"maxSupiNbr":"",
+		"timeAnaNeeded":"",
+		"anaMeta":["",""],
+		"anaMetaInd":{
+			"dataWindow":{
+				"startTime":"",
+				"stopTime":""
+			},
+			"dataStatProps":["",""],
+			"strategy":"",
+			"aggrNwdafIds":["",""]
+		},
+	},
+
+	"event-filter":{
+		"anySlice":"",
+		"appIds":["",""],
+		"dnns":["" , ""],
+		"dnais":["" , ""],
+		"snssais":[
+			{"sst":"" , "sd":""},
+			{"sst":"" , "sd":""}
+		],
+		"nfInstanceIds":["", ""],
+		"nfSetIds":["", ""],
+		"nfTypes":["" , ""],
+		"networkArea":{
+			"ecgis":[
+				{"plmnId":"" , "eutraCellId":"", "nid":""},
+				{"plmnId":"" , "eutraCellId":"", "nid":""}
+			],
+			"ncgis":[
+				{"plmnId":"" , "nrCellId":"", "nid":""},
+				{"plmnId":"" , "nrCellId":"", "nid":""}
+			],
+			"gRanNodeIds":[
+				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""},
+				{"plmnId":"","n3IwfId":"","gNbId":"","ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""}
+			],
+			"tais":[
+				{"plmnId":"" , "tac":"", "nid":""},
+				{"plmnId":"" , "tac":"", "nid":""}
+			]
+		},
+		"maxTopAppUlNbr":"",
+		"maxTopAppDlNbr":"",
+		
+		"nsiIdInfos":[
+			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]},
+			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]}
+		],
+		"nwPerfTypes":["",""],
+		"qosRequ":{"5qi":"","gfbrUl":"","gfbrDl":"","resType":"","pdb":"","per":""},
+		"bwRequs":[
+			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""},
+			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""}
+		],
+		"excepIds":["",""],
+		"exptAnaType":"",
+		"exptUeBehav":{
+			"afInstanceId":"",
+			"referenceId":"",
+			"stationaryIndication":"",
+			"communicationDurationDurationSecTime":"",
+			"periodicTime":"",
+			"scheduledCommunicationTime":"",
+			"scheduledCommunicationType":"",
+			"expectedUmts":"",
+			"trafficProfile":"",
+			"batteryIndication":"",
+			"validityTime":"",
+			"mtcProviderInformation":""
+		},
+		"ratTypes":["",""],
+		"freqs":["",""]
+	},
+
+	"supported-features":"",
+
+	"tgt-ue":{
+		"anyUe":"",
+		"supis":["",""],
+		"gpsis":["",""],
+		"intGroupIds":["",""]
+	}
+}

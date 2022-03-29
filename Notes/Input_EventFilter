@@ -1,0 +1,260 @@
+{
+✓		"anySlice":"",
+✓		"appIds":["",""],
+✓		"dnns":["" , ""],
+✓		"dnais":["" , ""],
+✓		"snssais":[
+✓			{"sst":"" , "sd":""},
+✓			{"sst":"" , "sd":""}
+✓		],
+✓		"nfInstanceIds":["", ""],
+✓		"nfSetIds":["", ""],
+✓		"nfTypes":["" , ""],
+✓		"networkArea":{
+✓			"ecgis":[
+✓				{"plmnId":{"mcc":"","mnc":""} , "eutraCellId":"", "nid":""},
+✓				{"plmnId":{"mcc":"","mnc":""} , "eutraCellId":"", "nid":""}
+✓			],
+✓			"ncgis":[
+✓				{"plmnId":{"mcc":"","mnc":""} , "nrCellId":"", "nid":""},
+✓				{"plmnId":{"mcc":"","mnc":""} , "nrCellId":"", "nid":""}
+✓			],
+✓			"gRanNodeIds":[
+✓				{"plmnId":{"mcc":"","mnc":""},"n3IwfId":"","gNbId":{"bitLength":"","gNBValue":""},"ngeNbId":"","wagfId":"","tngfId":"","nid":"","eNbId":""},
+c				{"plmnId":{"mcc":"","mnc":""},"n3IwfId":"","gNbId":"","ngeNbId":{"bitLength":"","gNBValue":""},"wagfId":"","tngfId":"","nid":"","eNbId":""}
+✓			],
+✓			"tais":[
+✓				{"plmnId":{"mcc":"","mnc":""} , "tac":"", "nid":""},
+✓				{"plmnId":{"mcc":"","mnc":""} , "tac":"", "nid":""}
+✓			]
+✓		},
+✓		"maxTopAppUlNbr":"",
+✓		"maxTopAppDlNbr":"",
+✓		
+✓		"nsiIdInfos":[
+✓			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]},
+✓			{"snssai":{"sst":"" , "sd":""},"nsiIds":["",""]}
+✓		],
+✓		"nwPerfTypes":["",""],
+		"qosRequ":{"5qi":"","gfbrUl":"","gfbrDl":"","resType":"","pdb":"","per":""},
+✓		"bwRequs":[
+✓			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""},
+✓			{"appId":"", "marBwUl":"", "marBwDl":"", "mirBwUl":"", "mirBwDl":""}
+✓		],
+✓		"excepIds":["",""],
+✓		"exptAnaType":"",
+✓		"exptUeBehav":{
+✓			"stationaryIndication":"STATIONARY",
+✓			"communicationDurationDurationSecTime":"",
+✓			"periodicTime":"",
+			"scheduledCommunicationTime":"",
+✓			"scheduledCommunicationType":"",
+			"expectedUmts":"",
+✓			"trafficProfile":"",
+✓			"batteryIndication":"",
+✓			"validityTime":""
+✓		},
+✓		"ratTypes":["",""],
+✓		"freqs":["",""]
+✓	}
+
+------------------------>NSI_LOAD_LEVEL<------------------------
+{
+	"anySlice":"FALSE",
+		
+	"nsiIdInfos":[
+		{"snssai":{"sst":"1" , "sd":"111111"},"nsiIds":["11","22"]},
+		{"snssai":{"sst":"2" , "sd":"222222"},"nsiIds":["33","44"]}
+	]
+
+}
+------------------------>LOAD_LEVEL_INFORMATION<------------------------
+{
+	"anySlice":"FALSE",
+	
+	"snssais":[
+		{"sst":"1" , "sd":"111111"},
+		{"sst":"2" , "sd":"222222"}
+	]	
+}
+------------------------>NF_LOAD<------------------------
+{
+	"nfInstanceIds":["1113de3d-1fea-4d7c-a8b0-29f63c4c3454", "2223de3d-1fea-4d7c-a8b0-29f63c4c3454"],
+	"nfSetIds":["111", "2222"],
+	"nfTypes":["NRF" , "UDM"],
+	"snssais":[
+		{"sst":"1" , "sd":"111111"},
+		{"sst":"2" , "sd":"222222"}
+	]
+}
+------------------------>UE_MOBILITY<------------------------
+{
+	"networkArea": {
+			"ecgis":[
+				{"plmnId":{"mcc":"111","mnc":"222"} , "eutraCellId":"1111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "eutraCellId":"2222222", "nid":"22222222222"}
+			],
+			"ncgis":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "nrCellId":"111111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "nrCellId":"222222222", "nid":"22222222222"}
+			],
+			"gRanNodeIds":[
+				{"plmnId":{"mcc":"111","mnc":"111"},"n3IwfId":"11","gNbId":{"bitLength":"22","gNBValue":"aaaaaa"},"ngeNbId":"SMacroNGeNB-11111","wagfId":"1111","tngfId":"11","nid":"11111111111","eNbId":"LMacroeNB-111AAA"},
+				{"plmnId":{"mcc":"222","mnc":"222"},"n3IwfId":"22","gNbId":{"bitLength":"31","gNBValue":"bbbbbb"},"ngeNbId":"SMacroNGeNB-22222","wagfId":"2222","tngfId":"22","nid":"22222222222","eNbId":"LMacroeNB-111AAA"}
+			],
+			"tais":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "tac":"111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "tac":"222222", "nid":"22222222222"}
+			]
+			
+  }
+}
+------------------------>UE_COMM<------------------------
+{
+	"appIds":["app1","app2"],
+	"dnns":["aa" , "bb.bb"],
+	"networkArea": {
+			"ecgis":[
+				{"plmnId":{"mcc":"111","mnc":"222"} , "eutraCellId":"1111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "eutraCellId":"2222222", "nid":"22222222222"}
+			],
+			"ncgis":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "nrCellId":"111111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "nrCellId":"222222222", "nid":"22222222222"}
+			],
+			"gRanNodeIds":[
+				{"plmnId":{"mcc":"111","mnc":"111"},"n3IwfId":"11","gNbId":{"bitLength":"22","gNBValue":"aaaaaa"},"ngeNbId":"SMacroNGeNB-11111","wagfId":"1111","tngfId":"11","nid":"11111111111","eNbId":"LMacroeNB-111AAA"},
+				{"plmnId":{"mcc":"222","mnc":"222"},"n3IwfId":"22","gNbId":{"bitLength":"31","gNBValue":"bbbbbb"},"ngeNbId":"SMacroNGeNB-22222","wagfId":"2222","tngfId":"22","nid":"22222222222","eNbId":"LMacroeNB-111AAA"}
+			],
+			"tais":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "tac":"111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "tac":"222222", "nid":"22222222222"}
+			]
+			
+	},
+	"snssais":[
+		{"sst":"1" , "sd":"111111"},
+		{"sst":"2" , "sd":"222222"}
+	]	
+
+}
+------------------------>NETWORK_PERFORMANCE<------------------------
+{
+	
+	"nwPerfTypes":["GNB_ACTIVE_RATIO","GNB_COMPUTING_USAGE"],
+	"networkArea": {
+			"ecgis":[
+				{"plmnId":{"mcc":"111","mnc":"222"} , "eutraCellId":"1111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "eutraCellId":"2222222", "nid":"22222222222"}
+			],
+			"ncgis":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "nrCellId":"111111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "nrCellId":"222222222", "nid":"22222222222"}
+			],
+			"gRanNodeIds":[
+				{"plmnId":{"mcc":"111","mnc":"111"},"n3IwfId":"11","gNbId":{"bitLength":"22","gNBValue":"aaaaaa"},"ngeNbId":"SMacroNGeNB-11111","wagfId":"1111","tngfId":"11","nid":"11111111111","eNbId":"LMacroeNB-111AAA"},
+				{"plmnId":{"mcc":"222","mnc":"222"},"n3IwfId":"22","gNbId":{"bitLength":"31","gNBValue":"bbbbbb"},"ngeNbId":"SMacroNGeNB-22222","wagfId":"2222","tngfId":"22","nid":"22222222222","eNbId":"LMacroeNB-111AAA"}
+			],
+			"tais":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "tac":"111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "tac":"222222", "nid":"22222222222"}
+			]
+			
+	}
+}
+------------------------>SERVICE_EXPERIENCE<------------------------
+{
+
+
+	"dnais":["aa" , "bb"],
+	"ratTypes":["NR","EUTRA"],
+	"freqs":["111","222"],
+	"bwRequs":[
+		{"appId":"app1", "marBwUl":"125000 Kbps", "marBwDl":"125000 Kbps", "mirBwUl":"125000 Kbps", "mirBwDl":"125000 Kbps"},
+		{"appId":"app2", "marBwUl":"125000 Kbps", "marBwDl":"125000 Kbps", "mirBwUl":"125000 Kbps", "mirBwDl":"125000 Kbps"}
+	],
+	
+	"anySlice":"FALSE",		
+	"nsiIdInfos":[
+		{"snssai":{"sst":"1" , "sd":"111111"},"nsiIds":["11","22"]},
+		{"snssai":{"sst":"2" , "sd":"222222"},"nsiIds":["33","44"]}
+	],
+	"appIds":["app1","app2"],
+	"dnns":["aa" , "bb.bb"],
+	"networkArea": {
+			"ecgis":[
+				{"plmnId":{"mcc":"111","mnc":"222"} , "eutraCellId":"1111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "eutraCellId":"2222222", "nid":"22222222222"}
+			],
+			"ncgis":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "nrCellId":"111111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "nrCellId":"222222222", "nid":"22222222222"}
+			],
+			"gRanNodeIds":[
+				{"plmnId":{"mcc":"111","mnc":"111"},"n3IwfId":"11","gNbId":{"bitLength":"22","gNBValue":"aaaaaa"},"ngeNbId":"SMacroNGeNB-11111","wagfId":"1111","tngfId":"11","nid":"11111111111","eNbId":"LMacroeNB-111AAA"},
+				{"plmnId":{"mcc":"222","mnc":"222"},"n3IwfId":"22","gNbId":{"bitLength":"31","gNBValue":"bbbbbb"},"ngeNbId":"SMacroNGeNB-22222","wagfId":"2222","tngfId":"22","nid":"22222222222","eNbId":"LMacroeNB-111AAA"}
+			],
+			"tais":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "tac":"111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "tac":"222222", "nid":"22222222222"}
+			]
+			
+	}	
+
+}
+------------------------>QOS_SUSTAINABILITY<------------------------
+{
+	"snssais":[
+		{"sst":"1" , "sd":"111111"},
+		{"sst":"2" , "sd":"222222"}
+	]
+}	
+------------------------>ABNORMAL_BEHAVIOUR<------------------------
+{		
+	"excepIds":["UNEXPECTED_UE_LOCATION","UNEXPECTED_LONG_LIVE_FLOW"],
+	"exptAnaType":"MOBILITY",	
+	"exptUeBehav":{
+		"afInstanceId":"",
+		"referenceId":"",
+		"stationaryIndication":"",
+		"communicationDurationDurationSecTime":"",
+		"periodicTime":"",
+		"scheduledCommunicationTime":"",
+		"scheduledCommunicationType":"",
+		"expectedUmts":"",
+		"trafficProfile":"",
+		"batteryIndication":"",
+		"validityTime":"",
+		"mtcProviderInformation":""
+		},	
+	"appIds":["app1","app2"],
+	"dnns":["aa" , "bb.bb"],
+	"snssais":[
+		{"sst":"1" , "sd":"111111"},
+		{"sst":"2" , "sd":"222222"}
+	],
+	"networkArea": {
+			"ecgis":[
+				{"plmnId":{"mcc":"111","mnc":"222"} , "eutraCellId":"1111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "eutraCellId":"2222222", "nid":"22222222222"}
+			],
+			"ncgis":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "nrCellId":"111111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "nrCellId":"222222222", "nid":"22222222222"}
+			],
+			"gRanNodeIds":[
+				{"plmnId":{"mcc":"111","mnc":"111"},"n3IwfId":"11","gNbId":{"bitLength":"22","gNBValue":"aaaaaa"},"ngeNbId":"SMacroNGeNB-11111","wagfId":"1111","tngfId":"11","nid":"11111111111","eNbId":"LMacroeNB-111AAA"},
+				{"plmnId":{"mcc":"222","mnc":"222"},"n3IwfId":"22","gNbId":{"bitLength":"31","gNBValue":"bbbbbb"},"ngeNbId":"SMacroNGeNB-22222","wagfId":"2222","tngfId":"22","nid":"22222222222","eNbId":"LMacroeNB-111AAA"}
+			],
+			"tais":[
+				{"plmnId":{"mcc":"111","mnc":"111"} , "tac":"111111", "nid":"11111111111"},
+				{"plmnId":{"mcc":"222","mnc":"222"} , "tac":"222222", "nid":"22222222222"}
+			]
+			
+	}			
+	
+	
+}	
+
+
+
