@@ -9,6 +9,7 @@
 	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
@@ -28,14 +29,28 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/comlab/.m2/repository/net/minidev/json-smart/2.3/json-smart-2.3.jar" sourcepath="/home/comlab/.m2/repository/net/minidev/json-smart/2.3/json-smart-2.3-sources.jar">
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
-			<attribute name="maven.groupId" value="net.minidev"/>
-			<attribute name="maven.artifactId" value="json-smart"/>
-			<attribute name="maven.version" value="2.3"/>
-			<attribute name="maven.scope" value="test"/>
+			<attribute name="optional" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="target/generated-sources/annotations">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="ignore_optional_problems" value="true"/>
+			<attribute name="m2e-apt" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="ignore_optional_problems" value="true"/>
+			<attribute name="m2e-apt" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>

@@ -60,8 +60,6 @@ public class NfLoadLevelResponseBuilder {
 				}
 			}
 			
-			
-			
 			String allGroupValuesQuery = "$.data.result[*].value[1]";
 			JSONArray allGroupValues = JsonPath.read(document, allGroupValuesQuery);
 			
@@ -90,12 +88,8 @@ public class NfLoadLevelResponseBuilder {
 					//System.out.println(currentNfLoadLevelInfos.getNfType().toString());
 					//System.out.println(nfLoadLevelInformation.get(i+j).getNfType());
 				}
-				
-				
-				
-			}
 
-			
+			}
 		}
 		else {
 			List<String> supis = tgtUe.getSupis();
